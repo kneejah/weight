@@ -1,0 +1,3 @@
+[submodule "System"]
+	path = System
+	url = ssh://git@github.com/kneejah/framework.git
