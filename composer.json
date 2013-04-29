@@ -5,7 +5,6 @@
 	"require":
 	{
 		"mustache/mustache": "2.3.*",
-		"predis/predis":     "0.8.*",
 		"slim/slim":         "2.*"
 	}
 }

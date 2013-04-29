@@ -1,5 +1,10 @@
 {{> Site/Header}}
 
-Welcome to my site!
+	{{#logged_in}}
+		Welcome {{user.username}}, it looks like you're logged in.
+	{{/logged_in}}
+	{{^logged_in}}
+		Welcome stranger, doesn't look like you're logged in right now...
+	{{/logged_in}}
 
  {{> Site/Footer}}

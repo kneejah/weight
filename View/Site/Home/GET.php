@@ -13,9 +13,20 @@
 
 			$app->menu_items = Controller_Helper::processMenuItems($app->menu_items, $page, $logged_in);
 
+			$user = null;
+
+			if ($logged_in)
+			{
+				$id = $policy->getData();
+				$user_mapper = new Mapper_User();
+				$user = $user_mapper->getUserById($id);
+			}
+
 			return array(
 				'app'        => $app,
-				'breadcrumb' => 'Home'
+				'breadcrumb' => 'Home',
+				'logged_in'  => $logged_in,
+				'user'       => $user
 			);
 		}
 

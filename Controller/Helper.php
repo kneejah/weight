@@ -71,4 +71,9 @@
 			}
 		}
 
+		public static function clearUserFromSession()
+		{
+			$_SESSION = array();
+		}
+
 	}
