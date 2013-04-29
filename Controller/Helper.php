@@ -27,6 +27,11 @@
 
 		public static function getField($field, $default = "")
 		{
+			if (!isset($_SESSION) || !isset($_SESSION['slim.flash']))
+			{
+				return $default;
+			}
+
 			$flash = $_SESSION['slim.flash'];
 
 			if (isset($flash[$field]))
