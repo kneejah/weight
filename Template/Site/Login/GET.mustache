@@ -1,0 +1,25 @@
+{{> Site/Header}}
+
+<form method="post" action="/login">
+
+	<table>
+
+		<tr>
+		<td><label for="username">User Name:</label></td>
+		<td><input type="text" name="username" value="{{username}}" /></td>
+		</tr>
+
+		<tr>
+		<td><label for="password">Password:</label></td>
+		<td><input type="password" name="password" /></td>
+		</tr>
+
+		<tr>
+		<td><input type="submit" value="Log in" /></td>
+		</tr>
+
+	</table>
+
+ </form>
+
+ {{> Site/Footer}}

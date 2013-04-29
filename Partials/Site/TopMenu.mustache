@@ -1,0 +1,12 @@
+{{#app.menu_items}}
+
+	{{#current}}
+		<li class="active">
+	{{/current}}
+	{{^current}}
+		<li>
+	{{/current}}
+
+	<a href="{{url}}">{{name}}</a></li>
+
+{{/app.menu_items}}
