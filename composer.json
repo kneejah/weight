@@ -1,6 +1,11 @@
 {
-    "require": {
-        "slim/slim":         "2.*",
-        "mustache/mustache": "2.3.*"
-    }
+	"name": "subtleworks/weight",
+	"description": "a weight tracking website",
+	"license": "Apache-2.0",
+	"require":
+	{
+		"mustache/mustache": "2.3.*",
+		"predis/predis":     "0.8.*",
+		"slim/slim":         "2.*"
+	}
 }
