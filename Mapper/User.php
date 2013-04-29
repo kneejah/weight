@@ -59,7 +59,7 @@
 
 		public static function generateHash($password)
 		{
-			$app = Config::get('app');
+			$app = Config::get('system');
 			$hash = hash_hmac("sha256", $password, $app->password_hash);
 			return $hash;
 		}
