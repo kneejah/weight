@@ -19,7 +19,7 @@
 					array(
 						'date'    => $weight['create_time'],
 						'weight'  => $weight['weight'],
-						'comment' => $weight['comment']
+						'comment' => htmlentities($weight['comment'])
 					);
 			}
 

@@ -31,7 +31,7 @@
 
 				if (comment != "")
 				{
-					s = s + "<br />" + comment;
+					s = s + "<br />Comment: " + '"' + comment + '"';
 				}
 
 				s = s + "</div>";
@@ -49,9 +49,6 @@
 				data.addColumn('number',     'Weight');
 				data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
-				var minWeightValue = false;
-				var maxWeightValue = false;
-
 				for (var i in jsonData)
 				{
 					var tmp = jsonData[i];
@@ -62,26 +59,6 @@
 					var comment    = tmp['comment'];
 
 					var commentVal = generateTooltip(parsedDate, weightNum, comment, 'lbs');
-
-					if (!minWeightValue)
-					{
-						minWeightValue = weightNum;
-					}
-
-					if (!maxWeightValue)
-					{
-						maxWeightValue = weightNum;
-					}
-
-					if (weightNum > maxWeightValue)
-					{
-						maxWeightValue = weightNum;
-					}
-
-					if (weightNum < minWeightValue)
-					{
-						minWeightValue = weightNum;
-					}
 
 					data.addRow([
 						parsedDate,
@@ -94,7 +71,6 @@
 					title:     "My Weight",
 					pointSize: 4,
 					tooltip:   {isHtml: true},
-					// vAxis:     {minValue: minWeightValue - 1, maxValue: maxWeightValue + 1},
 					// curveType: "function"
 				};
 
@@ -111,7 +87,7 @@
 			<table>
 
 				<tr>
-				<td><label for="weight">Weight:</label></td>
+				<td><label for="weight">Weight (lbs):</label></td>
 				<td><input type="text" id="weight" name="weight" value="" /></td>
 				</tr>
 
@@ -126,18 +102,21 @@
 				</tr>
 
 				<tr>
-				<td colspan="2"><input type="submit" value="Submit" /></td>
+				<td colspan="2"><input type="submit" value="Add weight" /></td>
 				</tr>
 
 			</table>
 
 </form>
 
-
-
 	{{/logged_in}}
 	{{^logged_in}}
-		Welcome stranger, doesn't look like you're logged in right now...
+		Welcome stranger...
+
+		<br /><br />
+		{{app.name}} is a simple site for tracking your weight.
+		<br /><br />
+		Right now there isn't much, but more is coming soon!
 	{{/logged_in}}
 
 {{> Site/Footer}}
