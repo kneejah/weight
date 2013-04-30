@@ -16,7 +16,8 @@
 					5 => array('page' => 'signup',   'name' => 'Sign up',  'url' => '/signup',   'logged_out' => true),
 					6 => array('page' => 'login',    'name' => 'Log in',   'url' => '/login',    'logged_out' => true),
 					7 => array('page' => 'logout',   'name' => 'Log out',  'url' => '/logout',   'logged_in' => true)
-				)
+				),
+				'units' => 'lbs'
 			);
 		}
 

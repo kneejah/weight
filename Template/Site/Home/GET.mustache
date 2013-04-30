@@ -58,7 +58,7 @@
 					var weightNum  = parseFloat(tmp['weight']);
 					var comment    = tmp['comment'];
 
-					var commentVal = generateTooltip(parsedDate, weightNum, comment, 'lbs');
+					var commentVal = generateTooltip(parsedDate, weightNum, comment, '{{app.units}}');
 
 					data.addRow([
 						parsedDate,
@@ -87,7 +87,7 @@
 			<table>
 
 				<tr>
-				<td><label for="weight">Weight (lbs):</label></td>
+				<td><label for="weight">Weight ({{app.units}}):</label></td>
 				<td><input type="text" id="weight" name="weight" value="" /></td>
 				</tr>
 
