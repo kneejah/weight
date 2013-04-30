@@ -3,7 +3,10 @@
 	{{#logged_in}}
 
 		<script type="text/javascript">
-		
+			
+			var monthNames = ["January", "February", "March", "April", "May", "June",
+    			"July", "August", "September", "October", "November", "December"];
+
 			function getData()
 			{
 				$.getJSON("/api/weights", function(json) {
@@ -11,59 +14,94 @@
 				});
 			}
 
+			function generateTooltip(parsedDate, weightNum, comment, units)
+			{
+				var hrs = parsedDate.getHours();
+				var mins = parsedDate.getMinutes();
+				if (mins < 10) mins = "0" + mins;
+
+				var hrSuffix  = (hrs > 12) ? "pm" : "am"; 
+				var convHours = (hrs > 12) ? hrs - 12 : hrs;
+				if (convHours == 0) convHours = 12;
+
+				var s = "<div style='font-weight: bold; padding: 5px;'>"
+					+ monthNames[parsedDate.getMonth()] + " " + parsedDate.getDate()
+					+ ", " + parsedDate.getFullYear() + ", " + convHours + ":"
+					+ mins + " " + hrSuffix + "<br />Weight: " + weightNum + " " + units;
+
+				if (comment != "")
+				{
+					s = s + "<br />" + comment;
+				}
+
+				s = s + "</div>";
+
+				return s;
+			}
+
 			google.load("visualization", "1", { packages:["corechart"] });
 			google.setOnLoadCallback(getData);
 
 			function drawChart(jsonData) {
 
-			var data = new google.visualization.DataTable();
-			data.addColumn('date',   'Year');
-			data.addColumn('number', 'Weight');
+				var data = new google.visualization.DataTable();
+				data.addColumn('datetime',   'Year');
+				data.addColumn('number',     'Weight');
+				data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
-			var minWeightValue = false;
-			var maxWeightValue = false;
+				var minWeightValue = false;
+				var maxWeightValue = false;
 
-			for (var i in jsonData)
-			{
-				var tmp = jsonData[i];
-
-				var dateNum   = parseInt(tmp['date']) * 1000;
-				var weightNum = parseFloat(tmp['weight']);
-
-				if (!minWeightValue)
+				for (var i in jsonData)
 				{
-					minWeightValue = weightNum;
+					var tmp = jsonData[i];
+
+					var dateNum    = parseInt(tmp['date']) * 1000;
+					var parsedDate = new Date(dateNum);
+					var weightNum  = parseFloat(tmp['weight']);
+					var comment    = tmp['comment'];
+
+					var commentVal = generateTooltip(parsedDate, weightNum, comment, 'lbs');
+
+					if (!minWeightValue)
+					{
+						minWeightValue = weightNum;
+					}
+
+					if (!maxWeightValue)
+					{
+						maxWeightValue = weightNum;
+					}
+
+					if (weightNum > maxWeightValue)
+					{
+						maxWeightValue = weightNum;
+					}
+
+					if (weightNum < minWeightValue)
+					{
+						minWeightValue = weightNum;
+					}
+
+					data.addRow([
+						parsedDate,
+						weightNum,
+						commentVal
+					]);
 				}
 
-				if (!maxWeightValue)
-				{
-					maxWeightValue = weightNum;
-				}
+				var options = {
+					title:     "My Weight",
+					pointSize: 4,
+					tooltip:   {isHtml: true},
+					// vAxis:     {minValue: minWeightValue - 1, maxValue: maxWeightValue + 1},
+					// curveType: "function"
+				};
 
-				if (weightNum > maxWeightValue)
-				{
-					maxWeightValue = weightNum;
-				}
-
-				if (weightNum < minWeightValue)
-				{
-					minWeightValue = weightNum;
-				}
-
-				data.addRow( [new Date(dateNum), weightNum] );
+				var chart_div = document.getElementById('chart_div');
+				var chart = new google.visualization.LineChart(chart_div);
+				chart.draw(data, options);
 			}
-
-			var options = {
-				title:     "My Weight",
-				pointSize: 4,
-				// vAxis:     {minValue: minWeightValue - 1, maxValue: maxWeightValue + 1}
-				// curveType: "function"
-			};
-
-			var chart_div = document.getElementById('chart_div');
-			var chart = new google.visualization.LineChart(chart_div);
-			chart.draw(data, options);
-		}
 		</script>
 
 		<div id="chart_div" style="width: 1200px; height: 500px;"></div>
@@ -73,18 +111,18 @@
 			<table>
 
 				<tr>
-				<td><label>Current weight:</label></td>
-				<td><input type="text" name="weight" value="" /></td>
+				<td><label for="weight">Weight:</label></td>
+				<td><input type="text" id="weight" name="weight" value="" /></td>
 				</tr>
 
 				<tr>
-				<td><label>Date (optional):</label></td>
-				<td><input type="text" name="date" value="" /></td>
+				<td><label for="date">Optional date:</label></td>
+				<td><input type="text" id="date" name="date" value="" /></td>
 				</tr>
 
 				<tr>
-				<td><label>Comments:</label></td>
-				<td><textarea cols="50" rows="4" name="comment"></textarea></td>
+				<td><label for="comment">Comment:</label></td>
+				<td><textarea cols="50" rows="4" id="comment" name="comment"></textarea></td>
 				</tr>
 
 				<tr>

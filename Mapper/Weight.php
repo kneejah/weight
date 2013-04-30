@@ -34,9 +34,9 @@
 
 		public function getLastMonthsWeight($userid)
 		{
-			$daysAgo = 60 * 60 * 24 * 30;
+			$daysAgo = time() - (60 * 60 * 24 * 28);
 
-			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :days_ago ORDER BY create_time DESC LIMIT 30;";
+			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :days_ago ORDER BY create_time DESC;";
 			$data = array(
 				':userid'   => $userid,
 				':days_ago' => $daysAgo
