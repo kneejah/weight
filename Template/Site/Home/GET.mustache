@@ -1,10 +1,105 @@
 {{> Site/Header}}
 
 	{{#logged_in}}
-		Welcome {{user.username}}, it looks like you're logged in.
+
+		<script type="text/javascript">
+		
+			function getData()
+			{
+				$.getJSON("/api/weights", function(json) {
+					drawChart(json);
+				});
+			}
+
+			google.load("visualization", "1", { packages:["corechart"] });
+			google.setOnLoadCallback(getData);
+
+			function drawChart(jsonData) {
+
+			var data = new google.visualization.DataTable();
+			data.addColumn('date',   'Year');
+			data.addColumn('number', 'Weight');
+
+			var minWeightValue = false;
+			var maxWeightValue = false;
+
+			for (var i in jsonData)
+			{
+				var tmp = jsonData[i];
+
+				var dateNum   = parseInt(tmp['date']) * 1000;
+				var weightNum = parseFloat(tmp['weight']);
+
+				if (!minWeightValue)
+				{
+					minWeightValue = weightNum;
+				}
+
+				if (!maxWeightValue)
+				{
+					maxWeightValue = weightNum;
+				}
+
+				if (weightNum > maxWeightValue)
+				{
+					maxWeightValue = weightNum;
+				}
+
+				if (weightNum < minWeightValue)
+				{
+					minWeightValue = weightNum;
+				}
+
+				data.addRow( [new Date(dateNum), weightNum] );
+			}
+
+			var options = {
+				title:     "My Weight",
+				pointSize: 4,
+				// vAxis:     {minValue: minWeightValue - 1, maxValue: maxWeightValue + 1}
+				// curveType: "function"
+			};
+
+			var chart_div = document.getElementById('chart_div');
+			var chart = new google.visualization.LineChart(chart_div);
+			chart.draw(data, options);
+		}
+		</script>
+
+		<div id="chart_div" style="width: 1200px; height: 500px;"></div>
+
+		<form method="post" action="/action/weight/add">
+
+			<table>
+
+				<tr>
+				<td><label>Current weight:</label></td>
+				<td><input type="text" name="weight" value="" /></td>
+				</tr>
+
+				<tr>
+				<td><label>Date (optional):</label></td>
+				<td><input type="text" name="date" value="" /></td>
+				</tr>
+
+				<tr>
+				<td><label>Comments:</label></td>
+				<td><textarea cols="50" rows="4" name="comment"></textarea></td>
+				</tr>
+
+				<tr>
+				<td colspan="2"><input type="submit" value="Submit" /></td>
+				</tr>
+
+			</table>
+
+</form>
+
+
+
 	{{/logged_in}}
 	{{^logged_in}}
 		Welcome stranger, doesn't look like you're logged in right now...
 	{{/logged_in}}
 
- {{> Site/Footer}}
+{{> Site/Footer}}
