@@ -117,13 +117,32 @@
 			{
 				if (data.success == false)
 				{
-					$('#error_div').html('Error: ' + data.error);
+					showErrorMessage(data.error);
 				}
 				else
 				{
-					$('#error_div').html('');
+					showSuccessMessage("Weight successfully updated!");
+
+					$('#weight').val('');
+					$('#date').val('');
+					$('#comment').val('');
+
 					startGraph();
 				}
+			}
+
+			function showErrorMessage(message)
+			{
+				$('#success_div').hide();
+				$('#error_div').html('Error: ' + message);
+				$('#error_div').show();
+			}
+
+			function showSuccessMessage(message)
+			{
+				$('#error_div').hide();
+				$('#success_div').html(message);
+				$('#success_div').show();
 			}
 		</script>
 

@@ -11,7 +11,7 @@
 			$this->db = new Stores_SQLite();
 		}
 
-		public function addWeight($userid, $weight, $comment, $date)
+		public function addWeight($userid, $weight, $comment, $date = false)
 		{
 			if ($date)
 			{
@@ -34,17 +34,36 @@
 
 		public function getWeightsForUser($userid, $days_back)
 		{
-			$daysAgo = time() - (60 * 60 * 24 * $days_back);
+			if ($days_back == 'all')
+			{
+				$daysBack = 0;
+			}
+			else
+			{
+				$daysBack = time() - (60 * 60 * 24 * $days_back);
+			}
 
-			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :days_ago ORDER BY create_time DESC;";
+			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :days_back ORDER BY create_time DESC;";
 			$data = array(
-				':userid'   => $userid,
-				':days_ago' => $daysAgo
+				':userid'    => $userid,
+				':days_back' => $daysBack
 			);
 
 			$res = $this->db->query($query, $data);
 
 			return $res;
+		}
+
+		public function deleteWeightForUser($userid, $id)
+		{
+			$query = "DELETE FROM " . self::$table . " WHERE userid=:userid AND id=:id LIMIT 1;";
+
+			$data = array(
+				':userid' => $userid,
+				':id'     => $id
+			);
+
+			$this->db->query($query, $data);
 		}
 
 	}

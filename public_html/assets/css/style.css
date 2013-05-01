@@ -1,0 +1,28 @@
+body {
+	padding-top: 60px;
+}
+
+.success_div {
+	display     :      none;
+	padding-left: 300px;
+	height      : 20px;
+	color       : #000000;
+	font-weight : bold;
+}
+
+.error_div {
+	padding-left: 300px;
+	height      : 20px;
+	color       : #FF0000;
+	font-weight : bold;
+}
+
+.fancyfont_small {
+	font-family: 'Merriweather Sans', sans-serif;
+	font-weight: 400;
+}
+
+.fancyfont_large {
+	font-family: 'Merriweather Sans', sans-serif;
+	font-weight: 800;
+}

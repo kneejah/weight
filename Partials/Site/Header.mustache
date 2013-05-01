@@ -6,17 +6,11 @@
 
 		<title>{{app.name}}{{#breadcrumb}} &gt; {{.}}{{/breadcrumb}}</title>
 
+		<link rel="stylesheet" href="/assets/css/style.css" />
 		<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.css">
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700,800" />
-
-		<style>
-			body {
-				padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-			}
-		</style>
-
-		<link href="/assets/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -36,7 +30,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="brand" style="font-family: 'Merriweather Sans', sans-serif; font-weight: 800;" href="/home">{{app.name}}</a>
+					<a class="fancyfont_large brand" style="font-weight: 800;" href="/home">{{app.name}}</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
 							{{> Site/TopMenu}}
@@ -49,7 +43,8 @@
 		<div class="container">
 
 			
-				<div id="error_div" style="color: #FF0000; font-weight: bold;">{{#error}}Error: {{.}}{{/error}}</div>
+				<div id="error_div" class="error_div">
+					{{#error}}Error: {{.}}{{/error}}
+				</div>
 				{{#error}}<br />{{/error}}
-				
-			
+				<div id="success_div" class="success_div"></div>

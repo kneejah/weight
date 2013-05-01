@@ -50,19 +50,16 @@
 			if ($weight == "")
 			{
 				Controller_Helper::apiError("You must specify a weight!");
-				// die();
 			}
 
 			if (!is_numeric($weight))
 			{
 				Controller_Helper::apiError("Invalid weight value!");
-				// die();
 			}
 
 			if ($weight <= 0 || $weight > 1000)
 			{
 				Controller_Helper::apiError("Invalid weight range!");
-				// die();
 			}
 
 			$passedDate = false;
@@ -73,13 +70,11 @@
 				if (!$passedDate)
 				{
 					Controller_Helper::apiError("Invalid date specified!");
-					// die();
 				}
 
 				if ($passedDate > time())
 				{
 					Controller_Helper::apiError("Date can't be in the future!");
-					// die();
 				}
 			}
 
