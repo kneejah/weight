@@ -81,4 +81,11 @@
 			$_SESSION = array();
 		}
 
+		public static function apiError($string)
+		{
+			$data = array('success' => false, 'error' => $string);
+			echo json_encode($data);
+			die();
+		}
+
 	}

@@ -48,7 +48,8 @@
 
 		<div class="container">
 
-			{{#error}}
-				<div style="color: #FF0000; font-weight: bold;">Error: {{.}}</div>
-				<br />
-			{{/error}}
+			
+				<div id="error_div" style="color: #FF0000; font-weight: bold;">{{#error}}Error: {{.}}{{/error}}</div>
+				{{#error}}<br />{{/error}}
+				
+			

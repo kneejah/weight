@@ -9,17 +9,18 @@
 			});
 			
 			var monthNames = ["January", "February", "March", "April", "May", "June",
-    			"July", "August", "September", "October", "November", "December"];
+				"July", "August", "September", "October", "November", "December"];
 
-			function updateGraph(ref)
+			function getWeightData(daysBack)
 			{
-				getData(ref.value);
-			}
-
-			function getData(daysBack)
-			{
-				$.getJSON("/api/weights?days_back=" + daysBack, function(json) {
-					drawChart(json);
+				$.ajax({
+					dataType: "json",
+					url:      "/api/weights",
+					type:     "GET",
+					data:     {days_back: daysBack},
+					success:  function(json) {
+						drawChart(json.result);
+					}
 				});
 			}
 
@@ -50,7 +51,8 @@
 
 			function startGraph()
 			{
-				getData(30);
+				var val = $('#filter_picker').val();
+				getWeightData(val);
 			}
 
 			google.load("visualization", "1", { packages:["corechart"] });
@@ -93,14 +95,44 @@
 				var chart = new google.visualization.LineChart(chart_div);
 				chart.draw(data, options);
 			}
+
+			function addWeight(el)
+			{
+				var weightVal  = $('#weight').val();
+				var dateVal    = $('#date').val();
+				var commentVal = $('#comment').val();
+
+				$.ajax({
+					dataType: "json",
+					url:      "/api/weights",
+					type:     "POST",
+					data:     {weight: weightVal, date: dateVal, comment: commentVal},
+					success:  function(json) {
+						processResult(json);
+					}
+				});
+			}
+
+			function processResult(data)
+			{
+				if (data.success == false)
+				{
+					$('#error_div').html('Error: ' + data.error);
+				}
+				else
+				{
+					$('#error_div').html('');
+					startGraph();
+				}
+			}
 		</script>
 
 		<div style="width: 1200px;">
 
 		<div id="chart_div" style="clear: both; height: 500px;"></div>
 
-                <div style="float: right; padding-right: 175px;">
-			<select onChange="updateGraph(this);">
+		<div style="float: right; padding-right: 175px;">
+			<select id="filter_picker" onChange="startGraph();">
 				<option value="1">1 day</option>
 				<option value="7">7 days</option>
 				<option value="30" selected="true">1 month</option>
@@ -108,9 +140,9 @@
 				<option value="365">1 year</option>
 				<option value="all">All data</option>
 			</select>
-                </div>
+		</div>
 
-		<form method="post" action="/action/weight/add">
+		<form onSubmit="addWeight(this); return false;" method="post" action="/action/weight/add">
 
 			<table>
 
@@ -130,7 +162,7 @@
 				</tr>
 
 				<tr>
-				<td colspan="2"><input type="submit" class="btn" value="Add weight" /></td>
+				<td colspan="2"><input type="submit" class="btn" value="Add weight" onSubmit/></td>
 				</tr>
 
 			</table>
