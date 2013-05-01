@@ -82,8 +82,8 @@ function drawChart(jsonData) {
 		title:     "My Weight",
 		pointSize: 4,
 		tooltip:   {isHtml: true},
-		legend:    {position: 'none'},
-		// curveType: "function"
+		legend:    {position: 'none'}
+		// , curveType: "function"
 	};
 
 	var chart_div = document.getElementById('chart_div');
