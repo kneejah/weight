@@ -10,9 +10,13 @@
 
 			$userid = $policy->getData();
 
-			$weight_mapper = new Mapper_Weight();
-			$weights = $weight_mapper->getLastMonthsWeight($userid);
+			$request = $this->app->request();
+			$days_back = $request->get('days_back');
 
+			$weight_mapper = new Mapper_Weight();
+			$weights = $weight_mapper->getWeightsForUser($userid, $days_back);
+
+			$formatted_weights = array();
 			foreach ($weights as $weight)
 			{
 				$formatted_weights[] =

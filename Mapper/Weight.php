@@ -32,9 +32,9 @@
 			$this->db->insert(self::$table, $data);
 		}
 
-		public function getLastMonthsWeight($userid)
+		public function getWeightsForUser($userid, $days_back)
 		{
-			$daysAgo = time() - (60 * 60 * 24 * 28);
+			$daysAgo = time() - (60 * 60 * 24 * $days_back);
 
 			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :days_ago ORDER BY create_time DESC;";
 			$data = array(

@@ -11,9 +11,14 @@
 			var monthNames = ["January", "February", "March", "April", "May", "June",
     			"July", "August", "September", "October", "November", "December"];
 
-			function getData()
+			function updateGraph(ref)
 			{
-				$.getJSON("/api/weights", function(json) {
+				getData(ref.value);
+			}
+
+			function getData(daysBack)
+			{
+				$.getJSON("/api/weights?days_back=" + daysBack, function(json) {
 					drawChart(json);
 				});
 			}
@@ -43,8 +48,13 @@
 				return s;
 			}
 
+			function startGraph()
+			{
+				getData(30);
+			}
+
 			google.load("visualization", "1", { packages:["corechart"] });
-			google.setOnLoadCallback(getData);
+			google.setOnLoadCallback(startGraph);
 
 			function drawChart(jsonData) {
 
@@ -85,7 +95,20 @@
 			}
 		</script>
 
-		<div id="chart_div" style="width: 1200px; height: 500px;"></div>
+		<div style="width: 1200px;">
+
+		<div id="chart_div" style="clear: both; height: 500px;"></div>
+
+                <div style="float: right; padding-right: 175px;">
+			<select onChange="updateGraph(this);">
+				<option value="1">1 day</option>
+				<option value="7">7 days</option>
+				<option value="30" selected="true">1 month</option>
+				<option value="183">6 months</option>
+				<option value="365">1 year</option>
+				<option value="all">All data</option>
+			</select>
+                </div>
 
 		<form method="post" action="/action/weight/add">
 
@@ -107,12 +130,14 @@
 				</tr>
 
 				<tr>
-				<td colspan="2"><input type="submit" value="Add weight" /></td>
+				<td colspan="2"><input type="submit" class="btn" value="Add weight" /></td>
 				</tr>
 
 			</table>
 
-</form>
+		</form>
+
+		</div>
 
 	{{/logged_in}}
 	{{^logged_in}}
