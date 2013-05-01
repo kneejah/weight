@@ -17,7 +17,8 @@
 
 		<div id="chart_div" style="clear: both; height: 500px;"></div>
 
-		<div style="float: right; padding-right: 175px;">
+		<div style="float: right; padding-right: 155px;">
+			Filter:
 			<select id="filter_picker" onChange="startGraph();">
 				<option value="1">1 day</option>
 				<option value="7">7 days</option>
@@ -28,7 +29,7 @@
 			</select>
 		</div>
 
-		<form onSubmit="addWeight(this); return false;" method="post" action="/action/weight/add">
+		<form style="padding-left: 125px;" onSubmit="addWeight(this); return false;">
 
 			<table>
 
