@@ -66,4 +66,18 @@
 			$this->db->query($query, $data);
 		}
 
+		public function updateWeightForUser($userid, $id, $weight, $comment)
+		{
+			$query = "UPDATE " . self::$table . " SET weight=:weight, comment=:comment WHERE userid=:userid AND id=:id;";
+
+			$data = array(
+				':userid'  => $userid,
+				':id'      => $id,
+				':weight'  => $weight,
+				':comment' => $comment
+			);
+
+			$this->db->query($query, $data);
+		}
+
 	}

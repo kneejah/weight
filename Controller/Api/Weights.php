@@ -6,13 +6,14 @@
 		public function GET()
 		{
 			$policy = new Policy_LoggedIn($this->app);
+			$app = Config::get('app');
 
 			$userid = $policy->getData();
 			$request = $this->app->request();
 
 			if (!$userid)
 			{
-				Controller_Helper::apiError("Unable to authenticate!");
+				Controller_Helper::apiError("Unable to authenticate");
 			}
 
 			$days_back = trim($request->get('days_back'));
@@ -36,62 +37,7 @@
 					);
 			}
 
-			return $formatted_weights;
-		}
-
-		public function POST()
-		{
-			$policy = new Policy_LoggedIn($this->app);
-
-			$userid = $policy->getData();
-			$request = $this->app->request();
-
-			if (!$userid)
-			{
-				Controller_Helper::apiError("Unable to authenticate!");
-			}
-
-			$weight = trim($request->post('weight'));
-			$date = trim($request->post('date'));
-			$comment = trim($request->post('comment'));
-
-			if ($weight == "")
-			{
-				Controller_Helper::apiError("You must specify a weight!");
-			}
-
-			if (!is_numeric($weight))
-			{
-				Controller_Helper::apiError("Invalid weight value!");
-			}
-
-			if ($weight <= 0 || $weight > 1000)
-			{
-				Controller_Helper::apiError("Invalid weight range!");
-			}
-
-			$passedDate = false;
-			if ($date != "")
-			{
-				$passedDate = strtotime($date);
-
-				if (!$passedDate)
-				{
-					Controller_Helper::apiError("Invalid date specified!");
-				}
-
-				if ($passedDate > time())
-				{
-					Controller_Helper::apiError("Date can't be in the future!");
-				}
-			}
-
-			$weight = round($weight, 2);
-
-			$mapper = new Mapper_Weight();
-			$mapper->addWeight($userid, $weight, $comment, $passedDate);
-
-			return array();
+			return array('data' => $formatted_weights, 'units' => $app->units);
 		}
 
 	}

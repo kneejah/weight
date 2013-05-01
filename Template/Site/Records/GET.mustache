@@ -23,7 +23,7 @@
 				<td><input id="weight_{{id}}" type="text" value="{{weight}}" /></td>
 				<td><textarea cols="50" rows="4" id="comment_{{id}}">{{comment}}</textarea></td>
 				<td>
-					<input type="submit" class="btn" value="Update" onClick="return false;">
+					<input type="submit" class="btn" value="Update" onClick="updateRecord({{id}}); return false;">
 					<input type="submit" class="btn" value="Delete" onClick="deleteRecord({{id}}); return false;">
 				</td>
 			</tr>
@@ -35,7 +35,9 @@
 {{/has_weights}}
 
 {{^has_weights}}
-	You have no data, add some on the <a href="/home">Home</a> page to be able to edit it here!
+	Hey there, it looks like you don't have any data stored currently, so
+	<br />
+	you should add some on the <a href="/home">Home</a> page to be able to edit it here!
 {{/has_weights}}
 
 {{> Site/Footer}}

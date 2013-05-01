@@ -19,6 +19,11 @@
 			foreach ($weights as &$weight)
 			{
 				$weight['time'] = date('F j, Y, g:i a', $weight['create_time']);
+				$wVal = $weight['weight'];
+				if (round($wVal) == $wVal)
+				{
+					$weight['weight'] = round($wVal);
+				}
 			}
 
 			return array(
