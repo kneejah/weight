@@ -2,6 +2,10 @@ body {
 	padding-top: 60px;
 }
 
+textarea {
+	resize: none;
+}
+
 .success_div {
 	display     :      none;
 	padding-left: 300px;
