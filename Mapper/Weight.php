@@ -56,7 +56,7 @@
 
 		public function deleteWeightForUser($userid, $id)
 		{
-			$query = "DELETE FROM " . self::$table . " WHERE userid=:userid AND id=:id LIMIT 1;";
+			$query = "DELETE FROM " . self::$table . " WHERE userid=:userid AND id=:id;";
 
 			$data = array(
 				':userid' => $userid,

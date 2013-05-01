@@ -8,7 +8,7 @@
 			$page = 'login';
 			$app = Config::get('app');
 
-			$policy = new Policy_LoggedIn($this->app);
+			$policy = new Policy_LoggedOut($this->app);
 			$logged_in = $policy->getData();
 
 			$app->menu_items = Controller_Helper::processMenuItems($app->menu_items, $page, $logged_in);

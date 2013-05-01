@@ -7,9 +7,6 @@
 			$(function() {
 				$("#date").datepicker();
 			});
-			
-			var monthNames = ["January", "February", "March", "April", "May", "June",
-				"July", "August", "September", "October", "November", "December"];
 
 			function getWeightData(daysBack)
 			{
@@ -130,20 +127,6 @@
 					startGraph();
 				}
 			}
-
-			function showErrorMessage(message)
-			{
-				$('#success_div').hide();
-				$('#error_div').html('Error: ' + message);
-				$('#error_div').show();
-			}
-
-			function showSuccessMessage(message)
-			{
-				$('#error_div').hide();
-				$('#success_div').html(message);
-				$('#success_div').show();
-			}
 		</script>
 
 		<div style="width: 1200px;">
@@ -181,7 +164,7 @@
 				</tr>
 
 				<tr>
-				<td colspan="2"><input type="submit" class="btn" value="Add weight" onSubmit/></td>
+				<td colspan="2"><input type="submit" class="btn btn_pad" value="Add weight" onSubmit/></td>
 				</tr>
 
 			</table>

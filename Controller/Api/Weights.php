@@ -6,11 +6,15 @@
 		public function GET()
 		{
 			$policy = new Policy_LoggedIn($this->app);
-			$policy->ensure();
 
 			$userid = $policy->getData();
-
 			$request = $this->app->request();
+
+			if (!$userid)
+			{
+				Controller_Helper::apiError("Unable to authenticate!");
+			}
+
 			$days_back = trim($request->get('days_back'));
 
 			$weight_mapper = new Mapper_Weight();
@@ -38,10 +42,14 @@
 		public function POST()
 		{
 			$policy = new Policy_LoggedIn($this->app);
-			$policy->ensure();
 
 			$userid = $policy->getData();
 			$request = $this->app->request();
+
+			if (!$userid)
+			{
+				Controller_Helper::apiError("Unable to authenticate!");
+			}
 
 			$weight = trim($request->post('weight'));
 			$date = trim($request->post('date'));
