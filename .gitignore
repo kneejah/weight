@@ -1,3 +1,4 @@
 *.phar
 vendor/
 composer.lock
+Config/system.ini

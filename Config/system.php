@@ -5,7 +5,6 @@
 
 		public function configs()
 		{
-
 			$iniSettings = parse_ini_file(APP_ROOT . 'Config/system.ini');
 
 			return array(
