@@ -35,6 +35,25 @@
 						$newVal = 0;
 					}
 				}
+				else if ($setting['validate'] == 'height')
+				{
+					$newVal = $val;
+
+					if (!is_numeric($newVal))
+					{
+						$newVal = 0;
+					}
+					else if ($newVal < 0)
+					{
+						$newVal = 0;
+					}
+					else if ($newVal > 120)
+					{
+						$newVal = 120;
+					}
+
+					$newVal = round($newVal, 1);
+				}
 
 				$settings_mapper = new Mapper_Settings();
 				$settings_mapper->updateSettingForUserid($userid, $setting['name'], $newVal);

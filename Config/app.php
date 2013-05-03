@@ -23,11 +23,20 @@
 					0 => array(
 						'name'         => 'graph_smoothing',
 						'title'        => 'Smooth graph',
-						'description'  => 'Show a smooth graph on the main page',
+						'description'  => 'Show a smoothed out graph on the main page',
 						'type_boolean' => true,
 						'default'      => 0,
 						'validate'     => 'boolean',
 						'order'        => 1
+					),
+					1 => array(
+						'name'         => 'height',
+						'title'        => 'Height',
+						'description'  => 'Your height in inches',
+						'type_string'  => true,
+						'default'      => 0,
+						'validate'     => 'height',
+						'order'        => 2
 					)
 				)
 			);

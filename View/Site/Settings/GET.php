@@ -21,7 +21,7 @@
 
 			foreach ($userSettings as &$setting)
 			{
-				$setting['value'] = $settingsVals[$setting['name']]['value'];
+				$setting['value'] = $settingsVals[$setting['name']];
 			}
 
 			return array(

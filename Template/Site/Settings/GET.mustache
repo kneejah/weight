@@ -1,11 +1,11 @@
 {{> Site/Header}}
 
 <form method="post" action="/settings">
-<table class="table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px;">
+<table class="table table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px; width: 50%;">
 	{{#user_settings}}
 		<tr style="">
-			<td style="padding: 10px;">
-			{{title}}
+			<td style="padding: 10px; text-align: right;">
+				{{title}}
 			</td>
 			<td style="padding: 10px;">
 				{{#type_boolean}}
@@ -16,12 +16,20 @@
 						</span>
 					</label>
 				{{/type_boolean}}
+				{{#type_string}}
+					<label style="margin-bottom: 0px;">
+						<input type="text" name="{{name}}" value="{{value}}" style="margin-bottom: 0px;" />
+						<span style="margin-left: 10px;">
+							{{description}}
+						</span>
+					</label>
+				{{/type_string}}
 			</td>
 		</tr>
 	{{/user_settings}}
 </table>
 
-<div style="margin-left: 239px; margin-top: 20px;">
+<div style="margin-left: 328px; margin-top: 20px;">
 	<button type="submit" class="btn">Update</button>
 </div>
 
