@@ -14,3 +14,10 @@ CREATE TABLE 'weight' (
 	'create_time' INTEGER NOT NULL,
 	'comment' TEXT
 );
+
+CREATE TABLE 'user_settings' (
+	'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	'userid' INTEGER NOT NULL,
+	'name' TEXT NOT NULL,
+	'value' TEXT NOT NULL
+);
