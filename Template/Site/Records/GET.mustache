@@ -20,7 +20,7 @@
 		{{#weights}}
 			<tr id="row_{{id}}">
 				<td>{{time}}</td>
-				<td><input id="weight_{{id}}" type="text" value="{{weight}}" /></td>
+				<td><input id="weight_{{id}}" type="text" value="{{weight}}" /> <span>{{app.weight_units}}</span></td>
 				<td><textarea style="margin-bottom: 0px;" cols="50" rows="2" id="comment_{{id}}">{{comment}}</textarea></td>
 				<td>
 					<input type="submit" class="btn" value="Update" onClick="updateRecord({{id}}); return false;">
