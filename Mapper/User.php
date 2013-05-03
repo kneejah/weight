@@ -57,6 +57,20 @@
 			$this->db->insert(self::$table, $data);
 		}
 
+		public function updateUpdateTimeForUser($id)
+		{
+			$now = time();
+			
+			$query = "UPDATE " . self::$table . " SET update_time=:update_time WHERE id=:id;";
+
+			$data = array(
+				':id'  => $id,
+				':update_time' => time()
+			);
+
+			$this->db->query($query, $data);
+		}
+
 		public static function generateHash($password)
 		{
 			$app = Config::get('system');

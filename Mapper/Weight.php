@@ -4,7 +4,7 @@
 	{
 
 		private $db;
-		private static $table = "weight";
+		private static $table = "user_weights";
 
 		public function __construct()
 		{

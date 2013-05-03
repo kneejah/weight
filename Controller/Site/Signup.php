@@ -66,7 +66,9 @@
 
 			$user_mapper->createUser($username, $password, $email);
 
-			$this->success();
+			$user = $user_mapper->getUserByUsername($username);
+
+			$this->success($user['id']);
 		}
 
 		private function error($string)
@@ -80,8 +82,9 @@
 			die();
 		}
 
-		private function success()
+		private function success($userid)
 		{
+			Controller_Helper::setUserInSession($userid);
 			$this->app->redirect('/home');
 			die();
 		}

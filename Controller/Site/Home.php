@@ -5,7 +5,16 @@
 
 		public function GET()
 		{
-			// Do nothing, people can be logged in or out here
+			$policy = new Policy_LoggedIn($this->app);
+			$logged_in = $policy->check();
+
+			if ($logged_in)
+			{
+				$userid = $policy->getData();
+
+				$user_mapper = new Mapper_User();
+				$user_mapper->updateUpdateTimeForUser($userid);
+			}
 		}
 
 	}

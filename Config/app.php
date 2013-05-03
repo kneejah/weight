@@ -18,7 +18,18 @@
 					6 => array('page' => 'logout',   'name' => 'Log out',  'url' => '/logout',   'logged_in' => true)
 				),
 				'weight_units' => 'lbs',
-				'height_units' => 'in'
+				'height_units' => 'in',
+				'user_settings' => array(
+					0 => array(
+						'name'         => 'graph_smoothing',
+						'title'        => 'Smooth graph',
+						'description'  => 'Show a smooth graph on the main page',
+						'type_boolean' => true,
+						'default'      => 0,
+						'validate'     => 'boolean',
+						'order'        => 1
+					)
+				)
 			);
 		}
 

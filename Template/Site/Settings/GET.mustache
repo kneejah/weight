@@ -1,0 +1,30 @@
+{{> Site/Header}}
+
+<form method="post" action="/settings">
+<table class="table-bordered table-striped" cellpadding="10" style="margin-left: 200px; margin-top: 50px;">
+	{{#user_settings}}
+		<tr style="">
+			<td>
+			{{title}}
+			</td>
+			<td style="padding-left: 50px;">
+				{{#type_boolean}}
+					<label>
+						<input style="margin: 0;" type="checkbox" name="{{name}}" />
+						<span style="margin-left: 10px;">
+							{{description}}
+						</span>
+					</label>
+				{{/type_boolean}}
+			</td>
+		</tr>
+	{{/user_settings}}
+</table>
+
+<div style="margin-left: 239px; margin-top: 20px;">
+	<button type="submit" class="btn">Update</button>
+</div>
+
+</form>
+
+{{> Site/Footer}}

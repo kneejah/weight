@@ -26,15 +26,21 @@
 						'type'  => 'get'
 					),
 					'Site_About' => array(
-						'name'  => 'Site_About',
-						'uri'   => '/about',
-						'type'  => 'get'
+						'name'   => 'Site_About',
+						'uri'    => '/about',
+						'type'   => 'get'
 					),
 					'Site_Anchor' => array(
 						'name'    => 'Site_Anchor',
 						'uri'     => '/',
 						'type'    => 'get',
 						'options' => array('noview' => true)
+					),
+					'Site_Settings' => array(
+						'name'      => 'Site_Settings',
+						'uri'       => '/settings',
+						'type'      => 'get,post',
+						'options'   => array('post' => array('noview' => true))
 					),
 					'Site_Login'  => array(
 						'name'    => 'Site_Login',
