@@ -21,7 +21,7 @@
 
 			if ($username == "" || $password == "")
 			{
-				$this->error("Both fields are required");
+				$this->error("Both fields are required.");
 			}
 
 			$user_mapper = new Mapper_User();
@@ -29,14 +29,14 @@
 
 			if (!$user)
 			{
-				$this->error("Invalid user name or password");
+				$this->error("Invalid user name or password.");
 			}
 
 			$hash = Mapper_User::generateHash($password);
 
 			if ($user['password_hash'] !== $hash)
 			{
-				$this->error("Invalid user name or password");
+				$this->error("Invalid user name or password.");
 			}
 
 			$this->success($user['id']);

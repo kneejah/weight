@@ -43,8 +43,12 @@
 
 		<div class="container">
 
-			
-				<div id="error_div" class="error_div">
-					{{#error}}Error: {{.}}{{/error}}
-				</div>
-				<div id="success_div" class="success_div"></div>
+			{{#error}}
+			<script type="text/javascript">
+				$(document).ready(function() {
+					showErrorMessage("{{.}}");
+				});
+			</script>
+			{{/error}}
+			<div id="error_div" class="error_div"></div>
+			<div id="success_div" class="success_div"></div>

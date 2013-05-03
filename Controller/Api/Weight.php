@@ -12,7 +12,7 @@
 
 			if (!$userid)
 			{
-				Controller_Helper::apiError("Unable to authenticate");
+				Controller_Helper::apiError("Unable to authenticate.");
 			}
 
 			$weight = trim($request->post('weight'));
@@ -21,17 +21,17 @@
 
 			if ($weight == "")
 			{
-				Controller_Helper::apiError("You must specify a weight");
+				Controller_Helper::apiError("You must specify a weight.");
 			}
 
 			if (!is_numeric($weight))
 			{
-				Controller_Helper::apiError("Invalid weight value");
+				Controller_Helper::apiError("Invalid weight value.");
 			}
 
 			if ($weight <= 0 || $weight > 1000)
 			{
-				Controller_Helper::apiError("Invalid weight range");
+				Controller_Helper::apiError("Invalid weight range.");
 			}
 
 			$passedDate = false;
@@ -41,12 +41,12 @@
 
 				if (!$passedDate)
 				{
-					Controller_Helper::apiError("Invalid date specified");
+					Controller_Helper::apiError("Invalid date specified.");
 				}
 
 				if ($passedDate > time())
 				{
-					Controller_Helper::apiError("Date can't be in the future");
+					Controller_Helper::apiError("Date can't be in the future.");
 				}
 			}
 
@@ -67,7 +67,7 @@
 
 			if (!$userid)
 			{
-				Controller_Helper::apiError("Unable to authenticate");
+				Controller_Helper::apiError("Unable to authenticate.");
 			}
 
 			$id = $request->params('id');
@@ -76,17 +76,17 @@
 
 			if ($weight == "")
 			{
-				Controller_Helper::apiError("You must specify a weight");
+				Controller_Helper::apiError("You must specify a weight.");
 			}
 
 			if (!is_numeric($weight))
 			{
-				Controller_Helper::apiError("Invalid weight value");
+				Controller_Helper::apiError("Invalid weight value.");
 			}
 
 			if ($weight <= 0 || $weight > 1000)
 			{
-				Controller_Helper::apiError("Invalid weight range");
+				Controller_Helper::apiError("Invalid weight range.");
 			}
 
 			$weight = round($weight, 2);
@@ -106,7 +106,7 @@
 
 			if (!$userid)
 			{
-				Controller_Helper::apiError("Unable to authenticate");
+				Controller_Helper::apiError("Unable to authenticate.");
 			}
 
 			$id = $request->params('id');

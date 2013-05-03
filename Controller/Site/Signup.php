@@ -22,32 +22,32 @@
 
 			if ($username == "" || $password == "" || $email == "")
 			{
-				$this->error("All fields are required!");
+				$this->error("All fields are required.");
 			}
 
 			if (strlen($username) < 5 || strlen($username) > 15)
 			{
-				$this->error("User name must be between 5 and 15 characters");
+				$this->error("User name must be between 5 and 15 characters.");
 			}
 
 			if (strlen($password) < 5 || strlen($password) > 15)
 			{
-				$this->error("Password must be between 5 and 15 characters");
+				$this->error("Password must be between 5 and 15 characters.");
 			}
 
 			if (!ctype_alnum($username))
 			{
-				$this->error("Invalid user name! Only letters and numbers are allowed");
+				$this->error("Invalid user name. Only letters and numbers are allowed.");
 			}
 
 			if (!ctype_alnum($password))
 			{
-				$this->error("Invalid password! Only letters and numbers are allowed");
+				$this->error("Invalid password. Only letters and numbers are allowed.");
 			}
 
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 			{
-				$this->error("Invalid email format!");
+				$this->error("Invalid email format.");
 			}
 
 			$user_mapper = new Mapper_User();
@@ -55,13 +55,13 @@
 
 			if ($possibleUser)
 			{
-				$this->error("That user name already exists");
+				$this->error("That user name already exists.");
 			}
 
 			$possibleUser2 = $user_mapper->getUserByEmail($email);
 			if ($possibleUser2)
 			{
-				$this->error("A user with that email address already exists");
+				$this->error("A user with that email address already exists.");
 			}
 
 			$user_mapper->createUser($username, $password, $email);

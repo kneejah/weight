@@ -25,7 +25,7 @@ function processResult(data)
 	}
 	else
 	{
-		showSuccessMessage("Weight successfully updated!");
+		showSuccessMessage("Weight successfully updated.");
 
 		$('#weight').val('');
 		$('#date').val('');

@@ -22,7 +22,7 @@ function updateProcess(data)
 	}
 	else
 	{
-		showSuccessMessage("Record successfully updated!");
+		showSuccessMessage("Record successfully updated.");
 	}
 }
 
@@ -56,7 +56,7 @@ function deleteProcess(data)
 	else
 	{
 		var id = data.result.id;
-		showSuccessMessage("Record successfully deleted!");
+		showSuccessMessage("Record successfully deleted.");
 		$('#row_' + id).fadeOut('slow');
 	}
 }
