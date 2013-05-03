@@ -4,13 +4,15 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
 function showErrorMessage(message)
 {
 	$('#success_div').hide();
+	$('#error_div').hide();
 	$('#error_div').html('Error: ' + message);
-	$('#error_div').show();
+	$('#error_div').fadeIn();
 }
 
 function showSuccessMessage(message)
 {
 	$('#error_div').hide();
+	$('#success_div').hide();
 	$('#success_div').html(message);
-	$('#success_div').show();
+	$('#success_div').fadeIn();
 }
