@@ -1,25 +1,28 @@
 {{> Site/Header}}
 
 <br />
-<form method="post" action="/login">
 
-	<table>
+<form method="post" action="/login" class="form-horizontal">
 
-		<tr>
-		<td><label for="username">User Name:</label></td>
-		<td><input type="text" id="username" name="username" value="{{username}}" /></td>
-		</tr>
+	<div class="control-group">
+		<label class="control-label" for="inputUsername">User name</label>
+		<div class="controls">
+			<input type="text" id="inputUsername" name="username" value="{{username}}" placeholder="User name">
+		</div>
+	</div>
 
-		<tr>
-		<td><label for="password">Password:</label></td>
-		<td><input type="password" id="password" name="password" /></td>
-		</tr>
+	<div class="control-group">
+		<label class="control-label" for="inputPassword">Password</label>
+		<div class="controls">
+			<input type="password" id="inputPassword" name="password" placeholder="Password">
+		</div>
+	</div>
 
-		<tr>
-		<td colspan="2"><input type="submit" class="btn btn_pad" value="Log in" /></td>
-		</tr>
-
-	</table>
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn">Log in</button>
+		</div>
+	</div>
 
 </form>
 
