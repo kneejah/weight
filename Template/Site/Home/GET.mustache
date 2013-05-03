@@ -33,30 +33,34 @@
 			</select>
 		</div>
 
-		<form style="padding-left: 125px;" onSubmit="addWeight(this); return false;">
+		<form class="form-horizontal" onSubmit="addWeight(this); return false;">
 
-			<table>
+			<div class="control-group" style="margin-bottom: 10px;">
+				<label class="control-label" for="weight">Weight</label>
+				<div class="controls">
+					<input type="text" id="weight" name="weight" value="" placeholder="Weight ({{app.weight_units}})">
+				</div>
+			</div>
 
-				<tr>
-				<td><label for="weight">Weight ({{app.weight_units}}):</label></td>
-				<td><input type="text" id="weight" name="weight" value="" /></td>
-				</tr>
+			<div class="control-group">
+				<label class="control-label" for="date">Date</label>
+				<div class="controls">
+					<input type="text" id="date" name="date" placeholder="Date (optional)">
+				</div>
+			</div>
 
-				<tr>
-				<td><label for="date">Optional date:</label></td>
-				<td><input type="text" id="date" name="date" value="" /></td>
-				</tr>
+			<div class="control-group">
+				<label class="control-label" for="comment">Comment</label>
+				<div class="controls">
+					<textarea cols="50" rows="2" id="comment" name="comment" placeholder="Comment (optional)"></textarea>
+				</div>
+			</div>
 
-				<tr>
-				<td><label for="comment">Comment:</label></td>
-				<td><textarea cols="50" rows="2" id="comment" name="comment"></textarea></td>
-				</tr>
-
-				<tr>
-				<td colspan="2"><input type="submit" class="btn btn_pad" value="Add weight" onSubmit/></td>
-				</tr>
-
-			</table>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn">Add weight</button>
+				</div>
+			</div>
 
 		</form>
 
