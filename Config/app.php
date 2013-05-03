@@ -17,7 +17,8 @@
 					4 => array('page' => 'login',    'name' => 'Log in',   'url' => '/login',    'logged_out' => true),
 					5 => array('page' => 'logout',   'name' => 'Log out',  'url' => '/logout',   'logged_in' => true)
 				),
-				'units' => 'lbs'
+				'weight_units' => 'lbs',
+				'height_units' => 'inches'
 			);
 		}
 

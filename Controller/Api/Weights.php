@@ -37,7 +37,7 @@
 					);
 			}
 
-			return array('data' => $formatted_weights, 'units' => $app->units);
+			return array('data' => $formatted_weights, 'units' => $app->weight_units);
 		}
 
 	}
