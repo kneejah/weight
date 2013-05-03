@@ -10,7 +10,7 @@
 			<td style="padding-left: 50px;">
 				{{#type_boolean}}
 					<label>
-						<input style="margin: 0;" type="checkbox" name="{{name}}" />
+						<input style="margin: 0;" type="checkbox" {{#value}}checked="true"{{/value}} name="{{name}}" />
 						<span style="margin-left: 10px;">
 							{{description}}
 						</span>

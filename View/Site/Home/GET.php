@@ -15,20 +15,25 @@
 
 			$user = null;
 			$formatted_weights = array();
-
+			$settingsVals = array();
+			
 			if ($logged_in)
 			{
 				$userid = $policy->getData();
 				$user_mapper = new Mapper_User();
 				$user = $user_mapper->getUserById($userid);
+
+				$settings_mapper = new Mapper_Settings();
+				$settingsVals = $settings_mapper->getFilteredSettingsByUserid($userid);
 			}
 
 			return array(
-				'app'        => $app,
-				'breadcrumb' => 'Home',
-				'error'      => Controller_Helper::getError(),
-				'logged_in'  => $logged_in,
-				'user'       => $user
+				'app'           => $app,
+				'breadcrumb'    => 'Home',
+				'error'         => Controller_Helper::getError(),
+				'logged_in'     => $logged_in,
+				'user'          => $user,
+				'user_settings' => $settingsVals
 			);
 		}
 

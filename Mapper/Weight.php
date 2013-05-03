@@ -29,7 +29,7 @@
 				'comment'     => $comment
 			);
 
-			$this->db->insert(self::$table, $data);
+			return $this->db->insert(self::$table, $data);
 		}
 
 		public function getWeightsForUser($userid, $days_back)
@@ -49,9 +49,7 @@
 				':days_back' => $daysBack
 			);
 
-			$res = $this->db->query($query, $data);
-
-			return $res;
+			return $this->db->query($query, $data);
 		}
 
 		public function deleteWeightForUser($userid, $id)
@@ -63,7 +61,7 @@
 				':id'     => $id
 			);
 
-			$this->db->query($query, $data);
+			return $this->db->query($query, $data);
 		}
 
 		public function updateWeightForUser($userid, $id, $weight, $comment)
@@ -77,7 +75,7 @@
 				':comment' => $comment
 			);
 
-			$this->db->query($query, $data);
+			return $this->db->query($query, $data);
 		}
 
 	}

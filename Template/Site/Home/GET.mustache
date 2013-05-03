@@ -5,6 +5,10 @@
 	{{#logged_in}}
 
 		<script type="text/javascript">
+			window.user_options = {
+				graph_smoothing: {{user_settings.graph_smoothing}}
+			};
+
 			$(document).ready(function() {
 				$("#date").datepicker();
 			});

@@ -13,6 +13,7 @@
 		{
 			$policy = new Policy_LoggedIn($this->app);
 			$policy->ensure();
+			$userid = $policy->getData();
 
 			$app = Config::get('app');
 			$request = $this->app->request();
@@ -35,8 +36,12 @@
 					}
 				}
 
-				echo "(saving {$setting['name']} to $newVal)";
+				$settings_mapper = new Mapper_Settings();
+				$settings_mapper->updateSettingForUserid($userid, $setting['name'], $newVal);
 			}
+
+			$this->app->redirect('/settings');
+			die();
 		}
 
 	}

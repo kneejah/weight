@@ -16,9 +16,7 @@
 			$query = "SELECT * FROM " . self::$table . " WHERE id=:id LIMIT 1;";
 			$data = array(':id' => $id);
 
-			$res = $this->db->query($query, $data, true);
-
-			return $res;
+			return $this->db->query($query, $data, true);
 		}
 
 		public function getUserByUsername($username)
@@ -26,9 +24,7 @@
 			$query = "SELECT * FROM " . self::$table . " WHERE username=:username LIMIT 1;";
 			$data = array(':username' => $username);
 
-			$res = $this->db->query($query, $data, true);
-
-			return $res;
+			return $this->db->query($query, $data, true);
 		}
 
 		public function getUserByEmail($email_address)
@@ -36,9 +32,7 @@
 			$query = "SELECT * FROM " . self::$table . " WHERE email_address=:email_address LIMIT 1;";
 			$data = array(':email_address' => $email_address);
 
-			$res = $this->db->query($query, $data, true);
-
-			return $res;
+			return $this->db->query($query, $data, true);
 		}
 
 		public function createUser($username, $password, $email)
@@ -54,7 +48,7 @@
 				'update_time'   => $now
 			);
 
-			$this->db->insert(self::$table, $data);
+			return $this->db->insert(self::$table, $data);
 		}
 
 		public function updateUpdateTimeForUser($id)
@@ -64,17 +58,18 @@
 			$query = "UPDATE " . self::$table . " SET update_time=:update_time WHERE id=:id;";
 
 			$data = array(
-				':id'  => $id,
+				':id'          => $id,
 				':update_time' => time()
 			);
 
-			$this->db->query($query, $data);
+			return $this->db->query($query, $data);
 		}
 
 		public static function generateHash($password)
 		{
 			$app = Config::get('system');
 			$hash = hash_hmac("sha256", $password, $app->password_hash);
+
 			return $hash;
 		}
 

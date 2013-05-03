@@ -78,12 +78,14 @@ function drawChart(jsonData) {
 		]);
 	}
 
+	var graph_smoothing = (window.user_options.graph_smoothing) ? "function" : "none";
+
 	var options = {
 		title:     "My Weight",
 		pointSize: 4,
 		tooltip:   {isHtml: true},
-		legend:    {position: 'none'}
-		// , curveType: "function"
+		legend:    {position: 'none'},
+		curveType: graph_smoothing
 	};
 
 	var chart_div = document.getElementById('chart_div');

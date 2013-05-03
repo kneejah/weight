@@ -13,13 +13,21 @@
 
 			$app->menu_items = Controller_Helper::processMenuItems($app->menu_items, $page, $userid);
 
-			// @TODO: merge in user settings, and order
-			$user_settings = $app->user_settings;
+			// @TODO: enforce order
+			$userSettings = $app->user_settings;
+
+			$settings_mapper = new Mapper_Settings();
+			$settingsVals = $settings_mapper->getFilteredSettingsByUserid($userid);
+
+			foreach ($userSettings as &$setting)
+			{
+				$setting['value'] = $settingsVals[$setting['name']]['value'];
+			}
 
 			return array(
 				'app'           => $app,
 				'breadcrumb'    => 'Settings',
-				'user_settings' => $user_settings
+				'user_settings' => $userSettings
 			);
 		}
 
