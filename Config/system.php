@@ -25,6 +25,11 @@
 						'uri'   => '/records',
 						'type'  => 'get'
 					),
+					'Site_About' => array(
+						'name'  => 'Site_About',
+						'uri'   => '/about',
+						'type'  => 'get'
+					),
 					'Site_Anchor' => array(
 						'name'    => 'Site_Anchor',
 						'uri'     => '/',
