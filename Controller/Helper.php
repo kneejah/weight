@@ -59,6 +59,16 @@
 			$app->flash('error', $string);
 		}
 
+		public static function getSuccess()
+		{
+			return self::getField('success', false);
+		}
+
+		public static function setSuccess($app, $string)
+		{
+			$app->flash('success', $string);
+		}
+
 		public static function setUserInSession($userid)
 		{
 			$_SESSION['id'] = $userid;

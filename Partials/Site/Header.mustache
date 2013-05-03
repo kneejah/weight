@@ -50,5 +50,13 @@
 				});
 			</script>
 			{{/error}}
+
+			{{#success}}
+			<script type="text/javascript">
+				$(document).ready(function() {
+					showSuccessMessage("{{.}}");
+				});
+			</script>
+			{{/success}}
 			<div id="error_div" class="error_div"></div>
 			<div id="success_div" class="success_div"></div>

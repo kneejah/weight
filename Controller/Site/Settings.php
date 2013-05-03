@@ -40,6 +40,8 @@
 				$settings_mapper->updateSettingForUserid($userid, $setting['name'], $newVal);
 			}
 
+			Controller_Helper::setSuccess($this->app, "Your settings were updated.");
+
 			$this->app->redirect('/settings');
 			die();
 		}

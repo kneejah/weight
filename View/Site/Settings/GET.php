@@ -27,7 +27,9 @@
 			return array(
 				'app'           => $app,
 				'breadcrumb'    => 'Settings',
-				'user_settings' => $userSettings
+				'user_settings' => $userSettings,
+				'error'         => Controller_Helper::getError(),
+				'success'       => Controller_Helper::getSuccess(),
 			);
 		}
 
