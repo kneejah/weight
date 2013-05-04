@@ -11,7 +11,7 @@
 			$policy = new Policy_LoggedOut($this->app);
 			$logged_in = $policy->getData();
 
-			$app->menu_items = Controller_Helper::processMenuItems($app->menu_items, $page, $logged_in);
+			$app->menu_items = Helper_Menu::processMenuItems($app->menu_items, $page, $logged_in);
 
 			return array(
 				'app'        => $app,

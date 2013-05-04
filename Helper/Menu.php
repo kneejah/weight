@@ -1,6 +1,6 @@
 <?php
 
-	class Controller_Helper
+	class Helper_Menu
 	{
 
 		public static function processMenuItems($items, $page, $logged_in)

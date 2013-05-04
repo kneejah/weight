@@ -11,7 +11,7 @@
 			$policy = new Policy_LoggedIn($this->app);
 			$userid = $policy->getData();
 
-			$app->menu_items = Controller_Helper::processMenuItems($app->menu_items, $page, $userid);
+			$app->menu_items = Helper_Menu::processMenuItems($app->menu_items, $page, $userid);
 
 			// @TODO: enforce order
 			$userSettings = $app->user_settings;
