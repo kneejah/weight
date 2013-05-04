@@ -32,9 +32,10 @@
 			if (!$weights)
 			{
 				return array(
-					'avg' => 'N/A',
-					'min' => 'N/A',
-					'max' => 'N/A'
+					'avg'            => 'N/A',
+					'min'            => 'N/A',
+					'max'            => 'N/A',
+					'change_per_day' => 'N/A'
 				);
 			}
 
@@ -61,10 +62,25 @@
 
 			$avg = $total / count($weights);
 
+			$changePerDay = "N/A";
+
+			if (count($weights) > 1)
+			{
+				$startWeight = $weights[count($weights) - 1];
+				$endWeight   = $weights[0];
+
+				$diffWeight = $endWeight['weight'] - $startWeight['weight'];
+				$diffTime   = $endWeight['create_time'] - $startWeight['create_time'];
+
+				$diffDays = ceil($diffTime / (60 * 60 * 24));
+				$changePerDay = round($diffWeight / $diffDays, 2);
+			}
+
 			return array(
-				'avg' => round($avg, 2),
-				'min' => $min,
-				'max' => $max
+				'avg'            => round($avg, 2),
+				'min'            => $min,
+				'max'            => $max,
+				'change_per_day' => $changePerDay
 			);
 		}
 

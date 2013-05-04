@@ -30,15 +30,17 @@ function drawStatsData(data)
 	{
 		result = data.result;
 
-		var bmi = result.data.bmi;
-		var min = result.data.stats.min;
-		var max = result.data.stats.max;
-		var avg = result.data.stats.avg;
+		var bmi            = result.data.bmi;
+		var min            = result.data.stats.min;
+		var max            = result.data.stats.max;
+		var avg            = result.data.stats.avg;
+		var change_per_day = result.data.stats.change_per_day;
 
 		$('#bmi').html(bmi);
 		$('#min_weight').html(min + (min != "N/A" ? " " + result.units : ""));
 		$('#max_weight').html(max + (max != "N/A" ? " " + result.units : ""));
 		$('#avg_weight').html(avg + (avg != "N/A" ? " " + result.units : ""));
+		$('#change_per_day').html(change_per_day + (change_per_day != "N/A" ? " " + result.units : ""));
 	}
 }
 
