@@ -39,6 +39,7 @@
 					'avg'             => 'N/A',
 					'min'             => 'N/A',
 					'max'             => 'N/A',
+					'change_weight'   => 'N/A',
 					'change_per_day'  => 'N/A',
 					'change_per_week' => 'N/A'
 				);
@@ -67,6 +68,7 @@
 
 			$avg = $total / count($weights);
 
+			$changeWeight  = 'N/A'; 
 			$changePerDay  = 'N/A';
 			$changePerWeek = 'N/A';
 
@@ -80,6 +82,7 @@
 
 				$diffDays = ceil($diffTime / (60 * 60 * 24));
 
+				$changeWeight  = round($diffWeight, 1);
 				$changePerDay  = $diffWeight / $diffDays;
 				$changePerWeek = $changePerDay * 7;
 
@@ -91,6 +94,7 @@
 				'avg'             => round($avg, 1),
 				'min'             => $min,
 				'max'             => $max,
+				'change_weight'   => $changeWeight,
 				'change_per_day'  => $changePerDay,
 				'change_per_week' => $changePerWeek
 			);
