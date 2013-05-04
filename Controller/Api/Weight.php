@@ -50,7 +50,7 @@
 				}
 			}
 
-			$weight = round($weight, 2);
+			$weight = round($weight, 1);
 
 			$mapper = new Mapper_Weight();
 			$mapper->addWeight($userid, $weight, $comment, $passedDate);
@@ -89,7 +89,7 @@
 				throw new Exception_Api("Invalid weight range.");
 			}
 
-			$weight = round($weight, 2);
+			$weight = round($weight, 1);
 
 			$mapper = new Mapper_Weight();
 			$mapper->updateWeightForUser($userid, $id, $weight, $comment);
