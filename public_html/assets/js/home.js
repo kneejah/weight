@@ -37,7 +37,17 @@ function drawStatsData(data)
 		var change_per_day  = result.data.stats.change_per_day;
 		var change_per_week = result.data.stats.change_per_week;
 
-		$('#bmi').html(bmi);
+		var bmi_val = bmi;
+		if (bmi == "no_weights")
+		{
+			bmi_val = "N/A";
+		}
+		if (bmi == "no_height")
+		{
+			bmi_val = '(<a href="/settings">add height</a>)';
+		}
+
+		$('#bmi').html(bmi_val);
 		$('#min_weight').html(min + (min != "N/A" ? " " + result.units : ""));
 		$('#max_weight').html(max + (max != "N/A" ? " " + result.units : ""));
 		$('#avg_weight').html(avg + (avg != "N/A" ? " " + result.units : ""));

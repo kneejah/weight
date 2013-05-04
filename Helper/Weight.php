@@ -12,9 +12,13 @@
 			$settings = $settings_mapper->getFilteredSettingsByUserid($userid);
 			$height = $settings['height'];
 
-			if (!$weight || !$height)
+			if (!$weight)
 			{
-				return "N/A";
+				return "no_weights";
+			}
+			else if (!$height)
+			{
+				return "no_height";
 			}
 
 			$multiplier = 703.06957964;
@@ -63,8 +67,8 @@
 
 			$avg = $total / count($weights);
 
-			$changePerDay  = "N/A";
-			$changePerWeek = "N/A";
+			$changePerDay  = 'N/A';
+			$changePerWeek = 'N/A';
 
 			if (count($weights) > 1)
 			{
@@ -78,14 +82,17 @@
 
 				$changePerDay  = $diffWeight / $diffDays;
 				$changePerWeek = $changePerDay * 7;
+
+				$changePerDay  = round($changePerDay, 1);
+				$changePerWeek = round($changePerWeek, 1);
 			}
 
 			return array(
 				'avg'             => round($avg, 1),
 				'min'             => $min,
 				'max'             => $max,
-				'change_per_day'  => round($changePerDay, 1),
-				'change_per_week' => round($changePerWeek, 1)
+				'change_per_day'  => $changePerDay,
+				'change_per_week' => $changePerWeek
 			);
 		}
 
