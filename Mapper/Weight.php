@@ -78,4 +78,24 @@
 			return $this->db->query($query, $data);
 		}
 
+		public function getMostRecentWeightForUser($userid)
+		{
+			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid ORDER BY create_time DESC LIMIT 1;";
+
+			$data = array(
+				':userid' => $userid
+			);
+
+			$data = $this->db->query($query, $data, true);
+
+			if ($data)
+			{
+				return $data['weight'];
+			}
+			else
+			{
+				return false;
+			}
+		}
+
 	}

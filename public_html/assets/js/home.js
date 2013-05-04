@@ -11,10 +11,42 @@ function getWeightData(daysBack)
 	});
 }
 
+function getStatsData(daysBack)
+{
+	$.ajax({
+		dataType: "json",
+		url:      "/api/userdata",
+		type:     "GET",
+		data:     {days_back: daysBack},
+		success:  function(json) {
+			drawStatsData(json);
+		}
+	});
+}
+
+function drawStatsData(data)
+{
+	if (data.success)
+	{
+		result = data.result;
+
+		var bmi = result.data.bmi;
+		var min = result.data.stats.min;
+		var max = result.data.stats.max;
+		var avg = result.data.stats.avg;
+
+		$('#bmi').html(bmi);
+		$('#min_weight').html(min + (min != "N/A" ? " " + result.units : ""));
+		$('#max_weight').html(max + (max != "N/A" ? " " + result.units : ""));
+		$('#avg_weight').html(avg + (avg != "N/A" ? " " + result.units : ""));
+	}
+}
+
 function startGraph()
 {
 	var val = $('#filter_picker').val();
 	getWeightData(val);
+	getStatsData(val);
 }
 
 function processResult(data)

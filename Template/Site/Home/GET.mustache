@@ -31,38 +31,63 @@
 				<option value="365">1 year</option>
 				<option value="all">All data</option>
 			</select>
+
+			<div style="padding-top: 10px;">
+
+				<table>
+					<tr>
+						<td style="text-align: right;">BMI</td>
+						<td style="padding-left: 10px;"><span id="bmi"></span></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;">Min weight</td>
+						<td style="padding-left: 10px;"><span id="min_weight"></span></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;">Max weight</td>
+						<td style="padding-left: 10px;"><span id="max_weight"></span></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;">Average weight</td>
+						<td style="padding-left: 10px;"><span id="avg_weight"></span></td>
+					</tr>
+				</table>
+			</div>
+
 		</div>
 
-		<form class="form-horizontal" onSubmit="addWeight(this); return false;">
+		<div style="float: left;">
+			<form class="form-horizontal" onSubmit="addWeight(this); return false;">
 
-			<div class="control-group" style="margin-bottom: 10px;">
-				<label class="control-label" for="weight">Weight</label>
-				<div class="controls">
-					<input type="text" id="weight" name="weight" value="" placeholder="Weight ({{app.weight_units}})">
+				<div class="control-group">
+					<label class="control-label" for="weight">Weight</label>
+					<div class="controls">
+						<input type="text" id="weight" name="weight" value="" placeholder="Weight ({{app.weight_units}})">
+					</div>
 				</div>
-			</div>
 
-			<div class="control-group">
-				<label class="control-label" for="date">Date</label>
-				<div class="controls">
-					<input type="text" id="date" name="date" placeholder="Date (optional)">
+				<div class="control-group">
+					<label class="control-label" for="date">Date</label>
+					<div class="controls">
+						<input type="text" id="date" name="date" placeholder="Date (optional)">
+					</div>
 				</div>
-			</div>
 
-			<div class="control-group">
-				<label class="control-label" for="comment">Comment</label>
-				<div class="controls">
-					<textarea cols="50" rows="2" id="comment" name="comment" placeholder="Comment (optional)"></textarea>
+				<div class="control-group">
+					<label class="control-label" for="comment">Comment</label>
+					<div class="controls">
+						<textarea cols="50" rows="2" id="comment" name="comment" placeholder="Comment (optional)"></textarea>
+					</div>
 				</div>
-			</div>
 
-			<div class="control-group">
-				<div class="controls">
-					<button type="submit" class="btn">Add weight</button>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Add weight</button>
+					</div>
 				</div>
-			</div>
 
-		</form>
+			</form>
+		</div>
 
 		</div>
 

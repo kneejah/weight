@@ -60,6 +60,12 @@
 						'type'    => 'get',
 						'options' => array('api' => true)
 					),
+					'Api_UserData' => array(
+						'name'    => 'Api_UserData',
+						'uri'     => '/api/userdata',
+						'type'    => 'get',
+						'options' => array('api' => true)
+					),
 					'Api_Weight' => array(
 						'name'    => 'Api_Weight',
 						'uri'     => '/api/weight',
