@@ -16,8 +16,8 @@
 			return array(
 				'app'        => $app,
 				'breadcrumb' => 'Log in',
-				'error'      => Controller_Helper::getError(),
-				'username'   => Controller_Helper::getField('username'),
+				'error'      => Helper_Message::getError(),
+				'username'   => Helper_Message::getField('username'),
 			);
 		}
 

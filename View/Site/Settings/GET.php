@@ -28,8 +28,8 @@
 				'app'           => $app,
 				'breadcrumb'    => 'Settings',
 				'user_settings' => $userSettings,
-				'error'         => Controller_Helper::getError(),
-				'success'       => Controller_Helper::getSuccess(),
+				'error'         => Helper_Message::getError(),
+				'success'       => Helper_Message::getSuccess(),
 			);
 		}
 

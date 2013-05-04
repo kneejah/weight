@@ -5,7 +5,7 @@
 
 		public function check()
 		{
-			return Controller_Helper::getUserFromSession() !== false;
+			return Helper_Session::getUserFromSession() !== false;
 		}
 
 		public function success()
@@ -21,7 +21,7 @@
 
 		public function getData()
 		{
-			return Controller_Helper::getUserFromSession();
+			return Helper_Session::getUserFromSession();
 		}
 
 	}

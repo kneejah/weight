@@ -5,7 +5,7 @@
 
 		public function check()
 		{
-			return Controller_Helper::getUserFromSession() === false;
+			return Helper_Session::getUserFromSession() === false;
 		}
 
 		public function success()

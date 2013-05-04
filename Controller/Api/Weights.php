@@ -13,7 +13,7 @@
 
 			if (!$userid)
 			{
-				Controller_Helper::apiError("Unable to authenticate.");
+				throw new Exception_Api("Unable to authenticate.");
 			}
 
 			$days_back = trim($request->get('days_back'));
@@ -23,7 +23,7 @@
 
 			if (!is_numeric($days_back) && $days_back != 'all')
 			{
-				Controller_Helper::apiError('Missing or invalid days_back field.');
+				throw new Exception_Api('Missing or invalid days_back field.');
 			}
 
 			$formatted_weights = array();

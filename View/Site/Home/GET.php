@@ -30,7 +30,7 @@
 			return array(
 				'app'           => $app,
 				'breadcrumb'    => 'Home',
-				'error'         => Controller_Helper::getError(),
+				'error'         => Helper_Message::getError(),
 				'logged_in'     => $logged_in,
 				'user'          => $user,
 				'user_settings' => $settingsVals

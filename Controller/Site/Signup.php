@@ -74,9 +74,9 @@
 		private function error($string)
 		{
 			$request = $this->app->request();
-			Controller_Helper::setField($this->app, 'username', $request->post('username'));
-			Controller_Helper::setField($this->app, 'email', $request->post('email'));
-			Controller_Helper::setError($this->app, $string);
+			Helper_Message::setField($this->app, 'username', $request->post('username'));
+			Helper_Message::setField($this->app, 'email', $request->post('email'));
+			Helper_Message::setError($this->app, $string);
 
 			$this->app->redirect('/signup');
 			die();
@@ -84,7 +84,7 @@
 
 		private function success($userid)
 		{
-			Controller_Helper::setUserInSession($userid);
+			Helper_Session::setUserInSession($userid);
 			$this->app->redirect('/home');
 			die();
 		}

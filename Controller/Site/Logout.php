@@ -5,7 +5,7 @@
 
 		public function GET()
 		{
-			Controller_Helper::clearUserFromSession();
+			Helper_Session::clearUserFromSession();
 			$this->app->redirect('/home');
 			die();
 		}

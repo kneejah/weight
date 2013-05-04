@@ -16,9 +16,9 @@
 			return array(
 				'app'        => $app,
 				'breadcrumb' => 'Sign up',
-				'error'      => Controller_Helper::getError(),
-				'username'   => Controller_Helper::getField('username'),
-				'email'      => Controller_Helper::getField('email'),
+				'error'      => Helper_Message::getError(),
+				'username'   => Helper_Message::getField('username'),
+				'email'      => Helper_Message::getField('email'),
 			);
 		}
 
