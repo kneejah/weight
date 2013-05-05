@@ -1,5 +1,7 @@
-var monthNames = ["January", "February", "March", "April", "May", "June",
-	"July", "August", "September", "October", "November", "December"];
+var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August",
+				  "September", "October", "November", "December"];
+
+var dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
 function showErrorMessage(message)
 {

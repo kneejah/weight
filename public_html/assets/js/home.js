@@ -147,12 +147,12 @@ function generateTooltip(parsedDate, weightNum, comment, units)
 	var mins = parsedDate.getMinutes();
 	if (mins < 10) mins = "0" + mins;
 
-	var hrSuffix  = (hrs > 12) ? "pm" : "am"; 
-	var convHours = (hrs > 12) ? hrs - 12 : hrs;
+	var hrSuffix  = (hrs >= 12) ? "pm" : "am"; 
+	var convHours = (hrs >= 12) ? hrs - 12 : hrs;
 	if (convHours == 0) convHours = 12;
 
-	var s = "<div style='font-weight: bold; padding: 5px;'>"
-		+ monthNames[parsedDate.getMonth()] + " " + parsedDate.getDate()
+	var s = "<div style='font-weight: bold; padding: 5px;'>" + dayNames[parsedDate.getDay()]
+		+ " " + monthNames[parsedDate.getMonth()] + " " + parsedDate.getDate()
 		+ ", " + parsedDate.getFullYear() + ", " + convHours + ":"
 		+ mins + " " + hrSuffix + "<br />Weight: " + weightNum + " " + units;
 
