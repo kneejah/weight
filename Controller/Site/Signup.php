@@ -40,6 +40,12 @@
 				$this->error("Invalid user name. Only letters and numbers are allowed.");
 			}
 
+			$firstChar = substr($username, 0, 1);
+			if (!ctype_alpha($firstChar))
+			{
+				$this->error("User name must start with a letter.");
+			}
+
 			if (!ctype_alnum($password))
 			{
 				$this->error("Invalid password. Only letters and numbers are allowed.");
