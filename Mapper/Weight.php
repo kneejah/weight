@@ -52,6 +52,33 @@
 			return $this->db->query($query, $data);
 		}
 
+		public function getPaginatedWeightsForUser($userid, $start, $limit)
+		{
+			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid ORDER BY create_time DESC LIMIT :start, :limit;";
+
+			$start = ($start - 1) * $limit;
+
+			$data = array(
+				':userid' => $userid,
+				':start'  => $start,
+				':limit'  => $limit
+			);
+
+			return $this->db->query($query, $data);
+		}
+
+		public function getWeightsCountForUser($userid)
+		{
+			$query = "SELECT COUNT(userid) AS cnt FROM " . self::$table . " WHERE userid=:userid";
+
+			$data = array(
+				':userid' => $userid
+			);
+
+			$ret = $this->db->query($query, $data, true);
+			return $ret['cnt'];
+		}
+
 		public function deleteWeightForUser($userid, $id)
 		{
 			$query = "DELETE FROM " . self::$table . " WHERE userid=:userid AND id=:id;";

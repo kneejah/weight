@@ -32,6 +32,18 @@
 
 	</table>
 
+	<div style="text-align: center; font-weight: bold;">
+		{{#pages}}
+			{{#selected}}
+				{{page}}
+			{{/selected}}
+			{{^selected}}
+				<a href="/records?page={{page}}">{{page}}</a>
+			{{/selected}}
+			
+		{{/pages}}
+	</div>
+
 {{/has_weights}}
 
 {{^has_weights}}
