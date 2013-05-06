@@ -6,7 +6,7 @@
 		public function configs()
 		{
 			return array(
-				'name' => 'wTracker',
+				'name' => 'Trackly',
 				'menu_items' => array(
 					0 => array('page' => 'home',     'name' => 'Home',     'url' => '/home'),
 					1 => array('page' => 'records',  'name' => 'Records',  'url' => '/records',  'logged_in' => true),
