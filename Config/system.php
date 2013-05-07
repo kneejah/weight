@@ -17,7 +17,7 @@
 					),
 					'Site_Home' => array(
 						'name'  => 'Site_Home',
-						'uri'   => '/home',
+						'uri'   => '/',
 						'type'  => 'get'
 					),
 					'Site_Records' => array(
@@ -29,12 +29,6 @@
 						'name'   => 'Site_About',
 						'uri'    => '/about',
 						'type'   => 'get'
-					),
-					'Site_Anchor' => array(
-						'name'    => 'Site_Anchor',
-						'uri'     => '/',
-						'type'    => 'get',
-						'options' => array('noview' => true)
 					),
 					'Site_Settings' => array(
 						'name'      => 'Site_Settings',

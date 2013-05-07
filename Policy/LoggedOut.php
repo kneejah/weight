@@ -15,7 +15,7 @@
 
 		public function failure()
 		{
-			$this->app->redirect('/home');
+			$this->app->redirect('/');
 			die();
 		}
 

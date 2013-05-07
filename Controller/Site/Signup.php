@@ -91,7 +91,7 @@
 		private function success($userid)
 		{
 			Helper_Session::setUserInSession($userid);
-			$this->app->redirect('/home');
+			$this->app->redirect('/');
 			die();
 		}
 
