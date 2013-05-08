@@ -29,7 +29,7 @@
 				'breadcrumb'    => 'Settings',
 				'user_settings' => $userSettings,
 				'error'         => Helper_Message::getError(),
-				'success'       => Helper_Message::getSuccess(),
+				'success'       => Helper_Message::getSuccess()
 			);
 		}
 

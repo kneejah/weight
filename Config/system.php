@@ -30,6 +30,17 @@
 						'uri'    => '/about',
 						'type'   => 'get'
 					),
+					'Site_Tools' => array(
+						'name'   => 'Site_Tools',
+						'uri'    => '/tools',
+						'type'   => 'get'
+					),
+					'Site_Tools_Import' => array(
+						'name'          => 'Site_Tools_Import',
+						'uri'           => '/tools/import',
+						'type'          => 'post',
+						'options'       => array('noview' => true)
+					),
 					'Site_Settings' => array(
 						'name'      => 'Site_Settings',
 						'uri'       => '/settings',
