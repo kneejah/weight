@@ -1,19 +1,26 @@
 {{> Site/Header}}
 
+	<p style="font-weight: bold;">Import CSV data</p>
+
 	<form action="/tools/import" enctype="multipart/form-data" method="post">
 		<input type="file" name="file" />
 		<br/>
-		<input type="submit" value="Import data"/>
+		<input type="submit" value="Import CSV data"/>
 	</form>
 
 	<div>
 
-		Format should look like this: <br />
-		<div style="font-family: monospace;">
-			date,weight<br />
-			1/1/2013,123<br />
+		The CSV format should look something like this:<br />
+		(comment is an optional column)<br /><br />
+		<div style="font-family: monospace; border: 1px solid #000000; padding: 5px; width: 225px;">
+			date,weight,comment<br />
+			1/1/2013,123,awesome dinner!<br />
 			1/2/2013,124
 		</div>
 	</div>
 
+	<br /><br />
+	<p style="font-weight: bold;">Export data as CSV</p>
+	Not done yet!
+	
 {{> Site/Footer}}
