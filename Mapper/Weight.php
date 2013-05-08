@@ -22,6 +22,12 @@
 				$now = time();
 			}
 
+			$existingWeight = $this->getWeightForUserByDate($userid, $now);
+			if ($existingWeight)
+			{
+				return $this->updateWeightForUser($userid, $existingWeight['id'], $weight, $comment);
+			}
+
 			$data = array(
 				'userid'      => $userid,
 				'weight'      => $weight,
@@ -30,6 +36,17 @@
 			);
 
 			return $this->db->insert(self::$table, $data);
+		}
+
+		public function getWeightForUserByDate($userid, $date)
+		{
+			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time = :date LIMIT 1;";
+			$data = array(
+				':userid' => $userid,
+				':date'   => $date
+			);
+
+			return $this->db->query($query, $data, true);
 		}
 
 		public function getWeightsForUser($userid, $days_back)

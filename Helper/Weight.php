@@ -3,6 +3,26 @@
 	class Helper_Weight
 	{
 
+		public static function validateWeight($weight)
+		{
+			if ($weight == "")
+			{
+				return false;
+			}
+
+			if (!is_numeric($weight))
+			{
+				return false;
+			}
+
+			if ($weight <= 0 || $weight > 1000)
+			{
+				return false;
+			}
+
+			return round($weight, 1);
+		}
+
 		public static function getBMIForUser($userid)
 		{
 			$weight_mapper = new Mapper_Weight();
@@ -87,7 +107,7 @@
 				$changeWeight   = round($diffWeight, 1);
 				$changePerDay   = $diffWeight / $diffDays;
 				$changePerWeek  = $changePerDay * 7;
-				$changePerMonth = $changePerDay * 31.5;
+				$changePerMonth = $changePerDay * 30.5;
 
 				$changePerDay   = round($changePerDay, 1);
 				$changePerWeek  = round($changePerWeek, 1);
