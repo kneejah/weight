@@ -30,13 +30,14 @@ function drawStatsData(data)
 	{
 		result = data.result;
 
-		var bmi             = result.data.bmi;
-		var min             = result.data.stats.min;
-		var max             = result.data.stats.max;
-		var avg             = result.data.stats.avg;
-		var change_weight   = result.data.stats.change_weight;
-		var change_per_day  = result.data.stats.change_per_day;
-		var change_per_week = result.data.stats.change_per_week;
+		var bmi              = result.data.bmi;
+		var min              = result.data.stats.min;
+		var max              = result.data.stats.max;
+		var avg              = result.data.stats.avg;
+		var change_weight    = result.data.stats.change_weight;
+		var change_per_day   = result.data.stats.change_per_day;
+		var change_per_week  = result.data.stats.change_per_week;
+		var change_per_month = result.data.stats.change_per_month;
 
 		var bmi_val = bmi;
 		if (bmi == "no_weights")
@@ -55,6 +56,7 @@ function drawStatsData(data)
 		$('#change_weight').html(change_weight + (change_weight != "N/A" ? " " + result.units : ""));
 		$('#change_per_day').html(change_per_day + (change_per_day != "N/A" ? " " + result.units : ""));
 		$('#change_per_week').html(change_per_week + (change_per_week != "N/A" ? " " + result.units : ""));
+		$('#change_per_month').html(change_per_month + (change_per_month != "N/A" ? " " + result.units : ""));
 	}
 }
 
