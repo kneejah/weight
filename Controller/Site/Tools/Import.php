@@ -35,11 +35,14 @@
 
 			$tmp_name = $file['tmp_name'];
 			$data = file_get_contents($tmp_name);
+			$data = str_replace("\r\n", "\n", $data);
+			$data = str_replace("\r", "\n", $data);
+
 			$dataLines = explode("\n", $data);
 
 			if (count($dataLines) < 2)
 			{
-				$this->error("The file uploaded is in an incorrect format.");
+				$this->error("The file uploaded does not contain enough data to import.");
 			}
 
 			$descripData   = explode(',', $dataLines[0]);
@@ -67,7 +70,7 @@
 
 			if ($dateOffset === false || $weightOffset === false)
 			{
-				$this->error("The file uploaded is in an incorrect format.");
+				$this->error("The file uploaded is missing the required fields.");
 			}
 
 			$validRows = 0;

@@ -18,7 +18,7 @@
 
 			$days_back = trim($request->get('days_back'));
 
-			if (!is_numeric($days_back) && $days_back != 'all')
+			if (!is_numeric($days_back) && $days_back != 'all' && $days_back != 'ytd')
 			{
 				throw new Exception_Api('Missing or invalid days_back field.');
 			}

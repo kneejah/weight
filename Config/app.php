@@ -23,7 +23,7 @@
 					0 => array(
 						'name'         => 'graph_smoothing',
 						'title'        => 'Smooth graph',
-						'description'  => 'Show a smoothed out graph on the main page',
+						'description'  => 'Show a smoothed graph on the main page',
 						'type_boolean' => true,
 						'default'      => 0,
 						'validate'     => 'boolean',

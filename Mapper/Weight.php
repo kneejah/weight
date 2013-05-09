@@ -55,6 +55,11 @@
 			{
 				$daysBack = 0;
 			}
+			else if ($days_back == 'ytd')
+			{
+				$str = "1/1/" . date("Y");
+				$daysBack = strtotime($str);
+			}
 			else
 			{
 				$daysBack = time() - (60 * 60 * 24 * $days_back);
