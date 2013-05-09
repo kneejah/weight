@@ -41,6 +41,12 @@
 						'type'          => 'post',
 						'options'       => array('noview' => true)
 					),
+					'Site_Tools_Export' => array(
+						'name'          => 'Site_Tools_export',
+						'uri'           => '/tools/export',
+						'type'          => 'get',
+						'options'       => array('noview' => true)
+					),
 					'Site_Settings' => array(
 						'name'      => 'Site_Settings',
 						'uri'       => '/settings',

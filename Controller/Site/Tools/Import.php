@@ -1,6 +1,6 @@
 <?php
 
-	class Controller_Site_Tools_import extends Abstract_Controller
+	class Controller_Site_Tools_Import extends Abstract_Controller
 	{
 
 		public function POST()
