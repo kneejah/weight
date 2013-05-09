@@ -50,7 +50,7 @@ function drawStatsData(data)
 		}
 
 		$('#bmi').html(bmi_val);
-		$('#min_weight').html(min + (min != "N/A" ? " " + result.units : ""));
+		$('#min_weight').html(min);
 		$('#max_weight').html(max + (max != "N/A" ? " " + result.units : ""));
 		$('#avg_weight').html(avg + (avg != "N/A" ? " " + result.units : ""));
 		$('#change_weight').html(change_weight + (change_weight != "N/A" ? " " + result.units : ""));
