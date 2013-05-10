@@ -17,8 +17,9 @@
 					6 => array('page' => 'login',    'name' => 'Log in',   'url' => '/login',    'logged_out' => true),
 					7 => array('page' => 'logout',   'name' => 'Log out',  'url' => '/logout',   'logged_in' => true)
 				),
-				'weight_units' => 'lbs',
-				'height_units' => 'in',
+				'weight_units'     => 'lbs',
+				'height_units'     => 'in',
+				'default_timezone' => 'America/Los_Angeles',
 				'user_settings' => array(
 					0 => array(
 						'name'         => 'graph_smoothing',

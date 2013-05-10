@@ -109,12 +109,14 @@ function drawChart(jsonData) {
 	data.addColumn('number',     'Weight');
 	data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
-	var newData = jsonData.data;
+	var newData  = jsonData.data;
+	var tzOffset = jsonData.tz_offset * (60 * 60 * 1000);
+
 	for (var i in newData)
 	{
 		var tmp = newData[i];
 
-		var dateNum    = parseInt(tmp['date']) * 1000;
+		var dateNum    = parseInt(tmp['date']) * 1000 + tzOffset;
 		var parsedDate = new Date(dateNum);
 		var weightNum  = parseFloat(tmp['weight']);
 		var comment    = tmp['comment'];

@@ -23,6 +23,18 @@
 				throw new Exception_Api('Missing or invalid days_back field.');
 			}
 
+			$mapper = new Mapper_Settings();
+			$settings = $mapper->getFilteredSettingsByUserid($userid);
+
+			$serverDateTimeZone = new DateTimeZone($app->default_timezone);
+			$userDateTimeZone   = new DateTimeZone($settings['timezone']);
+
+			$serverDateTime = new DateTime("now", $serverDateTimeZone);
+			$userDateTime   = new DateTime("now", $userDateTimeZone);
+
+			$tzDiff = $userDateTime->getOffset() - $serverDateTime->getOffset();
+			$tzDiff = $tzDiff / (60 * 60);
+
 			$weight_mapper = new Mapper_Weight();
 			$weights = $weight_mapper->getWeightsForUser($userid, $days_back);
 
@@ -37,7 +49,7 @@
 					);
 			}
 
-			return array('data' => $formatted_weights, 'units' => $app->weight_units);
+			return array('data' => $formatted_weights, 'units' => $app->weight_units, 'tz_offset' => $tzDiff);
 		}
 
 	}
