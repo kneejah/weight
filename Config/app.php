@@ -28,7 +28,7 @@
 						'type_boolean' => true,
 						'default'      => 0,
 						'validate'     => 'boolean',
-						'order'        => 1
+						'order'        => 3
 					),
 					1 => array(
 						'name'         => 'height',
@@ -37,7 +37,7 @@
 						'type_string'  => true,
 						'default'      => 0,
 						'validate'     => 'height',
-						'order'        => 2
+						'order'        => 1
 					),
 					2 => array(
 						'name'         => 'timezone',
@@ -46,7 +46,7 @@
 						'type_string'  => true,
 						'default'      => 'America/Los_Angeles',
 						'validate'     => 'timezone',
-						'order'        => 3
+						'order'        => 2
 					)
 				)
 			);

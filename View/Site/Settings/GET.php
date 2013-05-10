@@ -13,8 +13,8 @@
 
 			$app->menu_items = Helper_Menu::processMenuItems($app->menu_items, $page, $userid);
 
-			// @TODO: enforce order
 			$userSettings = $app->user_settings;
+			usort($userSettings, array('self', 'sortSettings'));
 
 			$settings_mapper = new Mapper_Settings();
 			$settingsVals = $settings_mapper->getFilteredSettingsByUserid($userid);
@@ -31,6 +31,11 @@
 				'error'         => Helper_Message::getError(),
 				'success'       => Helper_Message::getSuccess()
 			);
+		}
+
+		private static function sortSettings($a, $b)
+		{
+			return $a['order'] - $b['order'];
 		}
 
 	}
