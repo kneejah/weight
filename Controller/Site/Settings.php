@@ -21,7 +21,7 @@
 
 			foreach ($user_settings as $setting)
 			{
-				$val = $request->post($setting['name']);
+				$val = trim($request->post($setting['name']));
 
 				$newVal = $setting['default'];
 				if ($setting['validate'] == 'boolean')
@@ -53,6 +53,15 @@
 					}
 
 					$newVal = round($newVal, 1);
+				}
+				else if ($setting['validate'] == 'timezone')
+				{
+					$zones = DateTimeZone::listIdentifiers();
+
+					if (in_array($val, $zones))
+					{
+						$newVal = $val;
+					}
 				}
 
 				$settings_mapper = new Mapper_Settings();

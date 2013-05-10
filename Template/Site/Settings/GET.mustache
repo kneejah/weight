@@ -1,7 +1,7 @@
 {{> Site/Header}}
 
 <form method="post" action="/settings">
-<table class="table table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px; width: 50%;">
+<table class="table table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px; width: 650px;">
 	{{#user_settings}}
 		<tr style="">
 			<td style="padding: 10px; text-align: right;">
@@ -20,7 +20,7 @@
 					<label style="margin-bottom: 0px;">
 						<input type="text" name="{{name}}" value="{{value}}" style="margin-bottom: 0px;" />
 						<span style="margin-left: 10px;">
-							{{description}}
+							{{{description}}}
 						</span>
 					</label>
 				{{/type_string}}
