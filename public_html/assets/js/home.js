@@ -116,7 +116,7 @@ function drawChart(jsonData) {
 	{
 		var tmp = newData[i];
 
-		var dateNum    = parseInt(tmp['date']) * 1000 + tzOffset;
+		var dateNum    = parseInt(tmp['date']) * 1000;
 		var parsedDate = new Date(dateNum);
 		var weightNum  = parseFloat(tmp['weight']);
 		var comment    = tmp['comment'];
