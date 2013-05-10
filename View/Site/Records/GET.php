@@ -33,6 +33,22 @@
 				$page = 1;
 			}
 
+			$hasPrev = false;
+			$hasNext = false;
+
+			if ($numPages > 1)
+			{
+				if ($page > 1)
+				{
+					$hasPrev = true;
+				}
+
+				if ($page < $numPages)
+				{
+					$hasNext = true;
+				}
+			}
+
 			$pagesArray = array();
 			for ($i = 1; $i <= $numPages; $i++)
 			{
@@ -51,11 +67,16 @@
 			}
 
 			return array(
-				'app'         => $app,
-				'breadcrumb'  => 'Records',
-				'has_weights' => (count($weights) > 0),
-				'weights'     => $weights,
-				'pages'       => $pagesArray
+				'app'          => $app,
+				'breadcrumb'   => 'Records',
+				'has_weights'  => (count($weights) > 0),
+				'weights'      => $weights,
+				'pages'        => $pagesArray,
+				'has_previous' => $hasPrev,
+				'has_next'     => $hasNext,
+				'previous_val' => ($page - 1),
+				'next_val'     => ($page + 1)
+
 			);
 		}
 

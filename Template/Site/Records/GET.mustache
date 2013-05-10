@@ -33,6 +33,13 @@
 	</table>
 
 	<div style="text-align: center; font-weight: bold;">
+		{{#has_previous}}
+			<a href="/records?page={{previous_val}}">Prev</a>
+		{{/has_previous}}
+		{{^has_previous}}
+			Prev
+		{{/has_previous}}
+		|
 		{{#pages}}
 			{{#selected}}
 				{{page}}
@@ -40,8 +47,15 @@
 			{{^selected}}
 				<a href="/records?page={{page}}">{{page}}</a>
 			{{/selected}}
-			
+			|
 		{{/pages}}
+
+		{{#has_next}}
+			<a href="/records?page={{next_val}}">Next</a>
+		{{/has_next}}
+		{{^has_next}}
+			Next
+		{{/has_next}}
 	</div>
 
 {{/has_weights}}

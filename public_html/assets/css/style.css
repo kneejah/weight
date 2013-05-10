@@ -2,6 +2,10 @@ body {
 	padding-top: 60px;
 }
 
+a {
+	color: #3266CC;
+}
+
 textarea {
 	resize: none;
 }
