@@ -25,10 +25,23 @@
 
 				if ($weight['comment'])
 				{
-					echo ',' . str_replace(',', '.', $weight['comment']);
+					echo ',' . self::escapeCSVValue($weight['comment']);
 				}
 
 				echo "\n";
+			}
+		}
+
+		private static function escapeCSVValue($value)
+		{
+			$value = str_replace('"', '""', $value);
+			if (preg_match('/,/', $value) || preg_match("/\n/", $value) || preg_match('/"/', $value))
+			{
+				return '"' . $value . '"';
+			}
+			else
+			{
+				return $value;
 			}
 		}
 
