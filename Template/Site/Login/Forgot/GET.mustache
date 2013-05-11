@@ -1,0 +1,22 @@
+{{> Site/Header}}
+
+<br />
+
+<form method="post" action="/login/forgot" class="form-horizontal">
+
+	<div class="control-group">
+		<label class="control-label" for="inputEmail">Email address</label>
+		<div class="controls">
+			<input type="text" id="inputEmail" name="email" value="" placeholder="Email address">
+		</div>
+	</div>
+
+	<div class="control-group">
+		<div class="controls">
+			<button type="submit" class="btn">Reset my password</button>
+		</div>
+	</div>
+
+</form>
+
+{{> Site/Footer}}

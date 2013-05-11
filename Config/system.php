@@ -65,6 +65,12 @@
 						'type'    => 'get,post',
 						'options' => array('post' => array('noview' => true))
 					),
+					'Site_Login_Forgot' => array(
+						'name'          => 'Site_Login_Forgot',
+						'uri'           => '/login/forgot',
+						'type'          => 'get,post',
+						'options'       => array('post' => array('noview' => true))
+					),
 					'Site_Logout' => array(
 						'name'    => 'Site_Logout',
 						'uri'     => '/logout',
@@ -78,10 +84,10 @@
 						'options' => array('api' => true)
 					),
 					'Api_UserData' => array(
-						'name'    => 'Api_UserData',
-						'uri'     => '/api/userdata',
-						'type'    => 'get',
-						'options' => array('api' => true)
+						'name'     => 'Api_UserData',
+						'uri'      => '/api/userdata',
+						'type'     => 'get',
+						'options'  => array('api' => true)
 					),
 					'Api_Weight' => array(
 						'name'    => 'Api_Weight',
