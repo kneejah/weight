@@ -33,6 +33,12 @@
 				$this->error("Invalid email format.");
 			}
 
+			$possibleUser = $mapper->getUserByEmail($email);
+			if ($possibleUser && $possibleUser['id'] != $userid)
+			{
+				$this->error("A user with that email address already exists.");
+			}
+
 			$oldPassword = trim($request->post('old_password'));
 			$newPassword = trim($request->post('new_password'));
 
