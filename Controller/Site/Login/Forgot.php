@@ -33,7 +33,7 @@
 
 			$newPass = substr(md5(mt_rand() . microtime(true)), 0, 10);
 
-			$subject = "Your " . $app->name . " password has been reset";
+			$subject = "Your Trackly.me password has been reset";
 			$body    = "Hey {$user['username']},<br /><br />"
 					 . "Your password has successfuly been reset.<br />"
 					 . 'It is now: "' . $newPass . '".' . "<br />"
