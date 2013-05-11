@@ -1,7 +1,4 @@
-this is a weight tracking website that doesn't do much of anything yet
-
-features
-* none
+this is a simple enough weight tracking website tool
 
 dependencies
 * slim
@@ -11,3 +8,5 @@ dependencies
 uses
 * apache
 * mysql (to be fair, sqlite, but that's only because i'm lazy)
+* twitter bootstrap
+* google graphs
