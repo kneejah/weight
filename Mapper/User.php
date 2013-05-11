@@ -51,6 +51,32 @@
 			return $this->db->insert(self::$table, $data);
 		}
 
+		public function updateEmailForUser($id, $email)
+		{
+			$query = "UPDATE " . self::$table . " SET email_address=:email_address WHERE id=:id;";
+
+			$data = array(
+				':id'            => $id,
+				':email_address' => $email
+			);
+
+			return $this->db->query($query, $data);
+		}
+
+		public function updatePasswordForUser($id, $password)
+		{
+			$hash = self::generateHash($password);
+			
+			$query = "UPDATE " . self::$table . " SET password_hash=:password_hash WHERE id=:id;";
+
+			$data = array(
+				':id'            => $id,
+				':password_hash' => $hash
+			);
+
+			return $this->db->query($query, $data);
+		}
+
 		public function updateUpdateTimeForUser($id)
 		{
 			$now = time();
@@ -59,7 +85,7 @@
 
 			$data = array(
 				':id'          => $id,
-				':update_time' => time()
+				':update_time' => $now
 			);
 
 			return $this->db->query($query, $data);

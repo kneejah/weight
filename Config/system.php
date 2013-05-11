@@ -42,7 +42,7 @@
 						'options'       => array('noview' => true)
 					),
 					'Site_Tools_Export' => array(
-						'name'          => 'Site_Tools_export',
+						'name'          => 'Site_Tools_Export',
 						'uri'           => '/tools/export',
 						'type'          => 'get',
 						'options'       => array('noview' => true)
@@ -52,6 +52,12 @@
 						'uri'       => '/settings',
 						'type'      => 'get,post',
 						'options'   => array('post' => array('noview' => true))
+					),
+					'Site_Account' => array(
+						'name'     => 'Site_Account',
+						'uri'      => '/account',
+						'type'     => 'get,post',
+						'options'  => array('post' => array('noview' => true))
 					),
 					'Site_Login'  => array(
 						'name'    => 'Site_Login',

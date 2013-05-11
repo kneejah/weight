@@ -1,0 +1,32 @@
+{{> Site/Header}}
+
+<form method="post" action="/account">
+<table class="table table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px; width: 651px;">
+	<tr>
+		<td style="padding: 10px; text-align: right;">
+			Email address
+		</td>
+		<td style="padding: 10px;">
+			<input type="text" name="email" value="{{user.email_address}}" style="margin-bottom: 0px;" />
+		</td>
+	</tr>
+
+	<tr>
+		<td style="padding: 10px; text-align: right;">
+			Change your password
+		</td>
+		<td style="padding: 10px;">
+			<input type="password" name="old_password" value="" placeholder="Old password" style="margin-bottom: 10px;" /><br />
+			<input type="password" name="new_password" value="" placeholder="New password" style="margin-bottom: 0px;" />
+		</td>
+	</tr>
+
+</table>
+
+<div style="margin-left: 328px; margin-top: 20px;">
+	<button type="submit" class="btn">Update</button>
+</div>
+
+</form>
+
+{{> Site/Footer}}
