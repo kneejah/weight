@@ -42,7 +42,7 @@
 					2 => array(
 						'name'         => 'timezone',
 						'title'        => 'Time zone',
-						'description'  => 'Time zone to display, view your choices <a target="_new" href="http://php.net/manual/en/timezones.php">here</a>',
+						'description'  => 'Time zone to display, view your choices <a target="_blank" href="http://php.net/manual/en/timezones.php">here</a>',
 						'type_string'  => true,
 						'default'      => 'America/Los_Angeles',
 						'validate'     => 'timezone',
