@@ -151,7 +151,7 @@ function drawChart(jsonData) {
 		legend:           {position: showLegend},
 		interpolateNulls: true,
 		curveType:        graph_smoothing,
-		colors:           ['#A53131', '#3266CC']
+		colors:           ['#A83232', '#3266CC']
 	};
 
 	var chart_div = document.getElementById('chart_div');

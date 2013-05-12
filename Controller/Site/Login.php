@@ -7,6 +7,14 @@
 		{
 			$policy = new Policy_LoggedOut($this->app);
 			$policy->ensure();
+
+			$request = $this->app->request();
+			$next    = $request->get('next');
+
+			if ($next)
+			{
+				Helper_Message::setField($this->app, 'next', $next);
+			}
 		}
 
 		public function POST()
@@ -48,14 +56,39 @@
 			Helper_Message::setField($this->app, 'username', $request->post('username'));
 			Helper_Message::setError($this->app, $string);
 
-			$this->app->redirect('/login');
+			$next = Helper_Message::getField('next', "");
+
+			if ($next)
+			{
+				$this->app->redirect("/login?next=$next");
+			}
+			else
+			{
+				$this->app->redirect('/login');
+			}
+
 			die();
 		}
 
 		private function success($userid)
 		{
 			Helper_Session::setUserInSession($userid);
-			$this->app->redirect('/');
+
+			$next = Helper_Message::getField('next', "");
+
+			if (strpos($next, '/') !== 0)
+			{
+				$next = "/$next";
+			}
+
+			if ($next)
+			{
+				$this->app->redirect($next);
+			}
+			else
+			{
+				$this->app->redirect('/');
+			}
 			die();
 		}
 

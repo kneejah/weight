@@ -33,13 +33,13 @@
 
 			$newPass = substr(md5(mt_rand() . microtime(true)), 0, 10);
 
-			$subject = "Your Trackly.me password has been reset";
+			$subject = "Your {$app->name} password has been reset";
 			$body    = "Hey {$user['username']},<br /><br />"
 					 . "Your password has successfuly been reset.<br />"
 					 . 'It is now: "' . $newPass . '".' . "<br />"
-					 . 'You should <a href="http://www.trackly.me">log in</a>, and change it.' . "<br /><br />"
+					 . 'You should <a href="http://www.trackly.me/account">log in</a>, and change it.' . "<br /><br />"
 					 . "Thanks,<br />"
-					 . "Trackly.me";
+					 . "{$app->name}";
 
 			$this->email($email, $subject, $body);
 
@@ -50,8 +50,8 @@
 
 		private function email($email, $subject, $body)
 		{
-			$headers = 'From: Trackly.me <no-reply@trackly.me>' . "\r\n" .
-					   'Reply-To: Trackly.me <no-reply@trackly.me>' . "\r\n" .
+			$headers = 'From: Trackly <no-reply@trackly.me>' . "\r\n" .
+					   'Reply-To: Trackly <no-reply@trackly.me>' . "\r\n" .
 					   'X-Mailer: PHP/' . phpversion() . "\r\n" . 
 					   'MIME-Version: 1.0' . "\r\n" .
                        'Content-type: text/html; charset=iso-8859-1' . "\r\n";

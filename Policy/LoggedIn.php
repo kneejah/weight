@@ -33,7 +33,9 @@
 
 		public function failure()
 		{
-			$this->app->redirect('/login');
+			$request = $this->app->request();
+			$next = $request->getResourceUri();
+			$this->app->redirect("/login?next=$next");
 			die();
 		}
 
