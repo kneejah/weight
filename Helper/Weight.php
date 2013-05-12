@@ -62,7 +62,8 @@
 					'change_weight'    => 'N/A',
 					'change_per_day'   => 'N/A',
 					'change_per_week'  => 'N/A',
-					'change_per_month' => 'N/A'
+					'change_per_month' => 'N/A',
+					'raw_change'       => 0
 				);
 			}
 
@@ -94,6 +95,8 @@
 			$changePerWeek  = 'N/A';
 			$changePerMonth = 'N/A';
 
+			$rawChangePerDay = 0;
+
 			if (count($weights) > 1)
 			{
 				$startWeight = $weights[count($weights) - 1];
@@ -109,6 +112,8 @@
 				$changePerWeek  = $changePerDay * 7;
 				$changePerMonth = $changePerDay * 30.5;
 
+				$rawChangePerDay = $changePerDay;
+
 				$changePerDay   = round($changePerDay, 1);
 				$changePerWeek  = round($changePerWeek, 1);
 				$changePerMonth = round($changePerMonth, 1);
@@ -121,7 +126,70 @@
 				'change_weight'    => $changeWeight,
 				'change_per_day'   => $changePerDay,
 				'change_per_week'  => $changePerWeek,
-				'change_per_month' => $changePerMonth
+				'change_per_month' => $changePerMonth,
+				'raw_change'       => $rawChangePerDay
+			);
+		}
+
+		public static function getTargetStatsForUser($userid, $changePerDay)
+		{
+			$weightToTarget = 'N/A';
+			$timeToTarget   = 'N/A';
+			$targetWeight   = 'N/A';
+
+			$weight_mapper = new Mapper_Weight();
+			$weight = $weight_mapper->getMostRecentWeightForUser($userid);
+
+			$settings_mapper = new Mapper_Settings();
+			$settings = $settings_mapper->getFilteredSettingsByUserid($userid);
+
+			if ($settings['target_weight'] > 0)
+			{
+				$weightToTarget = $settings['target_weight'] - $weight;
+				$targetWeight   = $settings['target_weight'];
+
+				// Trying to lose weight, and they're losing it
+				if ($weightToTarget < 0 && $changePerDay < 0)
+				{
+					$timeToTarget = $weightToTarget / $changePerDay;
+				}
+				else if ($weightToTarget > 0 && $changePerDay > 0)
+				{
+					$timeToTarget = $weightToTarget / $changePerDay;
+				}
+			}
+
+			if ($timeToTarget != 'N/A')
+			{
+				if ($timeToTarget > 30.5)
+				{
+					$timeToTarget = $timeToTarget / 30.5;
+					$targetUnits = 'month';
+				}
+				else if ($timeToTarget > 6.4)
+				{
+					$timeToTarget = $timeToTarget / 7;
+					$targetUnits = 'week';
+				}
+				else
+				{
+					$targetUnits = 'day';
+				}
+
+				$timeToTarget = round($timeToTarget);
+
+				if ($timeToTarget != 1)
+				{
+					$targetUnits = $targetUnits . 's';
+				}
+
+				$timeToTarget = 'approx ' . $timeToTarget . ' ' . $targetUnits;
+			}
+
+			return array(
+				'weight_to_target' => abs($weightToTarget),
+				'time_to_target'   => $timeToTarget,
+				'target_weight'    => $targetWeight
 			);
 		}
 

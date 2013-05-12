@@ -24,11 +24,17 @@
 			}
 
 			$bmi = Helper_Weight::getBMIForUser($userid);
-			$stats = Helper_weight::getStatsForUser($userid, $days_back);
+			$stats = Helper_Weight::getStatsForUser($userid, $days_back);
+
+			$rawChange = $stats['raw_change'];
+			unset($stats['raw_change']);
+
+			$target = Helper_Weight::getTargetStatsForUser($userid, $rawChange);
 
 			$data = array(
-				'bmi'   => $bmi,
-				'stats' => $stats
+				'bmi'    => $bmi,
+				'stats'  => $stats,
+				'target' => $target
 			);
 
 			return array('data' => $data, 'units' => $app->weight_units);

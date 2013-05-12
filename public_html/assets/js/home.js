@@ -39,6 +39,10 @@ function drawStatsData(data)
 		var change_per_week  = result.data.stats.change_per_week;
 		var change_per_month = result.data.stats.change_per_month;
 
+		var target_weight    = result.data.target.target_weight;
+		var weight_to_target = result.data.target.weight_to_target;
+		var time_to_target   = result.data.target.time_to_target;
+
 		var bmi_val = bmi;
 		if (bmi == "no_weights")
 		{
@@ -54,9 +58,13 @@ function drawStatsData(data)
 		$('#max_weight').html(max + (max != "N/A" ? " " + result.units : ""));
 		$('#avg_weight').html(avg + (avg != "N/A" ? " " + result.units : ""));
 		$('#change_weight').html(change_weight + (change_weight != "N/A" ? " " + result.units : ""));
-		$('#change_per_day').html(change_per_day + (change_per_day != "N/A" ? " " + result.units : ""));
-		$('#change_per_week').html(change_per_week + (change_per_week != "N/A" ? " " + result.units : ""));
+		$('#change_per_day').html(change_per_day);
+		$('#change_per_week').html(change_per_week);
 		$('#change_per_month').html(change_per_month + (change_per_month != "N/A" ? " " + result.units : ""));
+
+		$('#target_weight').html(target_weight + (target_weight != "N/A" ? " " + result.units : ""));
+		$('#weight_to_target').html(weight_to_target + (weight_to_target != "N/A" ? " " + result.units : ""));
+		$('#time_to_target').html(time_to_target);
 	}
 }
 
