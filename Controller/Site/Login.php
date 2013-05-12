@@ -74,11 +74,14 @@
 		{
 			Helper_Session::setUserInSession($userid);
 
-			$next = Helper_Message::getField('next', "");
+			$next    = Helper_Message::getField('next', "");
+			$matches = array();
+			preg_match('#/[A-Za-z0-9]+#i', $next, $matches);
+			$nextFound = count($matches) == 1 ? $matches[0] : "";
 
-			if (strpos($next, '/') !== 0)
+			if ($next !== $nextFound)
 			{
-				$next = "/$next";
+				$next = "";
 			}
 
 			if ($next)
