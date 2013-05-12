@@ -54,6 +54,25 @@
 
 					$newVal = round($newVal, 1);
 				}
+				else if ($setting['validate'] == 'weight')
+				{
+					$newVal = $val;
+
+					if (!is_numeric($newVal))
+					{
+						$newVal = 0;
+					}
+					else if ($newVal < 0)
+					{
+						$newVal = 0;
+					}
+					else if ($newVal > 1000)
+					{
+						$newVal = 1000;
+					}
+
+					$newVal = round($newVal, 1);
+				}
 				else if ($setting['validate'] == 'timezone')
 				{
 					$zones = DateTimeZone::listIdentifiers();

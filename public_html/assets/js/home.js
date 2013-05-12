@@ -107,6 +107,7 @@ function drawChart(jsonData) {
 	var data = new google.visualization.DataTable();
 	data.addColumn('datetime', 'Year');
 	data.addColumn('number',   'Trend line');
+	data.addColumn('number',   'Target weight');
 	data.addColumn('number',   'My weight');
 	data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
@@ -114,6 +115,8 @@ function drawChart(jsonData) {
 	var tzOffset = jsonData.tz_offset * (60 * 60 * 1000);
 
 	var showTrendLine = window.user_options.trend_line;
+	var targetWeight  = window.user_options.target_weight;
+	var showTargetWeight = window.user_options.show_target_weight;
 	var showLegend    = 'none';
 
 	for (var i in newData)
@@ -127,16 +130,29 @@ function drawChart(jsonData) {
 
 		var commentVal = generateTooltip(parsedDate, weightNum, comment, jsonData.units);
 		var trendVal   = null;
+		var targetVal  = null;
+
+		var showTrendLegend = false;
+		var showTargetLegend = false;
 
 		if ( (i == 0 || i == (newData.length - 1)) && newData.length > 2 && showTrendLine == true)
 		{
-			trendVal = weightNum;
+			trendVal   = weightNum;
 			showLegend = 'right';
+			showTrendLegend = true;
+		}
+
+		if ( (i == 0 || i == (newData.length - 1)) && newData.length > 1 && targetWeight > 0 && showTargetWeight)
+		{
+			targetVal  = targetWeight;
+			showLegend = 'right';
+			showTargetLegend = true;
 		}
 
 		data.addRow([
 			parsedDate,
 			trendVal,
+			targetVal,
 			weightNum,
 			commentVal
 		]);
@@ -151,7 +167,8 @@ function drawChart(jsonData) {
 		legend:           {position: showLegend},
 		interpolateNulls: true,
 		curveType:        graph_smoothing,
-		colors:           ['#A83232', '#3266CC']
+		colors:           ['#A83232', '#00563F', '#3266CC'],
+		series:           [{visibleInLegend: showTrendLegend}, {visibleInLegend: showTargetLegend}, {visibleInLegend: true}]
 	};
 
 	var chart_div = document.getElementById('chart_div');

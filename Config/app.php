@@ -29,7 +29,7 @@
 						'type_boolean' => true,
 						'default'      => 0,
 						'validate'     => 'boolean',
-						'order'        => 3
+						'order'        => 5
 					),
 					1 => array(
 						'name'         => 'height',
@@ -47,7 +47,7 @@
 						'type_string'  => true,
 						'default'      => 'America/Los_Angeles',
 						'validate'     => 'timezone',
-						'order'        => 2
+						'order'        => 6
 					),
 					3 => array(
 						'name'         => 'trend_line',
@@ -58,6 +58,24 @@
 						'validate'     => 'boolean',
 						'order'        => 4
 					),
+					4 => array(
+						'name'         => 'target_weight',
+						'title'        => 'Target weight',
+						'description'  => 'Target weight you are trying to achieve',
+						'type_string' => true,
+						'default'      => 0,
+						'validate'     => 'weight',
+						'order'        => 2
+					),
+					5 => array(
+						'name'         => 'show_target_weight',
+						'title'        => 'Show target weight',
+						'description'  => 'Show your target weight on the graph',
+						'type_boolean' => true,
+						'default'      => 0,
+						'validate'     => 'boolean',
+						'order'        => 3
+					)
 				)
 			);
 		}
