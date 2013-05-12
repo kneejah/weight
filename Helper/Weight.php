@@ -183,11 +183,16 @@
 					$targetUnits = $targetUnits . 's';
 				}
 
-				$timeToTarget = 'approx ' . $timeToTarget . ' ' . $targetUnits;
+				$timeToTarget = 'about ' . $timeToTarget . ' ' . $targetUnits;
+			}
+
+			if ($weightToTarget != 'N/A')
+			{
+				$weightToTarget = abs($weightToTarget);
 			}
 
 			return array(
-				'weight_to_target' => abs($weightToTarget),
+				'weight_to_target' => $weightToTarget,
 				'time_to_target'   => $timeToTarget,
 				'target_weight'    => $targetWeight
 			);
