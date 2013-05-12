@@ -22,87 +22,87 @@
 
 		<div style="width: 1200px;">
 
-		<div id="chart_div" style="clear: both; height: 500px;"></div>
+			<div id="chart_div" style="clear: both; height: 500px;"></div>
 
-		<div style="float: right; padding-right: 155px;">
-			<span>Filter</span>
-			<select id="filter_picker" onChange="startGraph();">
-				<option value="7">1 week</option>
-				<option value="30" selected="selected">1 month</option>
-				<option value="183">6 months</option>
-				<option value="365">1 year</option>
-				<option value="ytd">Year to date</option>
-				<option value="all">All data</option>
-			</select>
+			<div style="float: right; padding-right: 155px;">
+				<span>Filter</span>
+				<select id="filter_picker" onChange="startGraph();">
+					<option value="7">1 week</option>
+					<option value="30" selected="selected">1 month</option>
+					<option value="183">6 months</option>
+					<option value="365">1 year</option>
+					<option value="ytd">Year to date</option>
+					<option value="all">All data</option>
+				</select>
 
-			<div style="padding-top: 10px;">
+				<div style="padding-top: 10px;">
 
-				<table>
-					<tr>
-						<td style="text-align: right;">BMI</td>
-						<td style="padding-left: 20px;"><span id="bmi"></span></td>
-					</tr>
-					<tr>
-						<td style="text-align: right;">Min/max weight</td>
-						<td style="padding-left: 20px;"><span id="min_weight"></span>/<span id="max_weight"></span></td>
-					</tr>
-					<tr>
-						<td style="text-align: right;">Average weight</td>
-						<td style="padding-left: 20px;"><span id="avg_weight"></span></td>
-					</tr>
-					<tr>
-						<td style="text-align: right;">Change in weight</td>
-						<td style="padding-left: 20px;"><span id="change_weight"></span></td>
-					</tr>
-					<tr>
-						<td style="text-align: right;">Average change/day</td>
-						<td style="padding-left: 20px;"><span id="change_per_day"></span></td>
-					</tr>
-					<tr>
-						<td style="text-align: right;">Average change/week</td>
-						<td style="padding-left: 20px;"><span id="change_per_week"></span></td>
-					</tr>
-					<tr>
-						<td style="text-align: right;">Average change/month</td>
-						<td style="padding-left: 20px;"><span id="change_per_month"></span></td>
-					</tr>
-				</table>
+					<table>
+						<tr>
+							<td style="text-align: right;">BMI</td>
+							<td style="padding-left: 20px;"><span id="bmi"></span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Min/max weight</td>
+							<td style="padding-left: 20px;"><span id="min_weight"></span>/<span id="max_weight"></span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Average weight</td>
+							<td style="padding-left: 20px;"><span id="avg_weight"></span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Change in weight</td>
+							<td style="padding-left: 20px;"><span id="change_weight"></span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Average change/day</td>
+							<td style="padding-left: 20px;"><span id="change_per_day"></span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Average change/week</td>
+							<td style="padding-left: 20px;"><span id="change_per_week"></span></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Average change/month</td>
+							<td style="padding-left: 20px;"><span id="change_per_month"></span></td>
+						</tr>
+					</table>
+				</div>
+
 			</div>
 
-		</div>
+			<div style="float: left;">
+				<form class="form-horizontal" onSubmit="addWeight(this); return false;">
 
-		<div style="float: left;">
-			<form class="form-horizontal" onSubmit="addWeight(this); return false;">
-
-				<div class="control-group">
-					<label class="control-label" for="weight">Weight</label>
-					<div class="controls">
-						<input type="text" id="weight" name="weight" value="" placeholder="Weight ({{app.weight_units}})">
+					<div class="control-group">
+						<label class="control-label" for="weight">Weight</label>
+						<div class="controls">
+							<input type="text" id="weight" name="weight" value="" placeholder="Weight ({{app.weight_units}})">
+						</div>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label class="control-label" for="date">Date</label>
-					<div class="controls">
-						<input type="text" id="date" name="date" placeholder="Date (optional)">
+					<div class="control-group">
+						<label class="control-label" for="date">Date</label>
+						<div class="controls">
+							<input type="text" id="date" name="date" placeholder="Date (optional)">
+						</div>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<label class="control-label" for="comment">Comment</label>
-					<div class="controls">
-						<textarea cols="50" rows="2" id="comment" name="comment" placeholder="Comment (optional)"></textarea>
+					<div class="control-group">
+						<label class="control-label" for="comment">Comment</label>
+						<div class="controls">
+							<textarea cols="50" rows="2" id="comment" name="comment" placeholder="Comment (optional)"></textarea>
+						</div>
 					</div>
-				</div>
 
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn">Add weight</button>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn">Add weight</button>
+						</div>
 					</div>
-				</div>
 
-			</form>
-		</div>
+				</form>
+			</div>
 
 		</div>
 

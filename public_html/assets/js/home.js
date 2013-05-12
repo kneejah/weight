@@ -161,7 +161,6 @@ function drawChart(jsonData) {
 	var graph_smoothing = (window.user_options.graph_smoothing) ? "function" : "none";
 
 	var options = {
-		title:            "My Weight",
 		pointSize:        4,
 		tooltip:          { isHtml: true },
 		legend:           {position: showLegend},
