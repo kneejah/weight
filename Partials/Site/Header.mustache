@@ -6,19 +6,19 @@
 
 		<title>{{app.name}}{{#breadcrumb}} - {{.}}{{/breadcrumb}}</title>
 
-		<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css" />
-		<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.css">
+		<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css?v={{app.asset_version}}" />
+		<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.css?v={{app.asset_version}}">
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700,800" />
-		<link rel="stylesheet" href="/assets/css/style.css" />
+		<link rel="stylesheet" href="/assets/css/style.css?v={{app.asset_version}}" />
 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="/assets/bootstrap/js/bootstrap.js?v={{app.asset_version}}"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script type="text/javascript" src="/assets/js/common.js"></script>
+		<script type="text/javascript" src="/assets/js/common.js?v={{app.asset_version}}"></script>
 
-		<link rel="icon" type="image/png" href="/assets/weight-trans.png">
+		<link rel="icon" type="image/png" href="/assets/weight-trans.png?v={{app.asset_version}}">
 
 		<meta name="description" content="trackly.me is a site that can help you track your weight, lose weight, and generally become more fit and healthy." />
 		<meta name="keywords" content="trackly.me trackly me fit fitness weight loss exercise track tracking bmi body fat work out" />
@@ -35,7 +35,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="fancyfont_large brand" style="margin-left: -47px;" href="/">
-						<img style="width: 130px; margin-top: 0px;" alt="Logo" src="/assets/images/logo.png" />
+						<img style="width: 130px; margin-top: 0px;" alt="Logo" src="/assets/images/logo.png?v={{app.asset_version}}" />
 					</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav">
