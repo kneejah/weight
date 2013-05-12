@@ -106,8 +106,8 @@ function drawChart(jsonData) {
 
 	var data = new google.visualization.DataTable();
 	data.addColumn('datetime', 'Year');
-	data.addColumn('number',   'My weight');
 	data.addColumn('number',   'Trend line');
+	data.addColumn('number',   'My weight');
 	data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
 	var newData  = jsonData.data;
@@ -136,8 +136,8 @@ function drawChart(jsonData) {
 
 		data.addRow([
 			parsedDate,
-			weightNum,
 			trendVal,
+			weightNum,
 			commentVal
 		]);
 	}
@@ -150,7 +150,8 @@ function drawChart(jsonData) {
 		tooltip:          { isHtml: true },
 		legend:           {position: showLegend},
 		interpolateNulls: true,
-		curveType:        graph_smoothing
+		curveType:        graph_smoothing,
+		colors:           ['#A53131', '#3266CC']
 	};
 
 	var chart_div = document.getElementById('chart_div');
