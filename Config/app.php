@@ -47,7 +47,16 @@
 						'default'      => 'America/Los_Angeles',
 						'validate'     => 'timezone',
 						'order'        => 2
-					)
+					),
+					3 => array(
+						'name'         => 'trend_line',
+						'title'        => 'Trend line',
+						'description'  => 'Show a trend line on the graph as well',
+						'type_boolean' => true,
+						'default'      => 0,
+						'validate'     => 'boolean',
+						'order'        => 4
+					),
 				)
 			);
 		}

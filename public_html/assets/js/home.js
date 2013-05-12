@@ -105,12 +105,16 @@ function addWeight(el)
 function drawChart(jsonData) {
 
 	var data = new google.visualization.DataTable();
-	data.addColumn('datetime',   'Year');
-	data.addColumn('number',     'Weight');
+	data.addColumn('datetime', 'Year');
+	data.addColumn('number',   'My weight');
+	data.addColumn('number',   'Trend line');
 	data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
 	var newData  = jsonData.data;
 	var tzOffset = jsonData.tz_offset * (60 * 60 * 1000);
+
+	var showTrendLine = window.user_options.trend_line;
+	var showLegend    = 'none';
 
 	for (var i in newData)
 	{
@@ -122,10 +126,18 @@ function drawChart(jsonData) {
 		var comment    = tmp['comment'];
 
 		var commentVal = generateTooltip(parsedDate, weightNum, comment, jsonData.units);
+		var trendVal   = null;
+
+		if ( (i == 0 || i == (newData.length - 1)) && newData.length > 2 && showTrendLine == true)
+		{
+			trendVal = weightNum;
+			showLegend = 'right';
+		}
 
 		data.addRow([
 			parsedDate,
 			weightNum,
+			trendVal,
 			commentVal
 		]);
 	}
@@ -133,11 +145,12 @@ function drawChart(jsonData) {
 	var graph_smoothing = (window.user_options.graph_smoothing) ? "function" : "none";
 
 	var options = {
-		title:     "My Weight",
-		pointSize: 4,
-		tooltip:   {isHtml: true},
-		legend:    {position: 'none'},
-		curveType: graph_smoothing
+		title:            "My Weight",
+		pointSize:        4,
+		tooltip:          { isHtml: true },
+		legend:           {position: showLegend},
+		interpolateNulls: true,
+		curveType:        graph_smoothing
 	};
 
 	var chart_div = document.getElementById('chart_div');
