@@ -33,19 +33,25 @@
 				}
 			}
 
-			$tmp_name = $file['tmp_name'];
-			$data = file_get_contents($tmp_name);
-			$data = str_replace("\r\n", "\n", $data);
-			$data = str_replace("\r", "\n", $data);
+			$tmpName = $file['tmp_name'];
 
-			$dataLines = explode("\n", $data);
+			ini_set('auto_detect_line_endings', true);
+			$handle = fopen($tmpName,'r');
+
+			$dataLines = array();
+
+			while (($data = fgetcsv($handle)) !== false) {
+				$dataLines[] = $data;
+			}
+
+			ini_set('auto_detect_line_endings', false);
 
 			if (count($dataLines) < 2)
 			{
 				$this->error("The file uploaded does not contain enough data to import.");
 			}
 
-			$descripData   = explode(',', $dataLines[0]);
+			$descripData   = $dataLines[0];
 			$dateOffset    = false;
 			$weightOffset  = false;
 			$commentOffset = false;
@@ -77,13 +83,13 @@
 
 			for ($i = 1; $i < count($dataLines); $i++)
 			{
-				$tmpData = explode(',', $dataLines[$i]);
-				
+				$tmpData = $dataLines[$i];
+
 				$tmpDate    = trim($tmpData[$dateOffset]);
 				$tmpWeight  = trim($tmpData[$weightOffset]);
 				$tmpComment = '';
 
-				if ($commentOffset)
+				if ($commentOffset && isset($tmpData[$commentOffset]))
 				{
 					$tmpComment = trim($tmpData[$commentOffset]);
 				}

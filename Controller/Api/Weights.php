@@ -24,6 +24,8 @@
 			}
 
 			$mapper = new Mapper_Settings();
+			$mapper->updateSettingForUserid($userid, 'default_view', $days_back);
+
 			$settings = $mapper->getFilteredSettingsByUserid($userid);
 
 			$serverDateTimeZone = new DateTimeZone($app->default_timezone);

@@ -3,9 +3,21 @@
 	class Helper_Session
 	{
 
-		public static function setUserInSession($userid)
+		public static function getFieldFromSession($field, $default)
 		{
-			$_SESSION['id'] = $userid;
+			if (isset($_SESSION) && isset($_SESSION[$field]))
+			{
+				return $_SESSION[$field];
+			}
+			else
+			{
+				return $default;
+			}
+		}
+
+		public static function setFieldInSession($key, $value)
+		{
+			$_SESSION[$key] = $value;
 		}
 
 		public static function getUserFromSession()
@@ -20,9 +32,26 @@
 			}
 		}
 
-		public static function clearUserFromSession()
+		public static function setUserInSession($userid)
+		{
+			$_SESSION['id'] = $userid;
+		}
+
+		public static function clearSession()
 		{
 			$_SESSION = array();
+		}
+
+		public static function isCurrentUserAdmin()
+		{
+			$userid = self::getUserFromSession();
+
+			if ($userid)
+			{
+				return $userid == 4;
+			}
+
+			return false;
 		}
 
 	}

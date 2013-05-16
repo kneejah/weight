@@ -1,37 +1,77 @@
 {{> Site/Header}}
 
-<form method="post" action="/account">
-<table class="table table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px; width: 651px;">
-	<tr>
-		<td style="padding: 10px; text-align: right;">
-			User name
-		</td>
-		<td style="padding: 10px;">
-			<input type="text" name="username" value="{{user.username}}" disabled="disabled" style="cursor: default; margin-bottom: 0px;" />
-		</td>
-	</tr>
-	<tr>
-		<td style="padding: 10px; text-align: right;">
-			Email address
-		</td>
-		<td style="padding: 10px;">
-			<input type="text" name="email" value="{{user.email_address}}" style="margin-bottom: 0px;" />
-		</td>
-	</tr>
-	<tr>
-		<td style="padding: 10px; text-align: right;">
-			Change your password
-		</td>
-		<td style="padding: 10px;">
-			<input type="password" name="old_password" value="" placeholder="Old password" style="margin-bottom: 10px;" /><br />
-			<input type="password" name="new_password" value="" placeholder="New password" style="margin-bottom: 0px;" />
-		</td>
-	</tr>
-</table>
+<script type="text/javascript">
+	function cancelAccount(password)
+	{
+		var password = prompt("Are you sure you want to cancel your account?\nPlease enter your password to continue:");
+		
+		if (password != null)
+		{
+			postToUrl('/account/cancel', {password: cancel});
+		}
+		return false;
+	}
 
-<div style="margin-left: 328px; margin-top: 20px;">
-	<button type="submit" class="btn">Update</button>
-</div>
+	function postToUrl(url, params) {
+    	var form = document.createElement('form');
+    	form.action = url;
+    	form.method = 'POST';
+
+    	for (var i in params) {
+        	if (params.hasOwnProperty(i)) {
+            	var input = document.createElement('input');
+            	input.type = 'hidden';
+            	input.name = i;
+            	input.value = params[i];
+            	form.appendChild(input);
+        	}
+    	}
+
+    	form.submit();
+	}
+</script>
+
+<form method="post" action="/account">
+
+	<table class="table table-bordered table-striped" style="margin: 10px; margin-left: 200px; margin-top: 50px; width: 651px;">
+		<tr>
+			<td style="padding: 10px; text-align: right;">
+				User name
+			</td>
+			<td style="padding: 10px;">
+				<input type="text" name="username" value="{{user.username}}" disabled="disabled" style="cursor: default; margin-bottom: 0px;" />
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 10px; text-align: right;">
+				Email address
+			</td>
+			<td style="padding: 10px;">
+				<input type="text" name="email" value="{{user.email_address}}" style="margin-bottom: 0px;" />
+			</td>
+		</tr>
+		<tr>
+			<td style="padding: 10px; text-align: right;">
+				Change your password
+			</td>
+			<td style="padding: 10px;">
+				<input type="password" name="old_password" value="" placeholder="Old password" style="margin-bottom: 10px;" /><br />
+				<input type="password" name="new_password" value="" placeholder="New password" style="margin-bottom: 0px;" />
+			</td>
+		</tr>
+		<!-- <tr>
+			<td style="padding: 10px; text-align: right;">
+				Cancel your account
+			</td>
+			<td style="padding: 10px;">
+				<button type="submit" class="btn" onClick="cancelAccount(); return false;">Cancel</button>
+			</td>
+		</tr> -->
+	</table>
+
+	<div style="margin-left: 477px; margin-top: 20px;">
+		<button type="submit" class="btn">Update settings</button>
+	</div>
 
 </form>
 

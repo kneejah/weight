@@ -146,14 +146,14 @@ function drawChart(jsonData) {
 		if ( (i == 0 || i == (newData.length - 1)) && newData.length > 2 && showTrendLine == true)
 		{
 			trendVal   = weightNum;
-			showLegend = 'right';
+			showLegend = 'in';
 			showTrendLegend = true;
 		}
 
 		if ( (i == 0 || i == (newData.length - 1)) && newData.length > 1 && targetWeight > 0 && showTargetWeight)
 		{
 			targetVal  = targetWeight;
-			showLegend = 'right';
+			showLegend = 'in';
 			showTargetLegend = true;
 		}
 
@@ -170,8 +170,8 @@ function drawChart(jsonData) {
 
 	var options = {
 		pointSize:        4,
-		tooltip:          { isHtml: true },
-		legend:           {position: showLegend},
+		tooltip:          {isHtml: true},
+		legend:           {position: showLegend, alignment: 'end'},
 		interpolateNulls: true,
 		curveType:        graph_smoothing,
 		colors:           ['#A83232', '#00563F', '#3266CC'],

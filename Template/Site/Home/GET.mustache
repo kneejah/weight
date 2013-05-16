@@ -9,7 +9,7 @@
 				graph_smoothing:    {{user_settings.graph_smoothing}},
 				trend_line:         {{user_settings.trend_line}},
 				target_weight:      {{user_settings.target_weight}},
-				show_target_weight: {{user_settings.show_target_weight}},
+				show_target_weight: {{user_settings.show_target_weight}}
 			};
 
 			$(document).ready(function() {
@@ -27,12 +27,9 @@
 			<div style="float: right; padding-right: 155px;">
 				<span>Filter</span>
 				<select id="filter_picker" onChange="startGraph();">
-					<option value="7">1 week</option>
-					<option value="30" selected="selected">1 month</option>
-					<option value="183">6 months</option>
-					<option value="365">1 year</option>
-					<option value="ytd">Year to date</option>
-					<option value="all">All data</option>
+					{{#view_options}}
+						<option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{name}}</option>
+					{{/view_options}}
 				</select>
 
 				<div style="padding-top: 10px;">

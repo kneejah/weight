@@ -13,10 +13,11 @@
 
 			$app->menu_items = Helper_Menu::processMenuItems($app->menu_items, $page, $logged_in);
 
-			$user = null;
+			$user              = null;
 			$formatted_weights = array();
-			$settingsVals = array();
-			
+			$settingsVals      = array();
+			$viewOptions       = array();
+
 			if ($logged_in)
 			{
 				$userid = $policy->getData();
@@ -25,6 +26,29 @@
 
 				$settings_mapper = new Mapper_Settings();
 				$settingsVals = $settings_mapper->getFilteredSettingsByUserid($userid);
+
+				$defaultView = 30.5;
+				if (isset($settingsVals['default_view']))
+				{
+					$defaultView = $settingsVals['default_view'];
+				}
+
+				$viewOptions = array(
+					0 => array('value' => 7,     'name' => '1 week'),
+					1 => array('value' => 30.5,  'name' => '1 month'),
+					2 => array('value' => 182.5, 'name' => '6 months'),
+					3 => array('value' => 365,   'name' => '1 year'),
+					4 => array('value' => 'ytd', 'name' => 'Year to date'),
+					5 => array('value' => 'all', 'name' => 'All data'),
+				);
+
+				foreach ($viewOptions as &$option)
+				{
+					if ($option['value'] == $defaultView)
+					{
+						$option['selected'] = true;
+					}
+				}
 			}
 
 			return array(
@@ -33,7 +57,8 @@
 				'error'         => Helper_Message::getError(),
 				'logged_in'     => $logged_in,
 				'user'          => $user,
-				'user_settings' => $settingsVals
+				'user_settings' => $settingsVals,
+				'view_options'  => $viewOptions
 			);
 		}
 
