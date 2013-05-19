@@ -87,4 +87,15 @@
 			return $res;
 		}
 
+		public function deleteAllSettingsForUser($userid)
+		{
+			$query = "DELETE FROM " . self::$table . " WHERE userid=:userid;";
+
+			$data = array(
+				':userid' => $userid
+			);
+
+			return $this->db->query($query, $data);
+		}
+
 	}

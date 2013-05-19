@@ -113,6 +113,17 @@
 			return $this->db->query($query, $data);
 		}
 
+		public function deleteAllWeightsForUser($userid)
+		{
+			$query = "DELETE FROM " . self::$table . " WHERE userid=:userid;";
+
+			$data = array(
+				':userid' => $userid
+			);
+
+			return $this->db->query($query, $data);
+		}
+
 		public function updateWeightForUser($userid, $id, $weight, $comment)
 		{
 			$query = "UPDATE " . self::$table . " SET weight=:weight, comment=:comment WHERE userid=:userid AND id=:id;";

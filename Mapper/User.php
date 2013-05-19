@@ -91,6 +91,17 @@
 			return $this->db->query($query, $data);
 		}
 
+		public function deleteUserById($id)
+		{
+			$query = "DELETE FROM " . self::$table . " WHERE id=:id;";
+
+			$data = array(
+				':id' => $id
+			);
+
+			return $this->db->query($query, $data);
+		}
+
 		public static function generateHash($password)
 		{
 			$app = Config::get('system');
