@@ -3,11 +3,14 @@
 <script type="text/javascript">
 	function cancelAccount(password)
 	{
-		var password = prompt("Are you sure you want to cancel your account?\nPlease enter your password to continue:");
+		var passwordStr = prompt(
+			"Are you sure you want to cancel your account?\n" +
+			"If you cancel your account, ALL of your data will be gone forever!\n\n" +
+			"Please enter your password to continue:");
 		
-		if (password != null)
+		if (passwordStr != null)
 		{
-			postToUrl('/account/cancel', {password: cancel});
+			postToUrl('/account/cancel', {password: passwordStr});
 		}
 		return false;
 	}
@@ -59,14 +62,14 @@
 				<input type="password" name="new_password" value="" placeholder="New password" style="margin-bottom: 0px;" />
 			</td>
 		</tr>
-		<!-- <tr>
+		<tr>
 			<td style="padding: 10px; text-align: right;">
 				Cancel your account
 			</td>
 			<td style="padding: 10px;">
 				<button type="submit" class="btn" onClick="cancelAccount(); return false;">Cancel</button>
 			</td>
-		</tr> -->
+		</tr>
 	</table>
 
 	<div style="margin-left: 477px; margin-top: 20px;">

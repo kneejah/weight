@@ -60,6 +60,12 @@
 						'options' => array('post' => array('noview' => true))
 					),
 					array(
+						'name'    => 'Site_Account_Cancel',
+						'uri'     => '/account/cancel',
+						'type'    => 'post',
+						'options' => array('noview' => true)
+					),
+					array(
 						'name'    => 'Site_Login',
 						'uri'     => '/login',
 						'type'    => 'get,post',
