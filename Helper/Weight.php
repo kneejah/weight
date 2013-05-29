@@ -188,7 +188,7 @@
 
 			if ($weightToTarget != 'N/A')
 			{
-				$weightToTarget = abs($weightToTarget);
+				$weightToTarget = round(abs($weightToTarget), 1);
 			}
 
 			return array(
