@@ -48,9 +48,32 @@ function drawStatsData(data)
 		{
 			bmi_val = "N/A";
 		}
-		if (bmi == "no_height")
+		else if (bmi == "no_height")
 		{
 			bmi_val = '(<a href="/settings">add height</a>)';
+		}
+		else
+		{
+			var bmi_descrip = "";
+
+			if (bmi_val >= 30.0)
+			{
+				bmi_descrip = "Obese";
+			}
+			else if (bmi_val >= 25.0)
+			{
+				bmi_descrip = "Overweight";
+			}
+			else if (bmi_val >= 18.5)
+			{
+				bmi_descrip = "Normal weight";
+			}
+			else
+			{
+				bmi_descrip = "Underweight";
+			}
+
+			$('#bmi').attr('title', bmi_descrip);
 		}
 
 		$('#bmi').html(bmi_val);
