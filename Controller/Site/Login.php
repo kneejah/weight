@@ -37,7 +37,12 @@
 
 			if (!$user)
 			{
-				$this->error("Invalid user name or password.");
+				$user = $user_mapper->getUserByEmail($username);
+
+				if (!$user)
+				{
+					$this->error("Invalid user name or password.");
+				}
 			}
 
 			$hash = Mapper_User::generateHash($password);
