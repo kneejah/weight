@@ -161,12 +161,12 @@
 
 			if ($timeToTarget != 'N/A')
 			{
-				if ($timeToTarget > 30.5)
+				if ($timeToTarget > ((30.5 * 2) - 7))
 				{
 					$timeToTarget = $timeToTarget / 30.5;
 					$targetUnits = 'month';
 				}
-				else if ($timeToTarget > 6.4)
+				else if ($timeToTarget > ((7 * 2) - 1))
 				{
 					$timeToTarget = $timeToTarget / 7;
 					$targetUnits = 'week';
