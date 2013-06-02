@@ -86,8 +86,20 @@ function drawStatsData(data)
 		$('#change_per_month').html(change_per_month + (change_per_month != "N/A" ? " " + result.units : ""));
 
 		$('#target_weight').html(target_weight + (target_weight != "N/A" ? " " + result.units : ""));
-		$('#weight_to_target').html(weight_to_target + (weight_to_target != "N/A" ? " " + result.units : ""));
-		$('#time_to_target').html(time_to_target);
+
+		if (target_weight != "N/A")
+		{
+			$('#weight_to_target').html(weight_to_target + (weight_to_target != "N/A" ? " " + result.units : ""));
+			$('#time_to_target').html(time_to_target);
+			$('#weight_to_target_desc').show();
+			$('#time_to_target_desc').show();
+		}
+		else
+		{
+			$('#weight_to_target').hide();
+			$('#time_to_target').hide();
+		}
+
 	}
 }
 
