@@ -89,14 +89,14 @@ function drawStatsData(data)
 
 		if (target_weight != "N/A")
 		{
-			$('#weight_to_target').html(weight_to_target + (weight_to_target != "N/A" ? " " + result.units : ""));
+			var target_weight_val = $('#target_weight').html() + " (" + weight_to_target + " " + result.units + " to go)";
+			$('#target_weight').html(target_weight_val);
+
 			$('#time_to_target').html(time_to_target);
-			$('#weight_to_target_desc').show();
 			$('#time_to_target_desc').show();
 		}
 		else
 		{
-			$('#weight_to_target').hide();
 			$('#time_to_target').hide();
 		}
 
