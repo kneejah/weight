@@ -183,7 +183,14 @@
 					$targetUnits = $targetUnits . 's';
 				}
 
-				$timeToTarget = 'about ' . $timeToTarget . ' ' . $targetUnits;
+				if ($timeToTarget == 0)
+				{
+					$timeToTarget = 'less than a day';
+				}
+				else
+				{
+					$timeToTarget = 'about ' . $timeToTarget . ' ' . $targetUnits;
+				}
 			}
 
 			if ($weightToTarget != 'N/A')
