@@ -87,7 +87,7 @@ function drawStatsData(data)
 
 		$('#target_weight').html(target_weight + (target_weight != "N/A" ? " " + result.units : ""));
 
-		if (target_weight != "N/A")
+		if (target_weight != "N/A" && weight_to_target != 0)
 		{
 			var target_weight_val = $('#target_weight').html() + " (" + weight_to_target + " " + result.units + " to go)";
 			$('#target_weight').html(target_weight_val);
