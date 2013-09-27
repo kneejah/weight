@@ -98,6 +98,7 @@ function drawStatsData(data)
 		else
 		{
 			$('#time_to_target').hide();
+			$('#time_to_target_desc').hide();
 		}
 
 	}
