@@ -115,7 +115,8 @@
 						'cipher_mode' => MCRYPT_MODE_CBC
 					)
 				),
-				'password_hash' => $iniSettings['password_hash']
+				'password_hash' => $iniSettings['password_hash'],
+				'sqlite_path'   => $iniSettings['sqlite_path']
 			);
 		}
 

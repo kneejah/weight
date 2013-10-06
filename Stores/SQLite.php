@@ -54,7 +54,8 @@
 
 		private static function getPath()
 		{
-			return "/home/kneejah/db/test.db";
+			$config = Config::get('system');
+			return $config->sqlite_path;
 		}
 
 	}
