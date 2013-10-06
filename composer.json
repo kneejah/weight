@@ -4,7 +4,8 @@
 	"license": "Apache-2.0",
 	"require":
 	{
-		"mustache/mustache": "2.3.*",
-		"slim/slim":         "2.*"
+		"ccampbell/chromephp": "dev-master",
+		"mustache/mustache":   "2.3.*",
+		"slim/slim":           "2.*"
 	}
 }
