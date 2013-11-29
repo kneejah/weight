@@ -69,7 +69,9 @@ function setupPaginator(totalPages, currentPage)
 	        currentPage:    currentPage,
 	        cssStyle:       'light-theme',
 	        hrefTextPrefix: '?page=',
-	        selectOnClick:  false
+	        selectOnClick:  false,
+	        prevText:       'Previous',
+	        nextText:       'Next'
 	    });
 	});
 }

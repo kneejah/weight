@@ -5,12 +5,12 @@
 
 <link rel="stylesheet" href="/assets/css/simplePagination.css?v={{app.asset_version}}" />
 
-<script type="text/javascript">
-	setupPaginator({{total_pages}}, {{current_page}});
-</script>
-
 <br />
 {{#has_weights}}
+
+	<script type="text/javascript">
+		setupPaginator({{total_pages}}, {{current_page}});
+	</script>
 
 	<table class="table table-striped table-bordered">
 
@@ -68,8 +68,8 @@
 		<br />
 	-->
 
-	<div style="text-align: center;" id="js-page">
-
+	<div style="padding-left: 150px;">
+		<span id="js-page"></span>
 	</div>
 
 {{/has_weights}}
