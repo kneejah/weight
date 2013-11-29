@@ -60,3 +60,16 @@ function deleteProcess(data)
 		$('#row_' + id).fadeOut('slow');
 	}
 }
+
+function setupPaginator(totalPages, currentPage)
+{
+	$(function() {
+	    $("#js-page").pagination({
+	        pages:          totalPages,
+	        currentPage:    currentPage,
+	        cssStyle:       'light-theme',
+	        hrefTextPrefix: '?page=',
+	        selectOnClick:  false
+	    });
+	});
+}

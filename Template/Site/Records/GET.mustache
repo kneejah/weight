@@ -1,6 +1,13 @@
 {{> Site/Header}}
 
 <script type="text/javascript" src="/assets/js/records.js?v={{app.asset_version}}"></script>
+<script type="text/javascript" src="/assets/js/jquery.simplePagination.js?v={{app.asset_version}}"></script>
+
+<link rel="stylesheet" href="/assets/css/simplePagination.css?v={{app.asset_version}}" />
+
+<script type="text/javascript">
+	setupPaginator({{total_pages}}, {{current_page}});
+</script>
 
 <br />
 {{#has_weights}}
@@ -32,32 +39,38 @@
 
 	</table>
 
-	<div style="text-align: center;">
-		{{#has_previous}}
-			<a href="/records?page={{previous_val}}">Prev</a>
-		{{/has_previous}}
-		{{^has_previous}}
-			Prev
-		{{/has_previous}}
-		|
-		{{#pages}}
-			{{#selected}}
-				{{page}}
-			{{/selected}}
-			{{^selected}}
-				<a href="/records?page={{page}}">{{page}}</a>
-			{{/selected}}
+	<!-- 
+		<div style="text-align: center;">
+			{{#has_previous}}
+				<a href="/records?page={{previous_val}}">Prev</a>
+			{{/has_previous}}
+			{{^has_previous}}
+				Prev
+			{{/has_previous}}
 			|
-		{{/pages}}
+			{{#pages}}
+				{{#selected}}
+					{{page}}
+				{{/selected}}
+				{{^selected}}
+					<a href="/records?page={{page}}">{{page}}</a>
+				{{/selected}}
+				|
+			{{/pages}}
 
-		{{#has_next}}
-			<a href="/records?page={{next_val}}">Next</a>
-		{{/has_next}}
-		{{^has_next}}
-			Next
-		{{/has_next}}
+			{{#has_next}}
+				<a href="/records?page={{next_val}}">Next</a>
+			{{/has_next}}
+			{{^has_next}}
+				Next
+			{{/has_next}}
+		</div>
+		<br />
+	-->
+
+	<div style="text-align: center;" id="js-page">
+
 	</div>
-	<br />
 
 {{/has_weights}}
 

@@ -75,8 +75,9 @@
 				'has_previous' => $hasPrev,
 				'has_next'     => $hasNext,
 				'previous_val' => ($page - 1),
-				'next_val'     => ($page + 1)
-
+				'next_val'     => ($page + 1),
+				'total_pages'  => $numPages,
+				'current_page' => $page
 			);
 		}
 
