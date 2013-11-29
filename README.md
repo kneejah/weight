@@ -8,5 +8,6 @@ dependencies
 uses
 * apache
 * mysql (to be fair, sqlite, but that's only because i'm lazy)
-* twitter bootstrap
-* google graphs
+* twitter bootstrap (http://getbootstrap.com)
+* google graphs (https://developers.google.com/chart/)
+* simplePagination.js (http://flaviusmatis.github.io/simplePagination.js/)
