@@ -20,14 +20,14 @@
 				<th>Weight</th>
 				<th>Comment</th>
 				<th>Actions</th>
-			</tr>	
+			</tr>
 		</thead>
 
 		<tbody>
 		{{#weights}}
 			<tr id="row_{{id}}">
 				<td>{{time}}</td>
-				<td><input id="weight_{{id}}" type="text" value="{{weight}}" /> <span>{{app.weight_units}}</span></td>
+				<td><input id="weight_{{id}}" type="number" value="{{weight}}" min="0" max="1000" step="0.1" /> <span>{{app.weight_units}}</span></td>
 				<td><textarea style="margin-bottom: 0px;" cols="50" rows="2" id="comment_{{id}}">{{comment}}</textarea></td>
 				<td>
 					<input type="submit" class="btn" value="Update" onClick="updateRecord({{id}}); return false;">
@@ -38,35 +38,6 @@
 		</tbody>
 
 	</table>
-
-	<!-- 
-		<div style="text-align: center;">
-			{{#has_previous}}
-				<a href="/records?page={{previous_val}}">Prev</a>
-			{{/has_previous}}
-			{{^has_previous}}
-				Prev
-			{{/has_previous}}
-			|
-			{{#pages}}
-				{{#selected}}
-					{{page}}
-				{{/selected}}
-				{{^selected}}
-					<a href="/records?page={{page}}">{{page}}</a>
-				{{/selected}}
-				|
-			{{/pages}}
-
-			{{#has_next}}
-				<a href="/records?page={{next_val}}">Next</a>
-			{{/has_next}}
-			{{^has_next}}
-				Next
-			{{/has_next}}
-		</div>
-		<br />
-	-->
 
 	<div style="padding-left: 150px;">
 		<span id="js-page"></span>

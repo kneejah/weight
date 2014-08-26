@@ -7,7 +7,7 @@
 			"Are you sure you want to cancel your account?\n" +
 			"If you cancel your account, ALL of your data will be gone forever!\n\n" +
 			"Please enter your password to continue:");
-		
+
 		if (passwordStr != null)
 		{
 			postToUrl('/account/cancel', {password: passwordStr});
@@ -50,7 +50,7 @@
 				Email address
 			</td>
 			<td style="padding: 10px;">
-				<input type="text" name="email" value="{{user.email_address}}" style="margin-bottom: 0px;" />
+				<input type="email" name="email" value="{{user.email_address}}" style="margin-bottom: 0px;" />
 			</td>
 		</tr>
 		<tr>
@@ -73,7 +73,7 @@
 	</table>
 
 	<div style="margin-left: 477px; margin-top: 20px;">
-		<button type="submit" class="btn">Update settings</button>
+		<button type="submit" class="btn">Save</button>
 	</div>
 
 </form>
