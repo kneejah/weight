@@ -12,19 +12,48 @@
 				show_target_weight: {{user_settings.show_target_weight}}
 			};
 
+			/*
 			$(document).ready(function() {
-				// $("#date").datepicker();
+				$("#date").datepicker();
+			});
+			*/
+
+			$(window).resize(function() {
+				var min = 350;
+				var max = 1200;
+				var width = $(window).width();
+
+				var newWidth = 0;
+
+				if (width < min)
+				{
+					newWidth = min;
+				}
+				else if (width > max) {
+					newWidth = max;
+				}
+				else {
+					newWidth = width;
+				}
+
+				if (newWidth < 1200)
+				{
+					newWidth = newWidth - 100;
+				}
+
+				$("#chart_div").css("width", newWidth + "px");
+				drawChart();
 			});
 
 			google.load("visualization", "1", { packages:["corechart"] });
 			google.setOnLoadCallback(startGraph);
 		</script>
 
-		<div style="width: 1200px;">
+		<div style="width: 91.3%;">
 
-			<div id="chart_div" style="clear: both; height: 500px;"></div>
+			<div id="chart_div" style="clear: both; height: 500px; width: 1200px;"></div>
 
-			<div style="float: right; padding-right: 155px;">
+			<div style="float: right;">
 				<span>Filter</span>
 				<select id="filter_picker" onChange="startGraph();">
 					{{#view_options}}

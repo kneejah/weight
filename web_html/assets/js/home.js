@@ -148,6 +148,18 @@ function addWeight(el)
 
 function drawChart(jsonData) {
 
+	if (jsonData)
+	{
+		window.jsonData = jsonData;
+	}
+	else if (window.jsonData)
+	{
+		jsonData = window.jsonData;
+	}
+	else {
+		return;
+	}
+
 	var data = new google.visualization.DataTable();
 	data.addColumn('datetime', 'Year');
 	data.addColumn('number',   'Trend line');
@@ -225,7 +237,7 @@ function generateTooltip(parsedDate, weightNum, comment, units)
 	var mins = parsedDate.getMinutes();
 	if (mins < 10) mins = "0" + mins;
 
-	var hrSuffix  = (hrs >= 12) ? "pm" : "am"; 
+	var hrSuffix  = (hrs >= 12) ? "pm" : "am";
 	var convHours = (hrs >= 12) ? hrs - 12 : hrs;
 	if (convHours == 0) convHours = 12;
 
