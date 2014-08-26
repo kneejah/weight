@@ -109,6 +109,7 @@ function startGraph()
 	var val = $('#filter_picker').val();
 	getWeightData(val);
 	getStatsData(val);
+	resizeGraph();
 }
 
 function processResult(data)
@@ -127,6 +128,33 @@ function processResult(data)
 
 		startGraph();
 	}
+}
+
+function resizeGraph() {
+	var min = 350;
+	var max = 1200;
+	var width = $(window).width();
+
+	var newWidth = 0;
+
+	if (width < min)
+	{
+		newWidth = min;
+	}
+	else if (width > max) {
+		newWidth = max;
+	}
+	else {
+		newWidth = width;
+	}
+
+	if (newWidth < 1200)
+	{
+		newWidth = newWidth - 75;
+	}
+
+	$("#chart_div").css("width", newWidth + "px");
+	drawChart();
 }
 
 function addWeight(el)

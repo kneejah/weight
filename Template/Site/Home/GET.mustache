@@ -19,30 +19,7 @@
 			*/
 
 			$(window).resize(function() {
-				var min = 350;
-				var max = 1200;
-				var width = $(window).width();
-
-				var newWidth = 0;
-
-				if (width < min)
-				{
-					newWidth = min;
-				}
-				else if (width > max) {
-					newWidth = max;
-				}
-				else {
-					newWidth = width;
-				}
-
-				if (newWidth < 1200)
-				{
-					newWidth = newWidth - 100;
-				}
-
-				$("#chart_div").css("width", newWidth + "px");
-				drawChart();
+				resizeGraph();
 			});
 
 			google.load("visualization", "1", { packages:["corechart"] });
