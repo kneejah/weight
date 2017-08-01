@@ -90,7 +90,7 @@
 
 			$avg = $total / count($weights);
 
-			$changeWeight   = 'N/A'; 
+			$changeWeight   = 'N/A';
 			$changePerDay   = 'N/A';
 			$changePerWeek  = 'N/A';
 			$changePerMonth = 'N/A';
@@ -161,7 +161,12 @@
 
 			if ($timeToTarget != 'N/A')
 			{
-				if ($timeToTarget > ((30.5 * 2) - 7))
+				if ($timeToTarget > 365)
+				{
+                                        $timeToTarget = $timeToTarget / 365;
+                                        $targetUnits = 'year';
+				}
+				else if ($timeToTarget > ((30.5 * 2) - 7))
 				{
 					$timeToTarget = $timeToTarget / 30.5;
 					$targetUnits = 'month';
