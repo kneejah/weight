@@ -47,7 +47,7 @@
 					array(
 						'date'    => $weight['create_time'],
 						'weight'  => $weight['weight'],
-						'comment' => htmlentities($weight['comment'])
+						'comment' => htmlspecialchars($weight['comment'], ENT_QUOTES, "UTF-8")
 					);
 			}
 
