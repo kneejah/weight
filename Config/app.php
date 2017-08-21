@@ -7,7 +7,7 @@
 		{
 			return array(
 				'name' => 'Trackly',
-				'asset_version' => '1',
+				'asset_version' => '2',
 				'menu_items' => array(
 					0 => array('page' => 'home',     'name' => 'Home',     'url' => '/'),
 					1 => array('page' => 'records',  'name' => 'Records',  'url' => '/records',  'logged_in' => true),

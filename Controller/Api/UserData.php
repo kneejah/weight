@@ -16,7 +16,13 @@
 				throw new Exception_Api("Unable to authenticate.");
 			}
 
+			$current_ts = trim($request->get('current_ts'));
 			$days_back = trim($request->get('days_back'));
+
+                        if ($current_ts !='' && !is_numeric($current_ts))
+                        {
+                                throw new Exception_Api('Missing or invalid current_ts field.');
+                        }
 
 			if (!is_numeric($days_back) && $days_back != 'all' && $days_back != 'ytd')
 			{
@@ -24,7 +30,7 @@
 			}
 
 			$bmi = Helper_Weight::getBMIForUser($userid);
-			$stats = Helper_Weight::getStatsForUser($userid, $days_back);
+			$stats = Helper_Weight::getStatsForUser($userid, $days_back, $current_ts);
 
 			$rawChange = $stats['raw_change'];
 			unset($stats['raw_change']);

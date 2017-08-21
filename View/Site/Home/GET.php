@@ -34,14 +34,15 @@
 				}
 
 				$viewOptions = array(
-					0 => array('value' => 7,     'name' => '1 week'),
-					1 => array('value' => 30.5,  'name' => '1 month'),
-					2 => array('value' => 61,    'name' => '2 months'),
-					3 => array('value' => 91.5,  'name' => '3 months'),
-					4 => array('value' => 182.5, 'name' => '6 months'),
-					5 => array('value' => 365,   'name' => '1 year'),
-					6 => array('value' => 'ytd', 'name' => 'Year to date'),
-					7 => array('value' => 'all', 'name' => 'All data'),
+					0 => array('value' => 7,        'name' => '1 week'),
+					1 => array('value' => 31,       'name' => '1 month'),
+					2 => array('value' => 61,       'name' => '2 months'),
+					3 => array('value' => 91,       'name' => '3 months'),
+					4 => array('value' => 183,      'name' => '6 months'),
+					5 => array('value' => 365,      'name' => '1 year'),
+					6 => array('value' => 'ytd',    'name' => 'Year to date'),
+					7 => array('value' => 'all',    'name' => 'All data'),
+					8 => array('value' => 'custom', 'name' => 'Custom date range')
 				);
 
 				foreach ($viewOptions as &$option)

@@ -48,10 +48,10 @@
 			return round($val, 2);
 		}
 
-		public static function getStatsForUser($userid, $days_back)
+		public static function getStatsForUser($userid, $days_back, $current_ts = null)
 		{
 			$weight_mapper = new Mapper_Weight();
-			$weights = $weight_mapper->getWeightsForUser($userid, $days_back);
+			$weights = $weight_mapper->getWeightsForUser($userid, $days_back, $current_ts);
 
 			if (!$weights)
 			{
