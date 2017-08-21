@@ -197,8 +197,8 @@ function resizeGraph() {
 
 function addWeight(el)
 {
-	var picker = $('#datetimepicker').data('datetimepicker');
-	var dateVal = picker.getLocalDate();
+	// var picker = $('#datetimepicker').data('datetimepicker');
+	// var dateVal = picker.getLocalDate();
 
 	var weightVal  = $('#weight').val();
 	var dateVal    = $('#date').val();
