@@ -161,6 +161,9 @@ function processResult(data)
 		$('#date').val('');
 		$('#comment').val('');
 
+		// var picker = $('#datetimepicker').data('datetimepicker');
+		// picker.setLocalDate(null);
+
 		startGraph();
 	}
 }
@@ -194,6 +197,9 @@ function resizeGraph() {
 
 function addWeight(el)
 {
+	var picker = $('#datetimepicker').data('datetimepicker');
+	var dateVal = picker.getLocalDate();
+
 	var weightVal  = $('#weight').val();
 	var dateVal    = $('#date').val();
 	var commentVal = $('#comment').val();

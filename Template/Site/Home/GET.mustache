@@ -1,6 +1,9 @@
 {{> Site/Header}}
 
+<link rel="stylesheet" href="/assets/datetimepicker/css/bootstrap-datetimepicker.min.css?v={{app.asset_version}}">
+
 <script type="text/javascript" src="/assets/js/home.js?v={{app.asset_version}}"></script>
+<script type="text/javascript" src="/assets/datetimepicker/js/bootstrap-datetimepicker.min.js?v={{app.asset_version}}"></script>
 
 	{{#logged_in}}
 
@@ -98,12 +101,29 @@
 						</div>
 					</div>
 
-					<div class="control-group">
-						<label class="control-label" for="date">Date (optional)</label>
-						<div class="controls">
+                                        <div class="control-group">
+                                                <label class="control-label" for="date">Date (optional)</label>
+                                                <div class="controls">
 							<input type="datetime-local" id="date" name="date" value="">
-						</div>
-					</div>
+
+							<!--
+							<div id="datetimepicker" class="input-append">
+    								<input style="width: 179px;" data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
+    								<span class="add-on">
+      									<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+    								</span>
+  							</div>
+
+							<script type="text/javascript">
+  								$(function() {
+    									$('#datetimepicker').datetimepicker({
+      										language: 'en',
+      										pick12HourFormat: true
+    									});
+  								});
+							</script> -->
+                                                </div>
+                                        </div>
 
 					<div class="control-group">
 						<label class="control-label" for="comment">Comment</label>
