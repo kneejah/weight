@@ -1,6 +1,9 @@
 {{> Site/Header}}
 
+<link rel="stylesheet" href="/assets/datetimepicker/css/bootstrap-datetimepicker.min.css?v={{app.asset_version}}">
+
 <script type="text/javascript" src="/assets/js/home.js?v={{app.asset_version}}"></script>
+<script type="text/javascript" src="/assets/datetimepicker/js/bootstrap-datetimepicker.min.js?v={{app.asset_version}}"></script>
 
 	{{#logged_in}}
 
@@ -11,12 +14,6 @@
 				target_weight:      {{user_settings.target_weight}},
 				show_target_weight: {{user_settings.show_target_weight}}
 			};
-
-			/*
-			$(document).ready(function() {
-				$("#date").datepicker();
-			});
-			*/
 
 			$(window).resize(function() {
 				resizeGraph();
@@ -31,18 +28,33 @@
 			<div id="chart_div" style="clear: both; height: 500px; width: 1200px;"></div>
 
 			<div style="float: right;">
-				<span>Filter</span>
-				<select id="filter_picker" onChange="startGraph();">
-					{{#view_options}}
-						<option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{name}}</option>
-					{{/view_options}}
-				</select>
+				<div style="margin-left: 102px;">
+					<span>Range</span>
+					<select name="filter_picker" id="filter_picker" onChange="startGraph();" style="width: 164px;">
+						{{#view_options}}
+							<option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{name}}</option>
+						{{/view_options}}
+					</select>
+				</div>
+
+				<div id="custom_range_picker" style="display: none; padding-top: 10px; margin-left: 81px;">
+					<table style="cellpadding: 0px; cellspacing: 0px;">
+						<tr>
+							<td><span>Start date</span></td>
+							<td><input type="date" id="custom_start_date" onChange="startGraph();" style="width: 150px;"></td>
+						</tr>
+						<tr>
+							<td><span>End date</span></td>
+							<td><input type="date" id="custom_end_date" onChange="startGraph();" style="width: 150px;"></td>
+						</tr>
+					</table>
+				</div>
 
 				<div style="padding-top: 10px;">
 
 					<table>
 						<tr>
-							<td style="text-align: right;">BMI</td>
+							<td style="text-align: right;">Current BMI</td>
 							<td style="padding-left: 20px;"><span id="bmi"></span></td>
 						</tr>
 						<tr>
@@ -89,12 +101,29 @@
 						</div>
 					</div>
 
-					<div class="control-group">
-						<label class="control-label" for="date">Date (optional)</label>
-						<div class="controls">
+                                        <div class="control-group">
+                                                <label class="control-label" for="date">Date (optional)</label>
+                                                <div class="controls">
 							<input type="datetime-local" id="date" name="date" value="">
-						</div>
-					</div>
+
+							<!--
+							<div id="datetimepicker" class="input-append">
+    								<input style="width: 179px;" data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
+    								<span class="add-on">
+      									<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+    								</span>
+  							</div>
+
+							<script type="text/javascript">
+  								$(function() {
+    									$('#datetimepicker').datetimepicker({
+      										language: 'en',
+      										pick12HourFormat: true
+    									});
+  								});
+							</script> -->
+                                                </div>
+                                        </div>
 
 					<div class="control-group">
 						<label class="control-label" for="comment">Comment</label>

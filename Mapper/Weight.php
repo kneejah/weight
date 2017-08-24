@@ -49,26 +49,34 @@
 			return $this->db->query($query, $data, true);
 		}
 
-		public function getWeightsForUser($userid, $days_back)
+		public function getWeightsForUser($userid, $days_back, $current_ts = null)
 		{
-			if ($days_back == 'all')
+			$endDate = time() + (60 * 5); // Add some time as a buffer
+
+			if (is_numeric($current_ts))
 			{
-				$daysBack = 0;
+				$endDate = $current_ts + 86400; // Add a day to include the entire end day
+				$startDate = $endDate - (60 * 60 * 24 * $days_back) - 86400;
+			}
+			else if ($days_back == 'all')
+			{
+				$startDate = 0;
 			}
 			else if ($days_back == 'ytd')
 			{
 				$str = "1/1/" . date("Y");
-				$daysBack = strtotime($str);
+				$startDate = strtotime($str);
 			}
 			else
 			{
-				$daysBack = time() - (60 * 60 * 24 * $days_back);
+				$startDate = time() - (60 * 60 * 24 * $days_back);
 			}
 
-			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :days_back ORDER BY create_time DESC;";
+			$query = "SELECT * FROM " . self::$table . " WHERE userid=:userid AND create_time > :start_date AND create_time < :end_date ORDER BY create_time DESC;";
 			$data = array(
-				':userid'    => $userid,
-				':days_back' => $daysBack
+				':userid'     => $userid,
+				':start_date' => $startDate,
+				':end_date'   => $endDate
 			);
 
 			return $this->db->query($query, $data);

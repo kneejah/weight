@@ -1,23 +1,23 @@
-function getWeightData(daysBack)
+function getWeightData(currentTs, daysBack, customValue)
 {
 	$.ajax({
 		dataType: "json",
 		url:      "/api/weights",
 		type:     "GET",
-		data:     {days_back: daysBack},
+		data:     { current_ts: currentTs, days_back: daysBack, custom_value: customValue },
 		success:  function(json) {
 			drawChart(json.result);
 		}
 	});
 }
 
-function getStatsData(daysBack)
+function getStatsData(currentTs, daysBack, customValue)
 {
 	$.ajax({
 		dataType: "json",
 		url:      "/api/userdata",
 		type:     "GET",
-		data:     {days_back: daysBack},
+		data:     { current_ts: currentTs, days_back: daysBack, custom_value: customValue },
 		success:  function(json) {
 			drawStatsData(json);
 		}
@@ -106,10 +106,45 @@ function drawStatsData(data)
 
 function startGraph()
 {
-	var val = $('#filter_picker').val();
-	getWeightData(val);
-	getStatsData(val);
-	resizeGraph();
+        var currentTs = Math.round((new Date()).getTime() / 1000);
+	var daysBackVal = $('#filter_picker').val();
+
+	if (daysBackVal != "custom")
+	{
+		$('#custom_range_picker').hide();
+
+		getWeightData(null, daysBackVal, false);
+		getStatsData(null, daysBackVal, false);
+
+		resizeGraph();
+	}
+	else
+	{
+		$('#custom_range_picker').show();
+
+		var customStartDateField = $('#custom_start_date').val();
+		var customEndDateField = $('#custom_end_date').val();
+
+		console.log("Custom start date: " + customStartDateField + ", custom end date: " + customEndDateField);
+
+		if (customStartDateField != '' && customEndDateField != '')
+		{
+			var customStartDate = Date.parse(customStartDateField) / 1000;
+			var customEndDate = Date.parse(customEndDateField) / 1000;
+			console.log("real dates: " + customStartDate + " -> " + customEndDate);
+
+			var customDateRange = (customEndDate - customStartDate) / 86400;
+			console.log("customDateRange: " + customDateRange);
+
+			if (customDateRange > 0)
+			{
+                		getWeightData(customEndDate, customDateRange, true);
+                		getStatsData(customEndDate, customDateRange, true);
+
+                		resizeGraph();
+			}
+		}
+	}
 }
 
 function processResult(data)
@@ -125,6 +160,9 @@ function processResult(data)
 		$('#weight').val('');
 		$('#date').val('');
 		$('#comment').val('');
+
+		// var picker = $('#datetimepicker').data('datetimepicker');
+		// picker.setLocalDate(null);
 
 		startGraph();
 	}
@@ -159,6 +197,9 @@ function resizeGraph() {
 
 function addWeight(el)
 {
+	// var picker = $('#datetimepicker').data('datetimepicker');
+	// var dateVal = picker.getLocalDate();
+
 	var weightVal  = $('#weight').val();
 	var dateVal    = $('#date').val();
 	var commentVal = $('#comment').val();
