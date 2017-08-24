@@ -1,9 +1,28 @@
 var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August",
 				  "September", "October", "November", "December"];
 
-var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 var fadeDelay = 10000; // 10 seconds
+
+function formatTimestampToDate(tsInMillis)
+{
+	var parsedDate = new Date(tsInMillis);
+
+	var hrs = parsedDate.getHours();
+	var mins = parsedDate.getMinutes();
+	if (mins < 10) mins = "0" + mins;
+
+	var hrSuffix  = (hrs >= 12) ? "pm" : "am";
+	var convHours = (hrs >= 12) ? hrs - 12 : hrs;
+	if (convHours == 0) convHours = 12;
+
+	var s = dayNames[parsedDate.getDay()] + " " + monthNames[parsedDate.getMonth()]
+		+ " " + parsedDate.getDate() + ", " + parsedDate.getFullYear() + ", "
+		+ convHours + ":" + mins + " " + hrSuffix;
+
+	return s;
+}
 
 function showErrorMessage(message)
 {

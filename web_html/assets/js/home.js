@@ -158,11 +158,11 @@ function processResult(data)
 		showSuccessMessage("Weight successfully updated.");
 
 		$('#weight').val('');
-		$('#date').val('');
+		// $('#date').val('');
 		$('#comment').val('');
 
-		// var picker = $('#datetimepicker').data('datetimepicker');
-		// picker.setLocalDate(null);
+		var picker = $('#datetimepicker').data('datetimepicker');
+		picker.setLocalDate(null);
 
 		startGraph();
 	}
@@ -197,11 +197,11 @@ function resizeGraph() {
 
 function addWeight(el)
 {
-	// var picker = $('#datetimepicker').data('datetimepicker');
-	// var dateVal = picker.getLocalDate();
+	var picker = $('#datetimepicker').data('datetimepicker');
+	var dateVal = picker.getLocalDate();
 
 	var weightVal  = $('#weight').val();
-	var dateVal    = $('#date').val();
+	// var dateVal    = $('#date').val();
 	var commentVal = $('#comment').val();
 
 	$.ajax({
@@ -253,7 +253,7 @@ function drawChart(jsonData) {
 		var weightNum  = parseFloat(tmp['weight']);
 		var comment    = tmp['comment'];
 
-		var commentVal = generateTooltip(parsedDate, weightNum, comment, jsonData.units);
+		var commentVal = generateTooltip(dateNum, weightNum, comment, jsonData.units);
 		var trendVal   = null;
 		var targetVal  = null;
 
@@ -300,20 +300,10 @@ function drawChart(jsonData) {
 	chart.draw(data, options);
 }
 
-function generateTooltip(parsedDate, weightNum, comment, units)
+function generateTooltip(dateNum, weightNum, comment, units)
 {
-	var hrs = parsedDate.getHours();
-	var mins = parsedDate.getMinutes();
-	if (mins < 10) mins = "0" + mins;
-
-	var hrSuffix  = (hrs >= 12) ? "pm" : "am";
-	var convHours = (hrs >= 12) ? hrs - 12 : hrs;
-	if (convHours == 0) convHours = 12;
-
-	var s = "<div style='font-weight: bold; padding: 5px;'>" + dayNames[parsedDate.getDay()]
-		+ " " + monthNames[parsedDate.getMonth()] + " " + parsedDate.getDate()
-		+ ", " + parsedDate.getFullYear() + ", " + convHours + ":"
-		+ mins + " " + hrSuffix + "<br />Weight: " + weightNum + " " + units;
+	var s = "<div style='font-weight: bold; padding: 5px;'>" + formatTimestampToDate(dateNum)
+		+ "<br />Weight: " + weightNum + " " + units;
 
 	if (comment != "")
 	{
