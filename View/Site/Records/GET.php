@@ -58,7 +58,7 @@
 
 			foreach ($weights as &$weight)
 			{
-				$weight['time'] = date('D F j, Y, g:i a', $weight['create_time']);
+				$weight['time'] = $weight['create_time'] * 1000; // date('D F j, Y, g:i a', $weight['create_time']);
 				$wVal = $weight['weight'];
 				if (round($wVal) == $wVal)
 				{
