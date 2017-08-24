@@ -13,7 +13,7 @@ function formatTimestampToDate(tsInMillis)
 	var mins = parsedDate.getMinutes();
 	if (mins < 10) mins = "0" + mins;
 
-	var hrSuffix  = (hrs >= 12) ? "pm" : "am";
+	var hrSuffix  = (hrs >= 12) ? "PM" : "AM";
 	var convHours = (hrs >= 12) ? hrs - 12 : hrs;
 	if (convHours == 0) convHours = 12;
 

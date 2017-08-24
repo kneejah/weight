@@ -41,11 +41,45 @@
 					<table style="cellpadding: 0px; cellspacing: 0px;">
 						<tr>
 							<td><span>Start date</span></td>
-							<td><input type="date" id="custom_start_date" onChange="startGraph();" style="width: 150px;"></td>
+							<td>
+								<div id="custom_start_date" class="input-append">
+                                                                	<input disabled="disabled" style="background-color: #FFFFFF; width: 123px;" data-format="MM/dd/yyyy" type="text"></input>
+                                                                	<span class="add-on">
+                                                                        	<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                                                	</span>
+                                                       		</div>
+
+                                                        	<script type="text/javascript">
+                                                                	$(function() {
+                                                                        	$('#custom_start_date').datetimepicker({
+                                                                                	language: 'en',
+                                                                                	pickTime: false
+                                                                        	});
+										$('#custom_start_date').on('changeDate', function(e) { window.startGraph(); });
+                                                                	});
+                                                        	</script>
+							</td>
 						</tr>
 						<tr>
 							<td><span>End date</span></td>
-							<td><input type="date" id="custom_end_date" onChange="startGraph();" style="width: 150px;"></td>
+							<td>
+                                                                <div id="custom_end_date" class="input-append">
+                                                                        <input disabled="disabled" style="background-color: #FFFFFF; width: 123px;" data-format="MM/dd/yyyy" type="text"></input>
+                                                                        <span class="add-on">
+                                                                                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                                                        </span>
+                                                                </div>
+
+                                                                <script type="text/javascript">
+                                                                        $(function() {
+                                                                                $('#custom_end_date').datetimepicker({
+                                                                                        language: 'en',
+                                                                                        pickTime: false
+                                                                                });
+                                                                                $('#custom_end_date').on('changeDate', function(e) { window.startGraph(); });
+                                                                        });
+                                                                </script>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -104,10 +138,8 @@
                                         <div class="control-group">
                                                 <label class="control-label" for="date">Date (optional)</label>
                                                 <div class="controls">
-							<!-- <input type="datetime-local" id="date" name="date" value=""> -->
-
 							<div id="datetimepicker" class="input-append">
-    								<input style="width: 179px;" data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
+    								<input disabled="disabled" style="background-color: #FFFFFF; width: 179px;" data-format="MM/dd/yyyy HH:mm PP" type="text"></input>
     								<span class="add-on">
       									<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
     								</span>
@@ -117,7 +149,8 @@
   								$(function() {
     									$('#datetimepicker').datetimepicker({
       										language: 'en',
-      										pick12HourFormat: true
+      										pick12HourFormat: true,
+										pickSeconds: false
     									});
   								});
 							</script>

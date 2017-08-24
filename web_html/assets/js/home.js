@@ -122,19 +122,15 @@ function startGraph()
 	{
 		$('#custom_range_picker').show();
 
-		var customStartDateField = $('#custom_start_date').val();
-		var customEndDateField = $('#custom_end_date').val();
-
-		console.log("Custom start date: " + customStartDateField + ", custom end date: " + customEndDateField);
+        	var customStartDateField = $('#custom_start_date').data('date');
+		var customEndDateField = $('#custom_end_date').data('date');
 
 		if (customStartDateField != '' && customEndDateField != '')
 		{
 			var customStartDate = Date.parse(customStartDateField) / 1000;
 			var customEndDate = Date.parse(customEndDateField) / 1000;
-			console.log("real dates: " + customStartDate + " -> " + customEndDate);
 
 			var customDateRange = (customEndDate - customStartDate) / 86400;
-			console.log("customDateRange: " + customDateRange);
 
 			if (customDateRange > 0)
 			{
@@ -158,7 +154,6 @@ function processResult(data)
 		showSuccessMessage("Weight successfully updated.");
 
 		$('#weight').val('');
-		// $('#date').val('');
 		$('#comment').val('');
 
 		var picker = $('#datetimepicker').data('datetimepicker');
@@ -201,7 +196,6 @@ function addWeight(el)
 	var dateVal = picker.getLocalDate();
 
 	var weightVal  = $('#weight').val();
-	// var dateVal    = $('#date').val();
 	var commentVal = $('#comment').val();
 
 	$.ajax({
@@ -287,12 +281,12 @@ function drawChart(jsonData) {
 
 	var options = {
 		pointSize:        4,
-		tooltip:          {isHtml: true},
-		legend:           {position: showLegend, alignment: 'end'},
+		tooltip:          { isHtml: true },
+		legend:           { position: showLegend, alignment: 'end' },
 		interpolateNulls: true,
 		curveType:        graph_smoothing,
-		colors:           ['#A83232', '#00563F', '#3266CC'],
-		series:           [{visibleInLegend: showTrendLegend}, {visibleInLegend: showTargetLegend}, {visibleInLegend: true}]
+		colors:           [ '#A83232', '#00563F', '#3266CC' ],
+		series:           [ { visibleInLegend: showTrendLegend }, { visibleInLegend: showTargetLegend }, { visibleInLegend: true } ]
 	};
 
 	var chart_div = document.getElementById('chart_div');
