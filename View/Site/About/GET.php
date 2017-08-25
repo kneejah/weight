@@ -1,22 +1,22 @@
 <?php
 
-	class View_Site_About_GET extends Abstract_View
-	{
+class View_Site_About_GET extends Abstract_View
+{
 
-		public function render()
-		{
-			$page = 'about';
-			$app = Config::get('app');
+    public function render()
+    {
+        $page = 'about';
+        $app = Config::get('app');
 
-			$policy = new Policy_LoggedIn($this->app);
-			$userid = $policy->getData();
+        $policy = new Policy_LoggedIn($this->app);
+        $userid = $policy->getData();
 
-			$app->menu_items = Helper_Menu::processMenuItems($app->menu_items, $page, $userid);
+        $app->menu_items = Helper_Menu::processMenuItems($app->menu_items, $page, $userid);
 
-			return array(
-				'app'         => $app,
-				'breadcrumb'  => 'About'
-			);
-		}
+        return array(
+            'app'         => $app,
+            'breadcrumb'  => 'About'
+        );
+    }
 
-	}
+}
