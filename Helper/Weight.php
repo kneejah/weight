@@ -146,8 +146,8 @@ class Helper_Weight
 
         if ($timeToTarget != 'N/A') {
             if ($timeToTarget > 365) {
-                                        $timeToTarget = $timeToTarget / 365;
-                                        $targetUnits = 'year';
+                $timeToTarget = $timeToTarget / 365;
+                $targetUnits = 'year';
             } else if ($timeToTarget > ((30.5 * 2) - 7)) {
                 $timeToTarget = $timeToTarget / 30.5;
                 $targetUnits = 'month';

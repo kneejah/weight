@@ -231,7 +231,6 @@ function drawChart(jsonData) {
 	data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
 
 	var newData  = jsonData.data;
-	var tzOffset = jsonData.tz_offset * (60 * 60 * 1000);
 
 	var showTrendLine = window.user_options.trend_line;
 	var targetWeight  = window.user_options.target_weight;

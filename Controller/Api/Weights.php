@@ -37,17 +37,6 @@ class Controller_Api_Weights extends Abstract_Controller
             $mapper->updateSettingForUserid($userid, 'default_view', $days_back);
         }
 
-        $settings = $mapper->getFilteredSettingsByUserid($userid);
-
-        $serverDateTimeZone = new DateTimeZone($app->default_timezone);
-        $userDateTimeZone   = new DateTimeZone($settings['timezone']);
-
-        $serverDateTime = new DateTime("now", $serverDateTimeZone);
-        $userDateTime   = new DateTime("now", $userDateTimeZone);
-
-        $tzDiff = $userDateTime->getOffset() - $serverDateTime->getOffset();
-        $tzDiff = $tzDiff / (60 * 60);
-
         $weight_mapper = new Mapper_Weight();
         $weights = $weight_mapper->getWeightsForUser($userid, $days_back, $current_ts);
 
@@ -60,7 +49,7 @@ class Controller_Api_Weights extends Abstract_Controller
             );
         }
 
-        return array('data' => $formatted_weights, 'units' => $app->weight_units, 'tz_offset' => $tzDiff);
+        return array('data' => $formatted_weights, 'units' => $app->weight_units);
     }
 
 }

@@ -6,7 +6,7 @@ class View_Site_Records_GET extends Abstract_View
     public function render()
     {
         $page = 'records';
-        $recordsPerPage = 10;
+        $recordsPerPage = 20;
         $app = Config::get('app');
 
         $policy = new Policy_LoggedIn($this->app);

@@ -35,12 +35,15 @@ class Controller_Api_UserData extends Abstract_Controller
         $target = Helper_Weight::getTargetStatsForUser($userid, $rawChange);
 
         $data = array(
-        'bmi'    => $bmi,
-        'stats'  => $stats,
-        'target' => $target
+            'bmi'    => $bmi,
+            'stats'  => $stats,
+            'target' => $target
         );
 
-        return array('data' => $data, 'units' => $app->weight_units);
+        return array(
+           'data' => $data,
+           'units' => $app->weight_units
+        );
     }
 
 }
