@@ -1,28 +1,25 @@
 <?php
 
-	class Helper_Date
-	{
+class Helper_Date
+{
 
-		public static function validateDate($date)
-		{
-			if ($date == "")
-			{
-				return false;
-			}
+    public static function validateDate($date)
+    {
+        if ($date == "") {
+            return false;
+        }
 
-			$passedDate = strtotime($date);
+        $passedDate = strtotime($date);
 
-			if (!$passedDate)
-			{
-				return false;
-			}
+        if (!$passedDate) {
+            return false;
+        }
 
-			if ($passedDate > time())
-			{
-				return false;
-			}
+        if ($passedDate > time()) {
+            return false;
+        }
 
-			return $passedDate;
-		}
+        return $passedDate;
+    }
 
-	}
+}
