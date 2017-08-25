@@ -34,12 +34,12 @@
 				}
 
 				$viewOptions = array(
-					0 => array('value' => 7,        'name' => 'Last 1 week'),
-					1 => array('value' => 31,       'name' => 'Last 1 month'),
+					0 => array('value' => 7,        'name' => 'Last week'),
+					1 => array('value' => 31,       'name' => 'Last month'),
 					2 => array('value' => 61,       'name' => 'Last 2 months'),
 					3 => array('value' => 91,       'name' => 'Last 3 months'),
 					4 => array('value' => 183,      'name' => 'Last 6 months'),
-					5 => array('value' => 365,      'name' => 'Last 1 year'),
+					5 => array('value' => 365,      'name' => 'Last year'),
 					6 => array('value' => 'ytd',    'name' => 'Year to date'),
 					7 => array('value' => 'all',    'name' => 'All data'),
 					8 => array('value' => 'custom', 'name' => 'Custom date range')

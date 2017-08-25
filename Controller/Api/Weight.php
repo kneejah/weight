@@ -1,120 +1,108 @@
 <?php
 
-	class Controller_Api_Weight extends Abstract_Controller
-	{
+class Controller_Api_Weight extends Abstract_Controller
+{
 
-		public function POST()
-		{
-			$policy = new Policy_LoggedIn($this->app);
+    public function POST()
+    {
+        $policy = new Policy_LoggedIn($this->app);
 
-			$userid = $policy->getData();
-			$request = $this->app->request();
+        $userid = $policy->getData();
+        $request = $this->app->request();
 
-			if (!$userid)
-			{
-				throw new Exception_Api("Unable to authenticate.");
-			}
+        if (!$userid) {
+            throw new Exception_Api("Unable to authenticate.");
+        }
 
-			$weight = trim($request->post('weight'));
-			$date = trim($request->post('date'));
-			$comment = trim($request->post('comment'));
+        $weight = trim($request->post('weight'));
+        $date = trim($request->post('date'));
+        $comment = trim($request->post('comment'));
 
-			if ($weight == "")
-			{
-				throw new Exception_Api("You must specify a weight.");
-			}
+        if ($weight == "") {
+            throw new Exception_Api("You must specify a weight.");
+        }
 
-			if (!is_numeric($weight))
-			{
-				throw new Exception_Api("Invalid weight value.");
-			}
+        if (!is_numeric($weight)) {
+            throw new Exception_Api("Invalid weight value.");
+        }
 
-			if ($weight <= 0 || $weight > 1000)
-			{
-				throw new Exception_Api("Invalid weight range.");
-			}
+        if ($weight <= 0 || $weight > 1000) {
+            throw new Exception_Api("Invalid weight range.");
+        }
 
-			$passedDate = false;
-			if ($date != "")
-			{
-				$passedDate = strtotime($date);
+        $passedDate = false;
+        if ($date != "") {
+            $passedDate = strtotime($date);
 
-				if (!$passedDate)
-				{
-					throw new Exception_Api("Invalid date specified.");
-				}
+            if (!$passedDate) {
+                throw new Exception_Api("Invalid date specified.");
+            }
 
-				if ($passedDate > time())
-				{
-					throw new Exception_Api("Date can't be in the future.");
-				}
-			}
+            if ($passedDate > time()) {
+                throw new Exception_Api("Date can't be in the future.");
+            }
+        }
 
-			$weight = round($weight, 1);
+        $weight = round($weight, 1);
 
-			$mapper = new Mapper_Weight();
-			$mapper->addWeight($userid, $weight, $comment, $passedDate);
+        $mapper = new Mapper_Weight();
+        $mapper->addWeight($userid, $weight, $comment, $passedDate);
 
-			return array();
-		}
+        return array();
+    }
 
-		public function PUT()
-		{
-			$policy = new Policy_LoggedIn($this->app);
+    public function PUT()
+    {
+        $policy = new Policy_LoggedIn($this->app);
 
-			$userid = $policy->getData();
-			$request = $this->app->request();
+        $userid = $policy->getData();
+        $request = $this->app->request();
 
-			if (!$userid)
-			{
-				throw new Exception_Api("Unable to authenticate.");
-			}
+        if (!$userid) {
+            throw new Exception_Api("Unable to authenticate.");
+        }
 
-			$id = $request->params('id');
-			$weight = $request->params('weight');
-			$comment = $request->params('comment');
+        $id = $request->params('id');
+        $weight = $request->params('weight');
+        $comment = $request->params('comment');
 
-			if ($weight == "")
-			{
-				throw new Exception_Api("You must specify a weight.");
-			}
+        if ($weight == "") {
+            throw new Exception_Api("You must specify a weight.");
+        }
 
-			if (!is_numeric($weight))
-			{
-				throw new Exception_Api("Invalid weight value.");
-			}
+        if (!is_numeric($weight)) {
+            throw new Exception_Api("Invalid weight value.");
+        }
 
-			if ($weight <= 0 || $weight > 1000)
-			{
-				throw new Exception_Api("Invalid weight range.");
-			}
+        if ($weight <= 0 || $weight > 1000) {
+            throw new Exception_Api("Invalid weight range.");
+        }
 
-			$weight = round($weight, 1);
+        $weight = round($weight, 1);
 
-			$mapper = new Mapper_Weight();
-			$mapper->updateWeightForUser($userid, $id, $weight, $comment);
-			
-			return array();
-		}
+        $mapper = new Mapper_Weight();
+        $mapper->updateWeightForUser($userid, $id, $weight, $comment);
 
-		public function DELETE()
-		{
-			$policy = new Policy_LoggedIn($this->app);
+        return array();
+    }
 
-			$userid = $policy->getData();
-			$request = $this->app->request();
+    public function DELETE()
+    {
+        $policy = new Policy_LoggedIn($this->app);
 
-			if (!$userid)
-			{
-				throw new Exception_Api("Unable to authenticate.");
-			}
+        $userid = $policy->getData();
+        $request = $this->app->request();
 
-			$id = $request->params('id');
+        if (!$userid) {
+            throw new Exception_Api("Unable to authenticate.");
+        }
 
-			$mapper = new Mapper_Weight();
-			$mapper->deleteWeightForUser($userid, $id);
+        $id = $request->params('id');
 
-			return array('id' => $id);
-		}
+        $mapper = new Mapper_Weight();
+        $mapper->deleteWeightForUser($userid, $id);
 
-	}
+        return array('id' => $id);
+    }
+
+}
