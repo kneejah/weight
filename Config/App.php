@@ -7,7 +7,7 @@ class Config_App extends Abstract_Config
     {
         return array(
             'name' => 'Trackly',
-            'asset_version' => '2',
+            'asset_version' => self::_getGitCommitHash(),
             'menu_items' => array(
                 0 => array('page' => 'home',     'name' => 'Home',     'url' => '/'),
                 1 => array('page' => 'records',  'name' => 'Records',  'url' => '/records',  'logged_in' => true),
@@ -78,6 +78,20 @@ class Config_App extends Abstract_Config
                 )
             )
         );
+    }
+
+    private static function _getGitCommitHash()
+    {
+        $output = array();
+        exec("git rev-parse --short HEAD", $output);
+
+        if (!$output || count($output) != 1 || $output[0] == "") {
+            return 1;
+        }
+
+        $output = $output[0];
+
+        return $output;
     }
 
 }
