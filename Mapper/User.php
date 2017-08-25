@@ -1,113 +1,113 @@
 <?php
 
-	class Mapper_User
-	{
+class Mapper_User
+{
 
-		private $db;
-		private static $table = "users";
+    private $_db;
+    private static $_table = "users";
 
-		public function __construct()
-		{
-			$this->db = new Stores_SQLite();
-		}
+    public function __construct()
+    {
+        $this->_db = new Stores_SQLite();
+    }
 
-		public function getUserById($id)
-		{
-			$query = "SELECT * FROM " . self::$table . " WHERE id=:id LIMIT 1;";
-			$data = array(':id' => $id);
+    public function getUserById($id)
+    {
+        $query = "SELECT * FROM " . self::$_table . " WHERE id=:id LIMIT 1;";
+        $data = array(':id' => $id);
 
-			return $this->db->query($query, $data, true);
-		}
+        return $this->_db->query($query, $data, true);
+    }
 
-		public function getUserByUsername($username)
-		{
-			$query = "SELECT * FROM " . self::$table . " WHERE username=:username LIMIT 1;";
-			$data = array(':username' => $username);
+    public function getUserByUsername($username)
+    {
+        $query = "SELECT * FROM " . self::$_table . " WHERE username=:username LIMIT 1;";
+        $data = array(':username' => $username);
 
-			return $this->db->query($query, $data, true);
-		}
+        return $this->_db->query($query, $data, true);
+    }
 
-		public function getUserByEmail($email_address)
-		{
-			$query = "SELECT * FROM " . self::$table . " WHERE email_address=:email_address LIMIT 1;";
-			$data = array(':email_address' => $email_address);
+    public function getUserByEmail($email_address)
+    {
+        $query = "SELECT * FROM " . self::$_table . " WHERE email_address=:email_address LIMIT 1;";
+        $data = array(':email_address' => $email_address);
 
-			return $this->db->query($query, $data, true);
-		}
+        return $this->_db->query($query, $data, true);
+    }
 
-		public function createUser($username, $password, $email)
-		{
-			$now = time();
-			$hash = self::generateHash($password);
+    public function createUser($username, $password, $email)
+    {
+        $now = time();
+        $hash = self::generateHash($password);
 
-			$data = array(
-				'username'      => $username,
-				'password_hash' => $hash,
-				'email_address' => $email,
-				'create_time'   => $now,
-				'update_time'   => $now
-			);
+        $data = array(
+            'username'      => $username,
+            'password_hash' => $hash,
+            'email_address' => $email,
+            'create_time'   => $now,
+            'update_time'   => $now
+        );
 
-			return $this->db->insert(self::$table, $data);
-		}
+        return $this->_db->insert(self::$_table, $data);
+    }
 
-		public function updateEmailForUser($id, $email)
-		{
-			$query = "UPDATE " . self::$table . " SET email_address=:email_address WHERE id=:id;";
+    public function updateEmailForUser($id, $email)
+    {
+        $query = "UPDATE " . self::$_table . " SET email_address=:email_address WHERE id=:id;";
 
-			$data = array(
-				':id'            => $id,
-				':email_address' => $email
-			);
+        $data = array(
+            ':id'            => $id,
+            ':email_address' => $email
+        );
 
-			return $this->db->query($query, $data);
-		}
+        return $this->_db->query($query, $data);
+    }
 
-		public function updatePasswordForUser($id, $password)
-		{
-			$hash = self::generateHash($password);
-			
-			$query = "UPDATE " . self::$table . " SET password_hash=:password_hash WHERE id=:id;";
+    public function updatePasswordForUser($id, $password)
+    {
+        $hash = self::generateHash($password);
 
-			$data = array(
-				':id'            => $id,
-				':password_hash' => $hash
-			);
+        $query = "UPDATE " . self::$_table . " SET password_hash=:password_hash WHERE id=:id;";
 
-			return $this->db->query($query, $data);
-		}
+        $data = array(
+            ':id'            => $id,
+            ':password_hash' => $hash
+        );
 
-		public function updateUpdateTimeForUser($id)
-		{
-			$now = time();
-			
-			$query = "UPDATE " . self::$table . " SET update_time=:update_time WHERE id=:id;";
+        return $this->_db->query($query, $data);
+    }
 
-			$data = array(
-				':id'          => $id,
-				':update_time' => $now
-			);
+    public function updateUpdateTimeForUser($id)
+    {
+        $now = time();
 
-			return $this->db->query($query, $data);
-		}
+        $query = "UPDATE " . self::$_table . " SET update_time=:update_time WHERE id=:id;";
 
-		public function deleteUserById($id)
-		{
-			$query = "DELETE FROM " . self::$table . " WHERE id=:id;";
+        $data = array(
+            ':id'          => $id,
+            ':update_time' => $now
+        );
 
-			$data = array(
-				':id' => $id
-			);
+        return $this->_db->query($query, $data);
+    }
 
-			return $this->db->query($query, $data);
-		}
+    public function deleteUserById($id)
+    {
+        $query = "DELETE FROM " . self::$_table . " WHERE id=:id;";
 
-		public static function generateHash($password)
-		{
-			$app = Config::get('system');
-			$hash = hash_hmac("sha256", $password, $app->password_hash);
+        $data = array(
+            ':id' => $id
+        );
 
-			return $hash;
-		}
+        return $this->_db->query($query, $data);
+    }
 
-	}
+    public static function generateHash($password)
+    {
+        $app = Config::get('system');
+        $hash = hash_hmac("sha256", $password, $app->password_hash);
+
+        return $hash;
+    }
+
+}
