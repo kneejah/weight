@@ -30,23 +30,19 @@ class Controller_Api_Weight extends Abstract_Controller
             throw new Exception_Api("Invalid weight range.");
         }
 
-        $passedDate = false;
-        if ($date != "") {
-            $passedDate = strtotime($date);
+        if (!is_numeric($date)) {
+            throw new Exception_Api("Invalid date specified.");
+        }
 
-            if (!$passedDate) {
-                throw new Exception_Api("Invalid date specified.");
-            }
-
-            if ($passedDate > time()) {
-                throw new Exception_Api("Date can't be in the future.");
-            }
+        if ($date > time()) {
+            throw new Exception_Api("Date can't be in the future.");
         }
 
         $weight = round($weight, 1);
+        $date = round($date);
 
         $mapper = new Mapper_Weight();
-        $mapper->addWeight($userid, $weight, $comment, $passedDate);
+        $mapper->addWeight($userid, $weight, $comment, $date);
 
         return array();
     }

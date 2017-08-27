@@ -194,6 +194,8 @@ function addWeight(el)
 {
 	var picker = $('#datetimepicker').data('datetimepicker');
 	var dateVal = picker.getLocalDate();
+        var dateTs = new Date(dateVal).getTime() / 1000;
+        dateTs = Math.round(dateTs);
 
 	var weightVal  = $('#weight').val();
 	var commentVal = $('#comment').val();
@@ -202,7 +204,7 @@ function addWeight(el)
 		dataType: "json",
 		url:      "/api/weight",
 		type:     "POST",
-		data:     {weight: weightVal, date: dateVal, comment: commentVal},
+		data:     { weight: weightVal, date: dateTs, comment: commentVal },
 		success:  function(json) {
 			processResult(json);
 		}
@@ -228,7 +230,7 @@ function drawChart(jsonData) {
 	data.addColumn('number',   'Trend line');
 	data.addColumn('number',   'Target weight');
 	data.addColumn('number',   'My weight');
-	data.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
+	data.addColumn( { type: 'string', role: 'tooltip', 'p': { 'html': true } } );
 
 	var newData  = jsonData.data;
 
