@@ -34,7 +34,8 @@ class Controller_Api_Weight extends Abstract_Controller
             throw new Exception_Api("Invalid date specified.");
         }
 
-        if ($date > time()) {
+        // Add 5 mins for a buffer due to clocks being off
+        if ($date > (time() + (60 * 5))) {
             throw new Exception_Api("Date can't be in the future.");
         }
 

@@ -89,7 +89,7 @@ class Config_App extends Abstract_Config
             return 1;
         }
 
-        $output = $output[0];
+        $output = trim($output[0]);
 
         return $output;
     }

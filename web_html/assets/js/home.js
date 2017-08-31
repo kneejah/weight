@@ -192,9 +192,17 @@ function resizeGraph() {
 
 function addWeight(el)
 {
-	var picker = $('#datetimepicker').data('datetimepicker');
-	var dateVal = picker.getLocalDate();
-        var dateTs = new Date(dateVal).getTime() / 1000;
+        var pickerInput = $('#datetimepickerinput').val();
+
+        var dateTs = new Date().getTime() / 1000;
+
+        if (pickerInput != "")
+        {
+	    var picker = $('#datetimepicker').data('datetimepicker');
+	    var dateVal = picker.getLocalDate();
+            dateTs = new Date(dateVal).getTime() / 1000;
+        }
+
         dateTs = Math.round(dateTs);
 
 	var weightVal  = $('#weight').val();
