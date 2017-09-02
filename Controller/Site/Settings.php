@@ -73,14 +73,24 @@
 
 					$newVal = round($newVal, 1);
 				}
-				else if ($setting['validate'] == 'timezone')
+				else if ($setting['validate'] == 'records_entries')
 				{
-					$zones = DateTimeZone::listIdentifiers();
+					$newVal = $val;
 
-					if (in_array($val, $zones))
+					if (!is_numeric($newVal))
 					{
-						$newVal = $val;
+						$newVal = 20;
 					}
+					else if ($newVal < 10)
+					{
+						$newVal = 10;
+					}
+					else if ($newVal > 100)
+					{
+						$newVal = 100;
+					}
+
+					$newVal = round($newVal);
 				}
 
 				$settings_mapper = new Mapper_Settings();

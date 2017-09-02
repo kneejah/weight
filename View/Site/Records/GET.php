@@ -6,7 +6,6 @@ class View_Site_Records_GET extends Abstract_View
     public function render()
     {
         $page = 'records';
-        $recordsPerPage = 20;
         $app = Config::get('app');
 
         $policy = new Policy_LoggedIn($this->app);
@@ -19,6 +18,14 @@ class View_Site_Records_GET extends Abstract_View
 
         if (!ctype_digit($page)) {
             $page = 1;
+        }
+
+        $recordsPerPage = 20;
+        $settings_mapper = new Mapper_Settings();
+        $settingsVals = $settings_mapper->getFilteredSettingsByUserid($userid);
+
+        if (isset($settingsVals['records_entries'])) {
+          $recordsPerPage = $settingsVals['records_entries'];
         }
 
         $weight_mapper = new Mapper_Weight();

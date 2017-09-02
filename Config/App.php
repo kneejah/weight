@@ -40,15 +40,15 @@ class Config_App extends Abstract_Config
                     'validate'     => 'height',
                     'order'        => 1
                 ),
-                /*2 => array(
-                    'name'         => 'timezone',
-                    'title'        => 'Time zone',
-                    'description'  => 'Time zone to display, view your choices <a target="_blank" href="http://php.net/manual/en/timezones.php">here</a>',
+                2 => array(
+                    'name'         => 'records_entries',
+                    'title'        => 'Records entries',
+                    'description'  => 'Number of entries on Records page',
                     'type_string'  => true,
-                    'default'      => 'America/Los_Angeles',
-                    'validate'     => 'timezone',
+                    'default'      => 20,
+                    'validate'     => 'records_entries',
                     'order'        => 6
-                ),*/
+                ),
                 3 => array(
                     'name'         => 'trend_line',
                     'title'        => 'Trend line',
