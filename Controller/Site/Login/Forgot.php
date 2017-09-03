@@ -26,15 +26,15 @@ class Controller_Site_Login_Forgot extends Abstract_Controller
         $user_mapper = new Mapper_User();
         $user = $user_mapper->getUserByEmail($email);
         if (!$user) {
-            $this->_error("No user with that email address exists.");
+            $this->_success();
         }
 
-        $newPass = substr(md5(mt_rand() . microtime(true)), 0, 10);
+        $newPass = substr(md5(mt_rand() . microtime(true)), 0, 16);
 
         $subject = "Your {$app->name} password has been reset";
         $body    = "Hey {$user['username']},<br /><br />"
         . "Your password has successfuly been reset.<br />"
-        . 'It is now: "' . $newPass . '".' . "<br />"
+        . 'It is now: "<b>' . $newPass . '</b>".' . "<br />"
         . 'You should <a href="http://www.trackly.me/account">log in</a>, and change it.' . "<br /><br />"
         . "Thanks,<br />"
         . "{$app->name}";
