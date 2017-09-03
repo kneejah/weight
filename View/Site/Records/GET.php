@@ -25,7 +25,7 @@ class View_Site_Records_GET extends Abstract_View
         $settingsVals = $settings_mapper->getFilteredSettingsByUserid($userid);
 
         if (isset($settingsVals['records_entries'])) {
-          $recordsPerPage = $settingsVals['records_entries'];
+            $recordsPerPage = $settingsVals['records_entries'];
         }
 
         $weight_mapper = new Mapper_Weight();
