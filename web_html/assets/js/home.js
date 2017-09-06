@@ -166,6 +166,8 @@ function processResult(data)
 function resizeGraph() {
 	var min = 350;
 	var max = 1200;
+	var adjustment = 25;
+
 	var width = $(window).width();
 
 	var newWidth = 0;
@@ -183,7 +185,7 @@ function resizeGraph() {
 
 	if (newWidth < 1200)
 	{
-		newWidth = newWidth - 75;
+		newWidth = newWidth - adjustment;
 	}
 
 	$("#chart_div").css("width", newWidth + "px");
