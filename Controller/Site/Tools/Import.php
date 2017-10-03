@@ -1,131 +1,112 @@
 <?php
 
-	class Controller_Site_Tools_Import extends Abstract_Controller
-	{
+class Controller_Site_Tools_Import extends Abstract_Controller
+{
 
-		public function POST()
-		{
-			$policy = new Policy_LoggedIn($this->app);
-			$policy->ensure();
-			$userid = $policy->getData();
+    public function POST()
+    {
+        $policy = new Policy_LoggedIn($this->app);
+        $policy->ensure();
+        $userid = $policy->getData();
 
-			if (!isset($_FILES['file']))
-			{
-				$this->error("Nothing to do.");
-			}
+        if (!isset($_FILES['file'])) {
+            $this->_error("Nothing to do.");
+        }
 
-			$file = $_FILES['file'];
+        $file = $_FILES['file'];
 
-			if (isset($file['error']) && $file['error'] > 0)
-			{
-				$error = $file['error'];
-				if ($error == UPLOAD_ERR_NO_FILE)
-				{
-					$this->error("No file was selected.");
-				}
-				else if ($error == UPLOAD_ERR_INI_SIZE)
-				{
-					$this->error("The file you're trying to upload is too big.");
-				}
-				else
-				{
-					$this->error("Something went wrong, please try again later.");
-				}
-			}
+        if (isset($file['error']) && $file['error'] > 0) {
+            $error = $file['error'];
+            if ($error == UPLOAD_ERR_NO_FILE) {
+                $this->_error("No file was selected.");
+            } else if ($error == UPLOAD_ERR_INI_SIZE) {
+                $this->_error("The file you're trying to upload is too big.");
+            } else {
+                $this->_error("Something went wrong, please try again later.");
+            }
+        }
 
-			$tmpName = $file['tmp_name'];
+        $tmpName = $file['tmp_name'];
 
-			ini_set('auto_detect_line_endings', true);
-			$handle = fopen($tmpName,'r');
+        ini_set('auto_detect_line_endings', true);
+        $handle = fopen($tmpName, 'r');
 
-			$dataLines = array();
+        $dataLines = array();
 
-			while (($data = fgetcsv($handle)) !== false) {
-				$dataLines[] = $data;
-			}
+        while (($data = fgetcsv($handle)) !== false) {
+            $dataLines[] = $data;
+        }
 
-			ini_set('auto_detect_line_endings', false);
+        ini_set('auto_detect_line_endings', false);
 
-			if (count($dataLines) < 2)
-			{
-				$this->error("The file uploaded does not contain enough data to import.");
-			}
+        if (count($dataLines) < 2) {
+            $this->_error("The file uploaded does not contain enough data to import.");
+        }
 
-			$descripData   = $dataLines[0];
-			$dateOffset    = false;
-			$weightOffset  = false;
-			$commentOffset = false;
+        $descripData   = $dataLines[0];
+        $dateOffset    = false;
+        $weightOffset  = false;
+        $commentOffset = false;
 
-			for ($i = 0; $i < count($descripData); $i++)
-			{
-				$field = strtolower(trim($descripData[$i]));
-				
-				if ($field == "date")
-				{
-					$dateOffset = $i;
-				}
-				else if ($field == "weight")
-				{
-					$weightOffset = $i;
-				}
-				else if ($field == "comment" || $field == "comments" || $field == "note" || $field == "notes")
-				{
-					$commentOffset = $i;
-				}
-			}
+        for ($i = 0; $i < count($descripData); $i++) {
+            $field = strtolower(trim($descripData[$i]));
 
-			if ($dateOffset === false || $weightOffset === false)
-			{
-				$this->error("The file uploaded is missing the required fields.");
-			}
+            if ($field == "date") {
+                $dateOffset = $i;
+            } else if ($field == "weight") {
+                $weightOffset = $i;
+            } else if ($field == "comment" || $field == "comments" || $field == "note" || $field == "notes") {
+                $commentOffset = $i;
+            }
+        }
 
-			$validRows = 0;
+        if ($dateOffset === false || $weightOffset === false) {
+            $this->_error("The file uploaded is missing the required fields.");
+        }
 
-			for ($i = 1; $i < count($dataLines); $i++)
-			{
-				$tmpData = $dataLines[$i];
+        $validRows = 0;
 
-				$tmpDate    = trim($tmpData[$dateOffset]);
-				$tmpWeight  = trim($tmpData[$weightOffset]);
-				$tmpComment = '';
+        for ($i = 1; $i < count($dataLines); $i++) {
+            $tmpData = $dataLines[$i];
 
-				if ($commentOffset && isset($tmpData[$commentOffset]))
-				{
-					$tmpComment = trim($tmpData[$commentOffset]);
-				}
+            $tmpDate    = trim($tmpData[$dateOffset]);
+            $tmpWeight  = trim($tmpData[$weightOffset]);
+            $tmpComment = '';
 
-				$tmpWeight = Helper_Weight::validateWeight($tmpWeight);
-				$tmpDate   = Helper_Date::validateDate($tmpDate);
+            if ($commentOffset && isset($tmpData[$commentOffset])) {
+                $tmpComment = trim($tmpData[$commentOffset]);
+            }
 
-				if ($tmpDate && $tmpWeight)
-				{
-					$mapper = new Mapper_Weight();
-					$mapper->addWeight($userid, $tmpWeight, $tmpComment, $tmpDate);
+            $tmpWeight = Helper_Weight::validateWeight($tmpWeight);
+            $tmpDate   = Helper_Date::validateDate($tmpDate);
 
-					$validRows++;
-				}
-			}
+            if ($tmpDate && $tmpWeight) {
+                $mapper = new Mapper_Weight();
+                $mapper->addWeight($userid, $tmpWeight, $tmpComment, $tmpDate);
 
-			if ($validRows == 0)
-			{
-				$this->error("No valid data found to import.");
-			}
+                $validRows++;
+            }
+        }
 
-			$this->success("Import complete. $validRows " . (($validRows != 1) ? "rows" : "row") . " were just imported.");
-		}
+        if ($validRows == 0) {
+            $this->_error("No valid data found to import.");
+        }
 
-		private function success($string)
-		{
-			Helper_Message::setSuccess($this->app, $string);
-			$this->app->redirect('/tools');
-			die();
-		}
+        $this->_success("Import complete. $validRows " . (($validRows != 1) ? "rows" : "row") . " were just imported.");
+    }
 
-		private function error($string)
-		{
-			Helper_Message::setError($this->app, $string);
-			$this->app->redirect('/tools');
-			die();
-		}
+    private function _success($string)
+    {
+        Helper_Message::setSuccess($this->app, $string);
+        $this->app->redirect('/tools');
+        die();
+    }
 
-	}
+    private function _error($string)
+    {
+        Helper_Message::setError($this->app, $string);
+        $this->app->redirect('/tools');
+        die();
+    }
+
+}
