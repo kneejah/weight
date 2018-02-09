@@ -104,10 +104,10 @@ class Config_System extends Abstract_Config
             ),
             'cookie' => new \Slim\Middleware\SessionCookie(
                 array(
-                    'expires' => '2 weeks',
+                    'expires' => '6 months',
                     'path' => '/',
                     'domain' => null,
-                    'secure' => false,
+                    'secure' => true,
                     'httponly' => false,
                     'name' => 'slim_session',
                     'secret' => $iniSettings['cookie_secret'],
