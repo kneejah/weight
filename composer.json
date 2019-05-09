@@ -5,7 +5,7 @@
 	"require":
 	{
 		"ccampbell/chromephp": "dev-master",
-		"mustache/mustache":   "2.3.*",
-		"slim/slim":           "2.*"
+		"mustache/mustache":   "2.12.0",
+		"slim/slim":           "2.6.3"
 	}
 }

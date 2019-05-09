@@ -102,19 +102,6 @@ class Config_System extends Abstract_Config
                     'options' => array('post' => array('api' => true), 'put' => array('api' => true), 'delete' => array('api' => true))
                 )
             ),
-            'cookie' => new \Slim\Middleware\SessionCookie(
-                array(
-                    'expires' => '6 months',
-                    'path' => '/',
-                    'domain' => null,
-                    'secure' => true,
-                    'httponly' => false,
-                    'name' => 'slim_session',
-                    'secret' => $iniSettings['cookie_secret'],
-                    'cipher' => MCRYPT_RIJNDAEL_256,
-                    'cipher_mode' => MCRYPT_MODE_CBC
-                )
-            ),
             'password_hash' => $iniSettings['password_hash'],
             'sqlite_path'   => $iniSettings['sqlite_path']
         );
